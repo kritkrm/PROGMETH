@@ -22,6 +22,7 @@ public class GridCell implements IRenderable {
 		grid = new Cell[ maxCol+1 ][ maxRow+1 ] ;
 		isVisible = true ;
 		generateGrid();
+		IRenderableHolder.getInstance().add( this );
 			
 	}
 	

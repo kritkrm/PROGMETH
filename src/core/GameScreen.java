@@ -20,8 +20,11 @@ public class GameScreen extends StackPane {
 		this.canvas = new Canvas( Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() ) ;
 		this.getChildren().add( canvas ) ;
 		this.gridCell = gridCell ; 
-		IRenderableHolder.getInstance().add( gridCell );
 		addListener();
+	}
+	
+	public GridCell getGridCell() {
+		return gridCell ;
 	}
 	
 	public void drawComponenet(){
