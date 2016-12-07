@@ -16,15 +16,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		GameScreen root = new GameScreen();
+		GameScreen root = new GameScreen( new GridCell() );
 		Scene scene = new Scene( root );
 		
 		primaryStage.setScene( scene );
 		primaryStage.setTitle( Constants.GAME_NAME );
-
-
-		IRenderableHolder.getInstance().add( new GridCell() );
-
 			
 		new AnimationTimer() {
 			long updateTime ;

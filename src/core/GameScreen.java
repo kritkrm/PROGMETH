@@ -13,11 +13,14 @@ import util.Constants;
 public class GameScreen extends StackPane {
 	
 	private Canvas canvas ; 
+	private GridCell gridCell ; 
 	
-	public GameScreen() {
+	public GameScreen( GridCell gridCell ) {
 		super() ; 
 		this.canvas = new Canvas( Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() ) ;
 		this.getChildren().add( canvas ) ;
+		this.gridCell = gridCell ; 
+		IRenderableHolder.getInstance().add( gridCell );
 		addListener();
 	}
 	
