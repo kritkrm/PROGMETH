@@ -26,6 +26,7 @@ public class ColorCell extends Cell {
 		gc.setFill( color );
 		gc.fillRect( (col-1) * Constants.CELL_SIZE + col , (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE , Constants.CELL_SIZE );		
 		gc.restore();
+			
 		return ;
 		
 	}
@@ -57,7 +58,7 @@ public class ColorCell extends Cell {
 	public boolean isInside(int x, int y) {
 		// TODO Auto-generated method stub
 		if( x < (col-1) * Constants.CELL_SIZE + col ) return false ;
-		if( x > (col-1) * Constants.CELL_SIZE + col + Constants.CELL_SIZE ) ; 
+		if( x > (col-1) * Constants.CELL_SIZE + col + Constants.CELL_SIZE ) return false ; 
 	
 		if( y < (row-1) * Constants.CELL_SIZE + row ) return false ; 
 		if( y > (row-1) * Constants.CELL_SIZE + row + Constants.CELL_SIZE ) return false ;

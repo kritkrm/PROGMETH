@@ -14,8 +14,6 @@ public class GameScreen extends StackPane {
 	
 	private Canvas canvas ; 
 	
-	
-	
 	public GameScreen() {
 		super() ; 
 		this.canvas = new Canvas( Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() ) ;
