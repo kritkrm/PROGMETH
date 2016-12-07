@@ -59,8 +59,13 @@ public class GameScreen extends StackPane {
 			public void handle(MouseEvent event) {
 				System.out.println("MousePressed : " + event.getButton().toString());
 				if (event.getButton() == MouseButton.PRIMARY) {
+										
 					InputUtility.setMouseLeftDown(true);
 					InputUtility.setMouseLeftLastDown(true);
+					
+					if( InputUtility.isMouseLeftTriggered() ){
+						InputUtility.setMouseLeftTriggered(false);
+					} 
 				}
 				if (event.getButton() == MouseButton.SECONDARY) {
 					InputUtility.setMouseRightDown(true);
@@ -107,7 +112,7 @@ public class GameScreen extends StackPane {
 				}
 			}
 		});
-		
+				
 	}
 	
 }

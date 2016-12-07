@@ -1,5 +1,7 @@
 package core;
 
+import com.sun.prism.impl.BaseMesh.FaceMembers;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -21,12 +23,15 @@ public class Main extends Application {
 		
 		primaryStage.setScene( scene );
 		primaryStage.setTitle( Constants.GAME_NAME );
-			
+		
+		GameLogic gameLogic = new GameLogic( root ) ; 
+		
 		new AnimationTimer() {
 			long updateTime ;
 			final long maximumWaitTime = 1000000000l / Constants.MAX_FRAME_PER_SECOND;
 			@Override
-			public void handle( long currentTime ) {
+			public
+			void handle( long currentTime ) {
 				// TODO Auto-generated method stub
 				
 //				updateTime = currentTime ; 
@@ -42,14 +47,16 @@ public class Main extends Application {
 //						e.printStackTrace();
 //					}
 //				}
-				root.drawComponenet(); 
-				
+				gameLogic.updateLogic(); 
+				gameLogic.updateScreen();
+					
 			}
 		}.start();
 		
 		primaryStage.show();
 	}
 
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

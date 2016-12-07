@@ -3,6 +3,8 @@ package core;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.tools.Diagnostic;
+
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -68,12 +70,14 @@ public class GridCell implements IRenderable {
 		// TODO Auto-generated method stub
 		for( int i=1 ; i<=maxCol ; i++ ) {
 			for( int j=1 ; j<=maxRow ; j++ ) {
-				grid[i][j].draw( gc );
-				if( grid[i][j].isInside( InputUtility.getMouseX() , InputUtility.getMouseY() ) ) {
-					gc.setGlobalAlpha( 0.7 );
-					gc.setFill( Color.WHITE );
-					gc.fillRect( (j-1) * Constants.CELL_SIZE + j , (i-1) * Constants.CELL_SIZE + i , Constants.CELL_SIZE , Constants.CELL_SIZE );		
-					gc.setGlobalAlpha( 1 );
+				if( !grid[i][j].isDestroyed() ) {
+					grid[i][j].draw( gc );
+					if( grid[i][j].isInside( InputUtility.getMouseX() , InputUtility.getMouseY() ) ) {
+						gc.setGlobalAlpha( 0.7 );
+						gc.setFill( Color.WHITE );
+						gc.fillRect( (j-1) * Constants.CELL_SIZE + j , (i-1) * Constants.CELL_SIZE + i , Constants.CELL_SIZE , Constants.CELL_SIZE );		
+						gc.setGlobalAlpha( 1 );
+					}
 				}
 			}
 		}

@@ -14,7 +14,7 @@ public abstract class Cell implements IRenderable , MouseActionable {
 	public Cell ( int row , int col , GridCell gridCell ) {
 		this.row = row ; 
 		this.col = col ; 
-		this.isDestroyed = true ;
+		this.isDestroyed = false ;
 		this.isVisible = true ;
 		this.gridCell = gridCell ;
 	}
@@ -31,6 +31,16 @@ public abstract class Cell implements IRenderable , MouseActionable {
 		return col ; 
 	}
 
+	public boolean isDestroyed() {
+		return isDestroyed ; 
+	}
+	
+	public void destroy() {
+		isDestroyed = true ; 
+		return ;
+	}
+	
 	public abstract int getZ() ; 
 	public abstract boolean isVisible();
+	
 }

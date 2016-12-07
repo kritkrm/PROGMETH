@@ -1,11 +1,16 @@
 package core;
 
+import java.util.ArrayList;
+
+import javafx.scene.input.KeyCode;
+
 public class InputUtility {
 
 	private static int mouseX, mouseY;
 	private static boolean mouseLeftDown, mouseRightDown, mouseOnScreen;
-	private static boolean mouseLeftLastDown, mouseRightLastDown;
-
+	private static boolean mouseLeftLastDown, mouseRightLastDown , mouseLeftTriggered;
+	
+	
 	public static int getMouseX() {
 		return mouseX;
 	}
@@ -32,6 +37,14 @@ public class InputUtility {
 		InputUtility.mouseLeftLastDown = mouseLeftDown;
 	}
 
+	public static boolean isMouseLeftTriggered() {
+		return mouseLeftTriggered;
+	}
+
+	public static void setMouseLeftTriggered( boolean mouseLeftLastTriggered ) {
+		InputUtility.mouseLeftTriggered = mouseLeftLastTriggered;
+	}
+	
 	public static boolean isMouseRightDown() {
 		return mouseRightDown;
 	}
