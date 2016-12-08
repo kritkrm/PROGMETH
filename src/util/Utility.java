@@ -1,6 +1,6 @@
 package util;
 
-import core.Cell;
+import gameScreen.Cell;
 
 public class Utility {
 	

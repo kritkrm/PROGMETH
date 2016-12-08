@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import util.Constants;
+import util.InputUtility;
 
 public abstract class Screen extends StackPane {
 
@@ -23,6 +24,8 @@ public abstract class Screen extends StackPane {
 		this.isActive = false ;
 		
 	}
+	
+	public abstract void update() ;
 	
 	public boolean isActive() {
 		return this.isActive ; 

@@ -2,6 +2,7 @@ package core;
 
 import com.sun.prism.impl.BaseMesh.FaceMembers;
 
+import gameScreen.GameScreen;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -16,12 +17,16 @@ import javafx.stage.WindowEvent;
 import util.Constants;
 
 public class Main extends Application {
-
+	
+	private GameScreen gameScreen ;
+	
 	@Override
 	public void start(Stage primaryStage) {
+		GameScreen gameScreen = new GameScreen() ;
 		
-		Scene scene = new Scene( GameScreen.getInstance() );
-		GameScreen.getInstance().active(); 
+		Scene scene = new Scene( gameScreen );
+		ScreenManager.getInstance().setNextScreen( gameScreen );
+		
 		primaryStage.setScene( scene );
 		primaryStage.setTitle( Constants.GAME_NAME );
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -38,22 +43,20 @@ public class Main extends Application {
 			public void handle( long currentTime ) {
 				// TODO Auto-generated method stub
 				
-//				updateTime = currentTime ; 
-//				StageManager.getInstance().update() ; 
-//				updateTime = currentTime ;
-//				
-//				if ( updateTime < maximumWaitTime ) {
-//					try {
-//						Thread.sleep( (maximumWaitTime - updateTime) / 1000000l );
-//					} catch (InterruptedException e) {
-//						// TODO: handle exception
-//						Thread.interrupted() ; 
-//						e.printStackTrace();
-//					}
-//				}
-				GameScreen.getInstance().getGameLogic().updateLogic(); 
-				GameScreen.getInstance().getGameLogic().updateScreen(); 
-					
+				updateTime = currentTime ; 
+				ScreenManager.getInstance().update() ; 
+				updateTime = currentTime ;
+				
+				if ( updateTime < maximumWaitTime ) {
+					try {
+						Thread.sleep( (maximumWaitTime - updateTime) / 1000000l );
+					} catch (InterruptedException e) {
+						// TODO: handle exception
+						Thread.interrupted() ; 
+						e.printStackTrace();
+					}
+				}
+//			 gameScreen.update();		
 			}
 		}.start();
 		
