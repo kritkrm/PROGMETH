@@ -1,8 +1,12 @@
 package core;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import screen.Screen;
+
 public class ScreenManager {
 	
-	private static final ScreenManager instance = new ScreenManager();
+	private static final ScreenManager instance = new ScreenManager();	
 	
 	public static ScreenManager getInstance() {
 		return instance;
@@ -17,6 +21,10 @@ public class ScreenManager {
 	
 	public ScreenManager() {
 		
+	}
+	
+	public Screen getCurrentScreen() {
+		return currentScreen ;
 	}
 	
 	public void update() {

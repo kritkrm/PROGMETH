@@ -2,7 +2,6 @@ package core;
 
 import com.sun.prism.impl.BaseMesh.FaceMembers;
 
-import gameScreen.GameScreen;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -14,20 +13,27 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import mainScreen.MainScreen;
+import screen.GameScreen;
 import util.Constants;
+import util.Resources;
 
 public class Main extends Application {
 	
 	private GameScreen gameScreen ;
+	private MainScreen mainScreen ;
 	
 	@Override
 	public void start(Stage primaryStage) {
-		GameScreen gameScreen = new GameScreen() ;
-		
-		Scene scene = new Scene( gameScreen );
+		gameScreen = new GameScreen() ;
+		mainScreen = new MainScreen() ; 
+		Resources.getInstance().initialize() ;
+		// clear screenholder
 		ScreenManager.getInstance().setNextScreen( gameScreen );
+		ScreenManager.getInstance().update();
+		System.out.println(ScreenManager.getInstance().getCurrentScreen() );
 		
-		primaryStage.setScene( scene );
+		primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
 		primaryStage.setTitle( Constants.GAME_NAME );
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
@@ -45,8 +51,10 @@ public class Main extends Application {
 				
 				updateTime = currentTime ; 
 				ScreenManager.getInstance().update() ; 
+				primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
 				updateTime = currentTime ;
-				
+				ScreenManager.getInstance().setNextScreen( mainScreen );
+
 				if ( updateTime < maximumWaitTime ) {
 					try {
 						Thread.sleep( (maximumWaitTime - updateTime) / 1000000l );
@@ -56,7 +64,6 @@ public class Main extends Application {
 						e.printStackTrace();
 					}
 				}
-//			 gameScreen.update();		
 			}
 		}.start();
 		
