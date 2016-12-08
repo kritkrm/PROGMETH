@@ -1,5 +1,8 @@
 package core;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;
@@ -24,13 +27,18 @@ public class ColorCell extends Cell {
 		// TODO Auto-generated method stub
 		Color color = getCellColor( this ) ;		
 		gc.setFill( color );
-		gc.fillRect( (col-1) * Constants.CELL_SIZE + col , (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE , Constants.CELL_SIZE );		
+		gc.fillRect( Constants.GRIG_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col , Constants.GRIG_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE , Constants.CELL_SIZE );		
 		gc.restore();
 			
 		return ;
 		
 	}
 
+	public void setCellColor( CellColor cellColor ) {
+		this.cellColor = cellColor ; 
+		return ; 
+	}
+	
 	public Color getCellColor( ColorCell colorCell ) {
 		switch ( colorCell.getCellColor() ) {
 			case RED     : return Color.RED    ;
@@ -45,7 +53,21 @@ public class ColorCell extends Cell {
 	@Override
 	public void clickAction() {
 		// TODO Auto-generated method stub
+		ArrayList<ColorCell> neighborCell = gridCell.getNeighborOf(this) ;
+		if( neighborCell.size() >= 3 ) {
+			for( ColorCell i : neighborCell ) {
+				i.destroy(); 
+				gridCell.update();
+			
+			}
+			GameScreen.getInstance().getGameStatus().increaseScore( neighborCell.size() );
+			GameScreen.getInstance().getGameStatus().increaseCombo( 2 );
 		
+		} else {
+			GameScreen.getInstance().getGameStatus().clearCombo();
+			
+		} 
+	
 	}
 	
 	@Override
@@ -57,11 +79,11 @@ public class ColorCell extends Cell {
 	@Override
 	public boolean isInside(int x, int y) {
 		// TODO Auto-generated method stub
-		if( x < (col-1) * Constants.CELL_SIZE + col ) return false ;
-		if( x > (col-1) * Constants.CELL_SIZE + col + Constants.CELL_SIZE ) return false ; 
+		if( x < Constants.GRIG_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col ) return false ;
+		if( x > Constants.GRIG_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col + Constants.CELL_SIZE ) return false ; 
 	
-		if( y < (row-1) * Constants.CELL_SIZE + row ) return false ; 
-		if( y > (row-1) * Constants.CELL_SIZE + row + Constants.CELL_SIZE ) return false ;
+		if( y < Constants.GRIG_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row ) return false ; 
+		if( y > Constants.GRIG_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row + Constants.CELL_SIZE ) return false ;
 		
 		return true;
 	}

@@ -4,12 +4,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;
 
-public abstract class Cell implements IRenderable , MouseActionable {
+public abstract class Cell implements ScreenObejct , MouseActionable {
 
 	protected int row , col ; 
 	private boolean isDestroyed ;
 	private boolean isVisible ;
-	private GridCell gridCell ; 
+	protected GridCell gridCell ; 
 	
 	public Cell ( int row , int col , GridCell gridCell ) {
 		this.row = row ; 
@@ -22,15 +22,29 @@ public abstract class Cell implements IRenderable , MouseActionable {
 	public GridCell getGridCell() {
 		return gridCell ;
 	}
-
+	
 	public int getRow() {
 		return row ;
+	}
+	
+	public void setRow( int row ) {
+		this.row = row ;
+		return ;
 	}
 	
 	public int getCol() {
 		return col ; 
 	}
-
+	
+	public void setCol( int col ) {
+		this.col = col ; 
+		return ; 
+	}
+	
+	public void setAlive() {
+		isDestroyed = true ; 
+	}
+	
 	public boolean isDestroyed() {
 		return isDestroyed ; 
 	}

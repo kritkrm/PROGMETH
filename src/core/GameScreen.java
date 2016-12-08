@@ -1,5 +1,7 @@
 package core;
 
+import java.io.ObjectInputStream.GetField;
+
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,109 +12,47 @@ import javafx.scene.paint.Color;
 
 import util.Constants;
 
-public class GameScreen extends StackPane {
+public class GameScreen extends Screen {
 	
-	private Canvas canvas ; 
 	private GridCell gridCell ; 
+	private GameStatus gameStatus ; 
+	private GameLogic gameLogic ; 
 	
-	public GameScreen( GridCell gridCell ) {
+	private static final GameScreen instance = new GameScreen();
+	
+	public static GameScreen getInstance() { return instance ; } 
+	
+	public GameScreen() {
 		super() ; 
-		this.canvas = new Canvas( Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() ) ;
-		this.getChildren().add( canvas ) ;
-		this.gridCell = gridCell ; 
-		addListener();
+		this.gridCell = new GridCell() ;
+		this.gameStatus = new GameStatus() ;
+		this.gameLogic = new GameLogic() ; 
 	}
 	
 	public GridCell getGridCell() {
 		return gridCell ;
 	}
 	
-	public void drawComponenet(){
-		
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setFill(Color.WHITE);
-		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
-		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
-		gc.restore(); 
-		for(IRenderable renderable : IRenderableHolder.getInstance().getEntities() ) {
-			renderable.draw(gc);
-		}
-		
+	public GameStatus getGameStatus() {
+		return gameStatus ; 
 	}
 	
-	private void addListener() {
-		
-		this.canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				System.out.println("MouseReleased : " + event.getButton().toString());
-				if (event.getButton() == MouseButton.PRIMARY)
-					InputUtility.setMouseLeftDown(false);
-				if (event.getButton() == MouseButton.SECONDARY)
-					InputUtility.setMouseRightDown(false);
-
+	public GameLogic getGameLogic() {
+		return gameLogic ; 
+	}
+	
+	@Override
+	public void drawComponenet(){
+		if( isActive ) {
+			GraphicsContext gc = canvas.getGraphicsContext2D();
+			gc.setFill(Color.WHITE);
+			gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
+			gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
+			gc.restore(); 
+			for(ScreenObejct renderable : GameScreenObejctHoloder.getInstance().getEntities() ) {
+				renderable.draw(gc);
 			}
-		});
-		
-		this.canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				System.out.println("MousePressed : " + event.getButton().toString());
-				if (event.getButton() == MouseButton.PRIMARY) {
-										
-					InputUtility.setMouseLeftDown(true);
-					InputUtility.setMouseLeftLastDown(true);
-					
-					if( InputUtility.isMouseLeftTriggered() ){
-						InputUtility.setMouseLeftTriggered(false);
-					} 
-				}
-				if (event.getButton() == MouseButton.SECONDARY) {
-					InputUtility.setMouseRightDown(true);
-					InputUtility.setMouseRightLastDown(true);
-				}
-
-			}
-		});
-
-		this.canvas.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				InputUtility.setMouseOnScreen(false);
-			}
-		});
-
-		this.canvas.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				InputUtility.setMouseOnScreen(true);
-			}
-		});
-
-		this.canvas.setOnMouseMoved(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				if (InputUtility.isMouseOnScreen()) {
-					InputUtility.setMouseX((int) event.getX());
-					InputUtility.setMouseY((int) event.getY());
-				}
-			}
-		});
-
-		this.canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				if (InputUtility.isMouseOnScreen()) {
-					InputUtility.setMouseX((int) event.getX());
-					InputUtility.setMouseY((int) event.getY());
-				}
-			}
-		});
-				
+		}
 	}
 	
 }

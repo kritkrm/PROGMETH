@@ -1,5 +1,6 @@
 package core;
 
+import java.awt.Container;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import javafx.scene.paint.Color;
 import util.Constants;
 import util.Constants.CellColor;
 
-public class GridCell implements IRenderable {
+public class GridCell implements ScreenObejct {
 	
 	private Cell grid[][] ; 
 	private int maxCol , maxRow , z ;
@@ -19,12 +20,12 @@ public class GridCell implements IRenderable {
 	
 	public GridCell() {
 		
-		maxCol = Constants.CELL_PER_COL ;
-		maxRow = Constants.CELL_PER_ROW ; 
-		grid = new Cell[ maxCol+1 ][ maxRow+1 ] ;
+		maxCol = Constants.CELL_PER_ROW ;
+		maxRow = Constants.CELL_PER_COL ; 
+		grid = new Cell[ maxRow+1 ][ maxCol+1 ] ;
 		isVisible = true ;
 		generateGrid();
-		IRenderableHolder.getInstance().add( this );
+		GameScreenObejctHoloder.getInstance().add( this );
 			
 	}
 	
@@ -34,8 +35,8 @@ public class GridCell implements IRenderable {
 	
 	public Cell getCellAtPos( int x , int y ) {
 		
-		for( int i=1 ; i<=maxCol ; i++ ) {
-			for( int j=1 ; j<=maxRow ; j++ ) {
+		for( int i=1 ; i<=maxRow ; i++ ) {
+			for( int j=1 ; j<=maxCol ; j++ ) {
 				if( grid[i][j].isInside( x , y ) ) {
 					return grid[i][j] ; 
 				}
@@ -48,17 +49,81 @@ public class GridCell implements IRenderable {
 	}
 	
 	public void generateGrid() {
-		for( int i=1 ; i<=maxCol ; i++ ) {
-			for( int j=1 ; j<=maxRow ; j++ ) {
-				grid[i][j] = new ColorCell( i , j , CellColor.getRandom() , this ) ;
+		for( int i=1 ; i<=maxRow ; i++ ) {
+			for( int j=1 ; j<=maxCol ; j++ ) {
+				if( grid[i][j] == null )
+					grid[i][j] = new ColorCell( i , j , CellColor.getRandom() , this ) ;
+				if( grid[i][j].isDestroyed() ) {
+					grid[i][j] = new ColorCell( i , j , CellColor.getRandom() , this ) ;
+				}
 			}
 		}
 	}
 	
-	public boolean isSameType( ColorCell a , ColorCell b ) {
-		return a.getCellColor() == b.getCellColor() ;
+	public boolean isSameType( Cell a , Cell b ) {
+		if( !( a instanceof ColorCell ) ) return false ;
+		if( !( b instanceof ColorCell ) ) return false ;
+ 		return (((ColorCell)a).getCellColor() == ((ColorCell)b).getCellColor() );
 	}
 
+	public ArrayList<ColorCell> getNeighborOf( ColorCell cell ) {
+		
+		ArrayList<ColorCell> neighbor = new ArrayList<ColorCell>() ;
+		ArrayList<Cell> queue = new ArrayList<Cell>();
+		 		 
+		int[][] isVisited = new int[ 100 ][ 100 ] ;  
+		 
+		for( int r=1; r<=maxRow ; r++ ) {
+			for( int c=1; c<=maxCol ; c++ ) {
+				isVisited[r][c] = 0 ;
+			}
+		 }
+		 
+		 if( !cell.isDestroyed() ) {
+			 queue.add( cell ) ; 
+			 isVisited[ cell.getRow() ][ cell.getCol() ] = 1 ;
+		 }
+		 
+		 while( !queue.isEmpty() ) {
+			 int cellC = queue.get( 0 ).getCol() ; 
+			 int cellR = queue.get( 0 ).getRow() ; 
+			 neighbor.add( (ColorCell) queue.get( 0 ) ) ;
+			 queue.remove( 0 ) ; 
+			 
+			 if( cellC-1 >= 1 && isVisited[cellR][cellC-1] == 0 ) {
+				 if( !grid[cellR][cellC-1].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR][cellC-1] ) ) {
+					 queue.add( grid[cellR][cellC-1] ) ; 
+					 isVisited[cellR][cellC-1] = 1 ;
+				 }
+			 }
+			 
+			 if( cellR-1 >= 1 && isVisited[cellR-1][cellC] == 0) {
+				 if( !grid[cellR-1][cellC].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR-1][cellC] ) ) {
+					 queue.add( grid[cellR-1][cellC] ) ; 
+					 isVisited[cellR-1][cellC] = 1 ;
+				 }
+			 }
+			 
+			 if( cellC+1 <= maxCol && isVisited[cellR][cellC+1] == 0 ) {
+				 if( !grid[cellR][cellC+1].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR][cellC+1] ) ) {
+					 queue.add( grid[cellR][cellC+1] ) ; 
+					 isVisited[cellR][cellC+1] = 1 ;
+				 }
+			 }
+			 
+			 if( cellR+1 <= maxRow && isVisited[cellR+1][cellC] == 0 ) {
+				 if( !grid[cellR+1][cellC].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR+1][cellC] ) ) {
+					 queue.add( grid[cellR+1][cellC] ) ; 
+					 isVisited[cellR+1][cellC] = 1 ;
+				 }
+			 }
+		 }
+		 
+		 System.out.println( queue.size()); 
+		 
+		 return neighbor ;
+	}
+	
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
@@ -68,14 +133,14 @@ public class GridCell implements IRenderable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		for( int i=1 ; i<=maxCol ; i++ ) {
-			for( int j=1 ; j<=maxRow ; j++ ) {
+		for( int i=1 ; i<=maxRow ; i++ ) {
+			for( int j=1 ; j<=maxCol ; j++ ) {
 				if( !grid[i][j].isDestroyed() ) {
 					grid[i][j].draw( gc );
 					if( grid[i][j].isInside( InputUtility.getMouseX() , InputUtility.getMouseY() ) ) {
 						gc.setGlobalAlpha( 0.7 );
-						gc.setFill( Color.WHITE );
-						gc.fillRect( (j-1) * Constants.CELL_SIZE + j , (i-1) * Constants.CELL_SIZE + i , Constants.CELL_SIZE , Constants.CELL_SIZE );		
+						gc.setFill( Color.WHEAT );
+						gc.fillRect( Constants.GRIG_CELL_MARGIN.getWidth() + (j-1) * Constants.CELL_SIZE + j , Constants.GRIG_CELL_MARGIN.getHeight() + (i-1) * Constants.CELL_SIZE + i , Constants.CELL_SIZE , Constants.CELL_SIZE );		
 						gc.setGlobalAlpha( 1 );
 					}
 				}
@@ -89,4 +154,28 @@ public class GridCell implements IRenderable {
 		return isVisible;
 	}
 
+	public void updateIndex() {
+		for( int r=1 ; r<=maxRow ; r++ ) {
+			for( int c=1; c<=maxCol ; c++ ) {
+				grid[r][c].setCol( c );
+				grid[r][c].setRow( r );
+			}
+		}	
+	}
+	
+	public void update() {
+		for( int c=1 ; c<=maxCol ; c++ ) {
+			for( int r=maxRow; r>=1 ; r-- ) {
+				if( grid[r][c].isDestroyed() ) {
+					grid[0][c] = grid[r][c] ; 
+					for( int i=r; i>=1 ; i-- ) {
+						grid[i][c] = grid[i-1][c] ; 
+					}
+				}
+			}
+		}
+		updateIndex();
+		generateGrid(); 
+	}
+	
 }
