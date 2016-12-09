@@ -15,6 +15,7 @@ public class GridCell implements ScreenObject {
 	private int maxCol , maxRow , z ;
 	private boolean isVisible ; 
 	private GameScreen gameScreen ;
+	private ArrayList<Cell> extraAddCell ;  
 	
 	public GridCell( GameScreen gameScreen ) {
 		this.gameScreen = gameScreen ;
@@ -22,17 +23,44 @@ public class GridCell implements ScreenObject {
 		maxRow = Constants.CELL_PER_COL ; 
 		grid = new Cell[ maxRow+1 ][ maxCol+1 ] ;
 		isVisible = true ;
+		extraAddCell = new ArrayList<Cell>() ;
 		generateGrid();
-		GameScreenObjectHolder.getInstance().add( this );
-			
+		GameScreenObjectHolder.getInstance().add( this );		
 	}
 	
 	public GameScreen getGameScreen() {
 		return this.gameScreen ;
 	}
 	
-	public Cell getCellAtIndex( int x , int y ) {
-		return grid[x][y] ; 
+	public Cell getCellAtIndex( int r , int c ) {
+		return grid[r][c] ; 
+	}
+	
+	public void addExtraAddCell( Cell cell ) {
+		extraAddCell.add( cell ) ;
+		return ;
+	}
+	
+	public ArrayList<Cell> getCellInRow( int row ) {
+		
+		ArrayList<Cell> CellInRow = new ArrayList<Cell>() ;
+		if( row >= 1 && row <= maxRow ){
+			for( int i=1; i<=maxCol; i++ ) {
+				CellInRow.add( grid[row][i] ) ;
+			}
+		}
+		return CellInRow ; 
+	}
+	
+	public ArrayList<Cell> getCellInCol( int col ) {
+		
+		ArrayList<Cell> CellInCol = new ArrayList<Cell>() ;
+		if( col >= 1 && col <= maxCol ){
+			for( int i=1; i<=maxRow; i++ ) {
+				CellInCol.add( grid[i][col] ) ;
+			}
+		}
+		return CellInCol ; 
 	}
 	
 	public Cell getCellAtPos( int x , int y ) {
@@ -60,6 +88,8 @@ public class GridCell implements ScreenObject {
 				}
 			}
 		}
+		return ;
+		
 	}
 	
 	public boolean isSameType( Cell a , Cell b ) {
@@ -178,6 +208,13 @@ public class GridCell implements ScreenObject {
 		}
 		updateIndex();
 		generateGrid(); 
+		
+		for( Cell cell : extraAddCell ) {
+			grid[cell.getRow()][cell.getCol()] = cell ;
+		}
+		
+		extraAddCell.clear();
+		
 	}
 	
 }

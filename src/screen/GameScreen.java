@@ -53,6 +53,7 @@ public class GameScreen extends Screen {
 	public void update() {
 		// TODO Auto-generated method stub
 		gameLogic.updateLogic(); 
+		gridCell.update();
 		drawComponenet();
 		
 	}

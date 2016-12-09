@@ -50,7 +50,7 @@ public class Resources {
 	}
 	
 	private void loadSound() {
-		soundGame = new AudioClip((ClassLoader.getSystemResource("song/111.mp3")).toString());
+//		soundGame = new AudioClip((ClassLoader.getSystemResource("song/111.mp3")).toString());
 		return ;
 	}
 	

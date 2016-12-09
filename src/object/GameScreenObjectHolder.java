@@ -39,7 +39,6 @@ public class GameScreenObjectHolder {
 		Collections.sort(entities, comparator);
 	}
 	
-	
 	public List<ScreenObject> getEntities() {
 		return entities;
 	}

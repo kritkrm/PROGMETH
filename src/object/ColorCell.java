@@ -64,8 +64,7 @@ public class ColorCell extends Cell {
 		} else {
 			gridCell.getGameScreen().getGameStatus().clearCombo();
 			
-		} 
-	
+		} 	
 	}
 
 	@Override

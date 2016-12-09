@@ -1,6 +1,7 @@
 package object;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import screen.GameScreen;
 import util.Constants;
 
@@ -25,33 +26,36 @@ public class GameStatus implements ScreenObject {
 		return score;
 	}
 	
-	public synchronized void clearScore() {
+	public void clearScore() {
 		this.score = 0;
 	}
 	
-	public synchronized void increaseScore( int increaseScore ) {
-		this.score += increaseScore ;
+	public synchronized void decreaseRemainingTime( int decreaseRemainingTime ) {
+		this.remainingTime -= decreaseRemainingTime ;
+		if( this.remainingTime < 0 ) this.remainingTime = 0 ;
+		return ;
 	}
 	
-	public synchronized void setRemainingTime( int remainingTime ) {
-		this.remainingTime = remainingTime ;  
+	public void setRemainingTime( int remainingTime ) {
+		this.remainingTime = remainingTime ;
+		if( this.remainingTime < 0 ) this.remainingTime = 0 ; 
+		if( this.remainingTime > Constants.MAX_REMAINING_TIME ) this.remainingTime = Constants.MAX_REMAINING_TIME ;
 		return ; 
+	}
+	
+	public synchronized void decreaseCombo( int decreaseCombo ) {
+		this.combo -= decreaseCombo ;
+		if( this.combo < 0 ) this.combo = 0 ;
+		return ;
+	}
+	
+	public void increaseScore( int increaseScore ) {
+		this.score += increaseScore ;
 	}
 	
 	public int getRemainingTime() {
 		return remainingTime;
 	}
-	
-	public synchronized void decreaseRemainingTime(int amount) {
-		remainingTime -= amount ;
-		if( remainingTime < 0 ) remainingTime = 0 ; 
-	}
-
-	public synchronized void increaseRemainingTime(int amount) {
-		remainingTime += amount ;
-		if( remainingTime > Constants.MAX_REMAINING_TIME ) remainingTime = Constants.MAX_REMAINING_TIME ; 
-	}
-	
 	
 	@Override
 	public int getZ() {
@@ -62,9 +66,11 @@ public class GameStatus implements ScreenObject {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
+		gc.setFill( Color.BLUEVIOLET);
 		gc.fillText( "Score : " + Integer.toString( this.score ) , 30, 30);
 		gc.fillText( "Combo : " + Integer.toString( this.combo ) , 120, 30);
-		
+		gc.fillText( "Time  : " + Integer.toString( this.remainingTime ) , 200, 30);
+
 	}
 
 	@Override
@@ -77,11 +83,11 @@ public class GameStatus implements ScreenObject {
 		return isPause;
 	}
 
-	public synchronized void togglePause() {
+	public void togglePause() {
 		this.isPause = !this.isPause;
 	}
 
-	public int getCombo() {
+	public synchronized int getCombo() {
 		return combo;
 	}
 
