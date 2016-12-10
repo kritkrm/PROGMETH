@@ -4,7 +4,7 @@ public class negativeValueException extends RuntimeException {
 	 
 	public negativeValueException() {
 		super();
-		System.out.println("NegativeValueException : ");
+		System.out.println("NegativeValueException.");
 	}
 	
 	public negativeValueException( String string ) {

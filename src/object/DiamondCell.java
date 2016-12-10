@@ -14,7 +14,7 @@ public class DiamondCell extends Cell {
 		super(row, col, gridCell);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	@Override
 	public void clickAction() {
 		// TODO Auto-generated method stub

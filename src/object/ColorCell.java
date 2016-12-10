@@ -21,6 +21,15 @@ public class ColorCell extends Cell {
 		return cellColor ;
 	}
 	
+	public boolean equals( Object object ) {
+		if( object instanceof ColorCell ) {
+			if( cellColor == ((ColorCell)object).getCellColor() )
+				return true ;
+			else return false ;
+		} else 
+			return false;
+	}
+	
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub

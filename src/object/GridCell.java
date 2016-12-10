@@ -130,7 +130,7 @@ public class GridCell implements ScreenObject {
 	public boolean isSameType( Cell a , Cell b ) {
 		if( !( a instanceof ColorCell ) ) return false ;
 		if( !( b instanceof ColorCell ) ) return false ;
- 		return (((ColorCell)a).getCellColor() == ((ColorCell)b).getCellColor() );
+ 		return ((ColorCell)a).equals((ColorCell)b) ;
 	}
 
 	public ArrayList<ColorCell> getNeighborOf( ColorCell cell ) {
@@ -185,9 +185,7 @@ public class GridCell implements ScreenObject {
 				 }
 			 }
 		 }
-		 
-//		 System.out.println( queue.size()); 
-		 
+
 		 return neighbor ;
 	}
 	
