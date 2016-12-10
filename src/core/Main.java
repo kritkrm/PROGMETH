@@ -1,5 +1,6 @@
 package core;
 
+import java.awt.Container;
 import java.util.Random;
 
 import javafx.animation.AnimationTimer;
@@ -14,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import mainScreen.MainScreen;
+import object.BottleCell;
 import object.DiamondCell;
 import object.GridCell;
 import object.TimeCell;
@@ -40,14 +42,15 @@ public class Main extends Application {
 			
 			while ( !Thread.currentThread().isInterrupted() ) {
 			    try {
-			    	int sleepTime = 20 ;
+			    	int sleepTime = Constants.EVENT_MAKER_SLEEP_TIME ;
 			    	int countCell = gameScreen.getGridCell().countClickCell() ; 
-			    	
-			    	if( countCell <= 20 ) {
+			    
+			    	if( countCell <= Constants.GRID_SHUFFLE_THRESHOLD ) {
 			    		if( !gameScreen.getGameLogic().getShuffle() )
 			    			gameScreen.getGameLogic().setShuffle( true );
 			    	}
-//			    	System.out.println(countCombo);
+			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
+			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
 			    	if( gameScreen.isActive() ) {
 			    		countCombo += ( 1<< (gameScreen.getGameStatus().getCombo()>>3) ) ;
 			    		if( gameScreen.getGridCell().countItemCell() >= Constants.MAX_ITEM_IN_GRID ) {
@@ -57,13 +60,14 @@ public class Main extends Application {
 							countCombo = 0l ;
 							int randomRow = random.nextInt( Constants.CELL_PER_COL ) + 1 ;
 							int randomCol = random.nextInt( Constants.CELL_PER_ROW ) + 1 ;
-							int randomType =  random.nextInt( 3 ) ; 
+							int randomType =  random.nextInt( 10000 )%3 ; 
+							
 							if( randomType == 0 ) {
 								gameScreen.getGridCell().addExtraAddCell( new DiamondCell( randomRow, randomCol, gameScreen.getGridCell()) );
 							} else if ( randomType == 1 ) {
 								gameScreen.getGridCell().addExtraAddCell( new TimeCell( randomRow, randomCol, gameScreen.getGridCell()) );
 							} else {
-								//gameScreen.getGridCell().addExtraAddCell( new TimeCell( randomRow, randomCol, gameScreen.getGridCell()) );
+								gameScreen.getGridCell().addExtraAddCell( new BottleCell( randomRow, randomCol, gameScreen.getGridCell()) );
 							}							
 						}
 			    	}

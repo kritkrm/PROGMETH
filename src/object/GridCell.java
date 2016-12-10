@@ -37,7 +37,9 @@ public class GridCell implements ScreenObject {
 	}
 	
 	public void addExtraAddCell( Cell cell ) {
-		extraAddCell.add( cell ) ;
+		synchronized( extraAddCell ){
+			extraAddCell.add( cell ) ;
+		}
 		return ;
 	}
 	
@@ -116,9 +118,10 @@ public class GridCell implements ScreenObject {
 		for( int r=1 ; r<=maxRow ; r++ ) {
 			for( int c=1 ; c<=maxCol ; c++ ) {
 				if( grid[r][c] instanceof ColorCell ) {
-					clickCell += getNeighborOf( (ColorCell)grid[r][c] ).size() ;
+					if( getNeighborOf( (ColorCell)grid[r][c] ).size() >= 3 )
+						clickCell += 1;
 				} else {
-					clickCell += 1 ; 
+					clickCell += (1<<2) ; 
 				}
 			}
 		}
@@ -184,7 +187,7 @@ public class GridCell implements ScreenObject {
 			 }
 		 }
 		 
-		 System.out.println( queue.size()); 
+//		 System.out.println( queue.size()); 
 		 
 		 return neighbor ;
 	}
@@ -245,8 +248,9 @@ public class GridCell implements ScreenObject {
 		for( Cell cell : extraAddCell ) {
 			grid[cell.getRow()][cell.getCol()] = cell ;
 		}
-		
-		extraAddCell.clear();
+		synchronized( extraAddCell ){
+			extraAddCell.clear();
+		}
 		
 	}
 	
