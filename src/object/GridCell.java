@@ -41,6 +41,29 @@ public class GridCell implements ScreenObject {
 		return ;
 	}
 	
+	public void shuffle() {
+		for( int r=1 ; r<=maxRow ; r++ ) {
+			for( int c=1 ; c<=maxCol ; c++ ) {
+				if ( grid[r][c] != null && grid[r][c] instanceof ColorCell ) {
+					grid[r][c].destroy();
+				}
+			}
+		}
+		generateGrid(); 
+		return ;
+	}
+	
+	public int countItemCell() {
+		int itemCount = 0 ;
+		for( int r=1 ; r<=maxRow ; r++ ) {
+			for( int c=1 ; c<=maxCol ; c++ ) {
+				if( grid[r][c] != null && !grid[r][c].isDestroyed() && ! (grid[r][c] instanceof ColorCell) ) 
+					itemCount++ ;
+			}
+		}
+		return itemCount ;
+	}
+	
 	public ArrayList<Cell> getCellInRow( int row ) {
 		
 		ArrayList<Cell> CellInRow = new ArrayList<Cell>() ;
@@ -65,31 +88,41 @@ public class GridCell implements ScreenObject {
 	
 	public Cell getCellAtPos( int x , int y ) {
 		
-		for( int i=1 ; i<=maxRow ; i++ ) {
-			for( int j=1 ; j<=maxCol ; j++ ) {
-				if( grid[i][j].isInside( x , y ) ) {
-					return grid[i][j] ; 
+		for( int r=1 ; r<=maxRow ; r++ ) {
+			for( int c=1 ; c<=maxCol ; c++ ) {
+				if( grid[r][c].isInside( x , y ) ) {
+					return grid[r][c] ; 
 				}
-				
 			}
 		}
-		
 		return null ; 
-		
 	}
 	
 	public void generateGrid() {
-		for( int i=1 ; i<=maxRow ; i++ ) {
-			for( int j=1 ; j<=maxCol ; j++ ) {
-				if( grid[i][j] == null )
-					grid[i][j] = new ColorCell( i , j , CellColor.getRandom() , this ) ;
-				if( grid[i][j].isDestroyed() ) {
-					grid[i][j] = new ColorCell( i , j , CellColor.getRandom() , this ) ;
+		for( int r=1 ; r<=maxRow ; r++ ) {
+			for( int c=1 ; c<=maxCol ; c++ ) {
+				if( grid[r][c] == null )
+					grid[r][c] = new ColorCell( r , c , CellColor.getRandom() , this ) ;
+				if( grid[r][c].isDestroyed() ) {
+					grid[r][c] = new ColorCell( r , c , CellColor.getRandom() , this ) ;
 				}
 			}
 		}
 		return ;
-		
+	}
+	
+	public int countClickCell() {
+		int clickCell = 0 ;
+		for( int r=1 ; r<=maxRow ; r++ ) {
+			for( int c=1 ; c<=maxCol ; c++ ) {
+				if( grid[r][c] instanceof ColorCell ) {
+					clickCell += getNeighborOf( (ColorCell)grid[r][c] ).size() ;
+				} else {
+					clickCell += 1 ; 
+				}
+			}
+		}
+		return clickCell ;
 	}
 	
 	public boolean isSameType( Cell a , Cell b ) {

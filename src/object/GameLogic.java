@@ -6,9 +6,19 @@ import util.InputUtility;
 public class GameLogic {
 	
 	private GameScreen gameScreen ; 	
+	private boolean shuffle ;
 	
 	public GameLogic( GameScreen gameScreen ) {
 		this.gameScreen = gameScreen ;
+		this.shuffle = false ;
+	}
+	
+	public boolean getShuffle() {
+		return this.shuffle ; 
+	}
+	
+	public synchronized void setShuffle( boolean shuffle ) {
+		this.shuffle = shuffle ;
 	}
 	
 	public void updateLogic() {
@@ -19,9 +29,13 @@ public class GameLogic {
 				if( cell != null && !cell.isDestroyed() )
 					cell.clickAction();
 			}	
-//			System.out.println( InputUtility.isMouseClickedTriggered() );
+			if( shuffle ) {
+				gameScreen.getGridCell().shuffle() ;
+				setShuffle( false );
+			}
 		}
 
+		gameScreen.getGridCell().update();
 	}
 	
 }

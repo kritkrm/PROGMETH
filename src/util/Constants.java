@@ -13,8 +13,11 @@ public final class Constants {
 	public static int CELL_PER_ROW = 13 ;
 	public static int CELL_PER_COL = 10 ;
 	
+	public static int COMBO_THRESHOLD = 1000000;
+	
 	public static int MAX_REMAINING_TIME = 60 ;
 	public static int MAX_COMBO = 60 ;
+	public static int MAX_ITEM_IN_GRID = 6;
 	
 	public static final Dimension2D DEFAULT_SCREEN_SIZE = new Dimension2D( 800 , 600  ) ;
 	

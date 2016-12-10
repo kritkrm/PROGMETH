@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import mainScreen.MainScreen;
 import object.DiamondCell;
+import object.GridCell;
 import object.TimeCell;
 import screen.GameScreen;
 import util.Constants;
@@ -35,24 +36,37 @@ public class Main extends Application {
 		eventMakerThread = new Thread( () -> {
 			
 			Random random = new Random();
-		
+			long countCombo = 0 ;
+			
 			while ( !Thread.currentThread().isInterrupted() ) {
 			    try {
-			    	int sleepTime = 2000 / (gameScreen.getGameStatus().getCombo()+1 ); 
-					
-					if( gameScreen.isActive() ) {
-						
-						int randomRow = random.nextInt( Constants.CELL_PER_COL ) + 1 ;
-						int randomCol = random.nextInt( Constants.CELL_PER_ROW ) + 1 ;
-						int randomType =  random.nextInt( 2 ) ; 
-						if( randomType == 0 ) {
-							gameScreen.getGridCell().addExtraAddCell( new DiamondCell( randomRow, randomCol, gameScreen.getGridCell()) );
-						} else {
-							gameScreen.getGridCell().addExtraAddCell( new TimeCell( randomRow, randomCol, gameScreen.getGridCell()) );
-						} 
-						gameScreen.getGameStatus().decreaseCombo( (int)(gameScreen.getGameStatus().getCombo()*0.2)+1 );
-					}
-					
+			    	int sleepTime = 20 ;
+			    	int countCell = gameScreen.getGridCell().countClickCell() ; 
+			    	
+			    	if( countCell <= 20 ) {
+			    		if( !gameScreen.getGameLogic().getShuffle() )
+			    			gameScreen.getGameLogic().setShuffle( true );
+			    	}
+//			    	System.out.println(countCombo);
+			    	if( gameScreen.isActive() ) {
+			    		countCombo += ( 1<< (gameScreen.getGameStatus().getCombo()>>3) ) ;
+			    		if( gameScreen.getGridCell().countItemCell() >= Constants.MAX_ITEM_IN_GRID ) {
+			    			countCombo = 0l ;
+			    		}
+						if( countCombo >= Constants.COMBO_THRESHOLD ) {
+							countCombo = 0l ;
+							int randomRow = random.nextInt( Constants.CELL_PER_COL ) + 1 ;
+							int randomCol = random.nextInt( Constants.CELL_PER_ROW ) + 1 ;
+							int randomType =  random.nextInt( 3 ) ; 
+							if( randomType == 0 ) {
+								gameScreen.getGridCell().addExtraAddCell( new DiamondCell( randomRow, randomCol, gameScreen.getGridCell()) );
+							} else if ( randomType == 1 ) {
+								gameScreen.getGridCell().addExtraAddCell( new TimeCell( randomRow, randomCol, gameScreen.getGridCell()) );
+							} else {
+								//gameScreen.getGridCell().addExtraAddCell( new TimeCell( randomRow, randomCol, gameScreen.getGridCell()) );
+							}							
+						}
+			    	}
 			        Thread.sleep(sleepTime);
 			    
 			    } catch (InterruptedException ex) {
@@ -112,7 +126,7 @@ public class Main extends Application {
 		
 		if( eventMakerThread.isAlive() ) {
 			eventMakerThread.interrupt() ;
-			System.out.println("stop");
+			System.out.println("EventMaker is stopped.");
 		}
 		
 	}

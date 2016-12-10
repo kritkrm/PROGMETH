@@ -58,8 +58,8 @@ public class ColorCell extends Cell {
 				i.destroy(); 
 				gridCell.update();
 			}
-			gridCell.getGameScreen().getGameStatus().increaseScore( neighborCell.size() );
-			gridCell.getGameScreen().getGameStatus().increaseCombo( 2 );
+			gridCell.getGameScreen().getGameStatus().increaseScore( neighborCell.size()*((gridCell.getGameScreen().getGameStatus().getCombo()>>4)|1));
+			gridCell.getGameScreen().getGameStatus().increaseCombo( neighborCell.size()>>1 );
 		
 		} else {
 			gridCell.getGameScreen().getGameStatus().clearCombo();
