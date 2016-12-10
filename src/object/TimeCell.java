@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;
 
-public class TimeCell extends Cell implements ScreenObject , MouseActionable {
+public class TimeCell extends Cell {
 
 	public TimeCell(int row, int col, GridCell gridCell) {
 		super(row, col, gridCell);

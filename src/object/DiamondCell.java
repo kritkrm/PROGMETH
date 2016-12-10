@@ -8,7 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;
 
-public class DiamondCell extends Cell implements ScreenObject , MouseActionable{
+public class DiamondCell extends Cell {
 
 	public DiamondCell(int row, int col, GridCell gridCell) {
 		super(row, col, gridCell);
