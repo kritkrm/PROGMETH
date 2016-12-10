@@ -30,22 +30,35 @@ public class GameStatus implements ScreenObject {
 		this.score = 0;
 	}
 	
-	public synchronized void decreaseRemainingTime( int decreaseRemainingTime ) {
-		this.remainingTime -= decreaseRemainingTime ;
+	public synchronized void addRemainingTime( int addRemainingTime ) {
+		this.remainingTime += addRemainingTime ;
 		if( this.remainingTime < 0 ) this.remainingTime = 0 ;
+		if( this.remainingTime > Constants.MAX_REMAINING_TIME ) this.remainingTime = Constants.MAX_REMAINING_TIME ;
+		return ;
+	}
+	
+	public void increaseRemainingTime( int increaseRemainingTime ) {
+		addRemainingTime(increaseRemainingTime); 
+		return ;
+	}
+	
+	public void decreaseRemainingTime( int decreaseRemainingTime ) {
+		addRemainingTime(-decreaseRemainingTime);
 		return ;
 	}
 	
 	public void setRemainingTime( int remainingTime ) {
-		this.remainingTime = remainingTime ;
-		if( this.remainingTime < 0 ) this.remainingTime = 0 ; 
-		if( this.remainingTime > Constants.MAX_REMAINING_TIME ) this.remainingTime = Constants.MAX_REMAINING_TIME ;
+		addRemainingTime( -getRemainingTime() + remainingTime );
 		return ; 
 	}
 	
-	public synchronized void decreaseCombo( int decreaseCombo ) {
-		this.combo -= decreaseCombo ;
-		if( this.combo < 0 ) this.combo = 0 ;
+	public void decreaseCombo( int decreaseCombo ) {
+		addCombo(-decreaseCombo);
+		return ;
+	}
+	
+	public void increaseCombo( int increaseCombo ) {
+		addCombo(increaseCombo);
 		return ;
 	}
 	
@@ -87,17 +100,20 @@ public class GameStatus implements ScreenObject {
 		this.isPause = !this.isPause;
 	}
 
-	public synchronized int getCombo() {
+	public int getCombo() {
 		return combo;
 	}
 
-	public synchronized void clearCombo() {
-		this.combo = 0;
+	public void clearCombo() {
+		addCombo( -getCombo() );
+		return ;
 	}
 	
-	public synchronized void increaseCombo( int increaseCombo ) {
-		this.combo += increaseCombo ; 
+	public synchronized void addCombo( int addCombo ) {
+		this.combo += addCombo ; 
 		if( this.combo > Constants.MAX_COMBO ) this.combo = Constants.MAX_COMBO ; 
+		if( this.combo < 0 ) this.combo = 0 ;
+		return ;
 	}
 
 	public GameScreen getGameScreen() {

@@ -1,6 +1,9 @@
 package object;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -15,7 +18,8 @@ public class GridCell implements ScreenObject {
 	private int maxCol , maxRow , z ;
 	private boolean isVisible ; 
 	private GameScreen gameScreen ;
-	private ArrayList<Cell> extraAddCell ;  
+
+	private List<Cell> extraAddCell ;
 	
 	public GridCell( GameScreen gameScreen ) {
 		this.gameScreen = gameScreen ;
@@ -23,7 +27,7 @@ public class GridCell implements ScreenObject {
 		maxRow = Constants.CELL_PER_COL ; 
 		grid = new Cell[ maxRow+1 ][ maxCol+1 ] ;
 		isVisible = true ;
-		extraAddCell = new ArrayList<Cell>() ;
+		extraAddCell = Collections.synchronizedList(new ArrayList<Cell>());
 		generateGrid();
 		GameScreenObjectHolder.getInstance().add( this );		
 	}
@@ -37,9 +41,7 @@ public class GridCell implements ScreenObject {
 	}
 	
 	public void addExtraAddCell( Cell cell ) {
-		synchronized( extraAddCell ){
-			extraAddCell.add( cell ) ;
-		}
+		extraAddCell.add( cell ) ;
 		return ;
 	}
 	
@@ -245,12 +247,14 @@ public class GridCell implements ScreenObject {
 		updateIndex();
 		generateGrid(); 
 		
-		for( Cell cell : extraAddCell ) {
-			grid[cell.getRow()][cell.getCol()] = cell ;
-		}
 		synchronized( extraAddCell ){
-			extraAddCell.clear();
+			Iterator<Cell> iterator = extraAddCell.iterator();
+			while (iterator.hasNext()) {
+				Cell cell = iterator.next() ; 
+				grid[cell.getRow()][cell.getCol()] = cell ;
+			}
 		}
+		extraAddCell.clear();
 		
 	}
 	
