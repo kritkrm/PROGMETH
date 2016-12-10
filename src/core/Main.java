@@ -89,6 +89,7 @@ public class Main extends Application {
 		
 		primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
 		primaryStage.setTitle( Constants.GAME_NAME );
+		primaryStage.setResizable( false );
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent event) {

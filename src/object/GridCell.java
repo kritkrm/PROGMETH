@@ -105,11 +105,8 @@ public class GridCell implements ScreenObject {
 	public void generateGrid() {
 		for( int r=1 ; r<=maxRow ; r++ ) {
 			for( int c=1 ; c<=maxCol ; c++ ) {
-				if( grid[r][c] == null )
+				if( grid[r][c] == null || grid[r][c].isDestroyed() )
 					grid[r][c] = new ColorCell( r , c , CellColor.getRandom() , this ) ;
-				if( grid[r][c].isDestroyed() ) {
-					grid[r][c] = new ColorCell( r , c , CellColor.getRandom() , this ) ;
-				}
 			}
 		}
 		return ;
@@ -141,17 +138,17 @@ public class GridCell implements ScreenObject {
 		ArrayList<ColorCell> neighbor = new ArrayList<ColorCell>() ;
 		ArrayList<Cell> queue = new ArrayList<Cell>();
 		 		 
-		int[][] isVisited = new int[ Constants.CELL_PER_COL + 1 ][ Constants.CELL_PER_ROW + 1 ] ;  
+		boolean[][] isVisited = new boolean[ Constants.CELL_PER_COL + 1 ][ Constants.CELL_PER_ROW + 1 ] ;  
 		 
 		for( int r=1; r<=maxRow ; r++ ) {
 			for( int c=1; c<=maxCol ; c++ ) {
-				isVisited[r][c] = 0 ;
+				isVisited[r][c] = false ;
 			}
 		 }
 		 
 		 if( !cell.isDestroyed() ) {
 			 queue.add( cell ) ; 
-			 isVisited[ cell.getRow() ][ cell.getCol() ] = 1 ;
+			 isVisited[ cell.getRow() ][ cell.getCol() ] = true ;
 		 }
 		 
 		 while( !queue.isEmpty() ) {
@@ -160,31 +157,31 @@ public class GridCell implements ScreenObject {
 			 neighbor.add( (ColorCell) queue.get( 0 ) ) ;
 			 queue.remove( 0 ) ; 
 			 
-			 if( cellC-1 >= 1 && isVisited[cellR][cellC-1] == 0 ) {
+			 if( cellC-1 >= 1 && !isVisited[cellR][cellC-1] ) {
 				 if( !grid[cellR][cellC-1].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR][cellC-1] ) ) {
 					 queue.add( grid[cellR][cellC-1] ) ; 
-					 isVisited[cellR][cellC-1] = 1 ;
+					 isVisited[cellR][cellC-1] = true ;
 				 }
 			 }
 			 
-			 if( cellR-1 >= 1 && isVisited[cellR-1][cellC] == 0) {
+			 if( cellR-1 >= 1 && !isVisited[cellR-1][cellC] ) {
 				 if( !grid[cellR-1][cellC].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR-1][cellC] ) ) {
 					 queue.add( grid[cellR-1][cellC] ) ; 
-					 isVisited[cellR-1][cellC] = 1 ;
+					 isVisited[cellR-1][cellC] = true ;
 				 }
 			 }
 			 
-			 if( cellC+1 <= maxCol && isVisited[cellR][cellC+1] == 0 ) {
+			 if( cellC+1 <= maxCol && !isVisited[cellR][cellC+1] ) {
 				 if( !grid[cellR][cellC+1].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR][cellC+1] ) ) {
 					 queue.add( grid[cellR][cellC+1] ) ; 
-					 isVisited[cellR][cellC+1] = 1 ;
+					 isVisited[cellR][cellC+1] = true ;
 				 }
 			 }
 			 
-			 if( cellR+1 <= maxRow && isVisited[cellR+1][cellC] == 0 ) {
+			 if( cellR+1 <= maxRow && !isVisited[cellR+1][cellC] ) {
 				 if( !grid[cellR+1][cellC].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR+1][cellC] ) ) {
 					 queue.add( grid[cellR+1][cellC] ) ; 
-					 isVisited[cellR+1][cellC] = 1 ;
+					 isVisited[cellR+1][cellC] = true ;
 				 }
 			 }
 		 }
