@@ -15,6 +15,13 @@ public class DiamondCell extends Cell {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public boolean equals( Object object ) {
+		
+		if( object instanceof DiamondCell ) return true ;
+		return false ;
+		
+	}
+	
 	@Override
 	public void clickAction() {
 		// TODO Auto-generated method stub

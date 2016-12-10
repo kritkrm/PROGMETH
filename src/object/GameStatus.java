@@ -30,35 +30,74 @@ public class GameStatus implements ScreenObject {
 		this.score = 0;
 	}
 	
-	public synchronized void addRemainingTime( int addRemainingTime ) {
+	public synchronized void addRemainingTime( int addRemainingTime ) throws NegativeValueException {
 		this.remainingTime += addRemainingTime ;
 		if( this.remainingTime < 0 ) this.remainingTime = 0 ;
 		if( this.remainingTime > Constants.MAX_REMAINING_TIME ) this.remainingTime = Constants.MAX_REMAINING_TIME ;
+		
+		if( this.remainingTime < 0 ) throw new NegativeValueException( "addRemainingTime" ) ;  
 		return ;
 	}
 	
-	public void increaseRemainingTime( int increaseRemainingTime ) {
-		addRemainingTime(increaseRemainingTime); 
+	public void increaseRemainingTime( int increaseRemainingTime ) throws NegativeValueException  {
+		try {
+			addRemainingTime(increaseRemainingTime); 
+		} catch ( NegativeValueException negEx ) {
+			throw new NegativeValueException( "increaseRemainingTime" , negEx ) ;
+		}
 		return ;
 	}
 	
-	public void decreaseRemainingTime( int decreaseRemainingTime ) {
-		addRemainingTime(-decreaseRemainingTime);
+	public void decreaseRemainingTime( int decreaseRemainingTime ) throws NegativeValueException {
+		try {
+			addRemainingTime(-decreaseRemainingTime); 
+		} catch ( NegativeValueException negEx ) {
+			throw new NegativeValueException( "decreaseRemainingTime" , negEx ) ;
+		}
 		return ;
 	}
 	
-	public void setRemainingTime( int remainingTime ) {
-		addRemainingTime( -getRemainingTime() + remainingTime );
+	public void setRemainingTime( int remainingTime ) throws NegativeValueException {
+		try {
+			addRemainingTime( -getRemainingTime() + remainingTime );		
+		} catch ( NegativeValueException negEx ) {
+			throw new NegativeValueException( "setRemainingTime" , negEx ) ;
+		}
 		return ; 
 	}
 	
-	public void decreaseCombo( int decreaseCombo ) {
-		addCombo(-decreaseCombo);
+	public void decreaseCombo( int decreaseCombo ) throws NegativeValueException {
+		try {
+			addCombo(-decreaseCombo);	
+		} catch ( NegativeValueException negEx ) {
+			throw new NegativeValueException( "decreaseCombo" , negEx ) ;
+		}
 		return ;
 	}
 	
-	public void increaseCombo( int increaseCombo ) {
-		addCombo(increaseCombo);
+	public void increaseCombo( int increaseCombo ) throws NegativeValueException {
+		try {
+			addCombo(increaseCombo);	
+		} catch ( NegativeValueException negEx ) {
+			throw new NegativeValueException( "decreaseCombo" , negEx ) ;
+		}
+		return ;
+	}
+	
+	public void clearCombo() throws NegativeValueException {
+		try {
+			addCombo(-getCombo());	
+		} catch ( NegativeValueException negEx ) {
+			throw new NegativeValueException( "clearCombo" , negEx ) ;
+		}
+		return ;
+	}
+	
+	public synchronized void addCombo( int addCombo ) throws NegativeValueException {
+		this.combo += addCombo ; 
+		if( this.combo > Constants.MAX_COMBO ) this.combo = Constants.MAX_COMBO ; 
+		if( this.combo < 0 ) this.combo = 0 ;		
+		if( this.remainingTime < 0 ) throw new NegativeValueException( "addCombo" ) ;  
 		return ;
 	}
 	
@@ -102,18 +141,6 @@ public class GameStatus implements ScreenObject {
 
 	public int getCombo() {
 		return combo;
-	}
-
-	public void clearCombo() {
-		addCombo( -getCombo() );
-		return ;
-	}
-	
-	public synchronized void addCombo( int addCombo ) {
-		this.combo += addCombo ; 
-		if( this.combo > Constants.MAX_COMBO ) this.combo = Constants.MAX_COMBO ; 
-		if( this.combo < 0 ) this.combo = 0 ;
-		return ;
 	}
 
 	public GameScreen getGameScreen() {

@@ -17,6 +17,13 @@ public class BottleCell extends Cell {
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean equals( Object object ) {
+		
+		if( object instanceof BottleCell ) return true ;
+		return false ;
+		
+	}
+	
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub

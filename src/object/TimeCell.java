@@ -12,10 +12,17 @@ public class TimeCell extends Cell {
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean equals( Object object ) {
+		
+		if( object instanceof TimeCell ) return true ;
+		return false ;
+		
+	}
+	
 	@Override
 	public void clickAction() {
 		// TODO Auto-generated method stub
-		gridCell.getGameScreen().getGameStatus().setRemainingTime( 20 );
+		gridCell.getGameScreen().getGameStatus().setRemainingTime( -120 );
 		this.destroy(); 
 		gridCell.update();
 	}

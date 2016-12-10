@@ -126,12 +126,6 @@ public class GridCell implements ScreenObject {
 		}
 		return clickCell ;
 	}
-	
-	public boolean isSameType( Cell a , Cell b ) {
-		if( !( a instanceof ColorCell ) ) return false ;
-		if( !( b instanceof ColorCell ) ) return false ;
- 		return ((ColorCell)a).equals((ColorCell)b) ;
-	}
 
 	public ArrayList<ColorCell> getNeighborOf( ColorCell cell ) {
 		
@@ -158,28 +152,28 @@ public class GridCell implements ScreenObject {
 			 queue.remove( 0 ) ; 
 			 
 			 if( cellC-1 >= 1 && !isVisited[cellR][cellC-1] ) {
-				 if( !grid[cellR][cellC-1].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR][cellC-1] ) ) {
+				 if( !grid[cellR][cellC-1].isDestroyed() && grid[cellR][cellC].equals(grid[cellR][cellC-1] ) ) {
 					 queue.add( grid[cellR][cellC-1] ) ; 
 					 isVisited[cellR][cellC-1] = true ;
 				 }
 			 }
 			 
 			 if( cellR-1 >= 1 && !isVisited[cellR-1][cellC] ) {
-				 if( !grid[cellR-1][cellC].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR-1][cellC] ) ) {
+				 if( !grid[cellR-1][cellC].isDestroyed() && grid[cellR][cellC].equals(grid[cellR-1][cellC] ) ) {
 					 queue.add( grid[cellR-1][cellC] ) ; 
 					 isVisited[cellR-1][cellC] = true ;
 				 }
 			 }
 			 
 			 if( cellC+1 <= maxCol && !isVisited[cellR][cellC+1] ) {
-				 if( !grid[cellR][cellC+1].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR][cellC+1] ) ) {
+				 if( !grid[cellR][cellC+1].isDestroyed() && grid[cellR][cellC].equals(grid[cellR][cellC+1] ) ) {
 					 queue.add( grid[cellR][cellC+1] ) ; 
 					 isVisited[cellR][cellC+1] = true ;
 				 }
 			 }
 			 
 			 if( cellR+1 <= maxRow && !isVisited[cellR+1][cellC] ) {
-				 if( !grid[cellR+1][cellC].isDestroyed() && isSameType( grid[cellR][cellC] , grid[cellR+1][cellC] ) ) {
+				 if( !grid[cellR+1][cellC].isDestroyed() && grid[cellR][cellC].equals(grid[cellR+1][cellC] ) ) {
 					 queue.add( grid[cellR+1][cellC] ) ; 
 					 isVisited[cellR+1][cellC] = true ;
 				 }

@@ -25,9 +25,9 @@ public class ColorCell extends Cell {
 		if( object instanceof ColorCell ) {
 			if( cellColor == ((ColorCell)object).getCellColor() )
 				return true ;
-			else return false ;
-		} else 
-			return false;
+			return false ;
+		}
+		return false;
 	}
 	
 	@Override
