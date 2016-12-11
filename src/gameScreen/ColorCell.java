@@ -1,8 +1,10 @@
 package gameScreen;
 
+import java.awt.PageAttributes.ColorType;
 import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import util.Constants;
 import util.Resources;
@@ -34,11 +36,9 @@ public class ColorCell extends Cell {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		Color color = getCellColor( this ) ;		
-		gc.setFill( color );
-		gc.fillRect( Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col , Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE , Constants.CELL_SIZE );		
-		gc.restore();
-			
+//		Color color = getCellColor( this ) ;
+		Image image = getCellImage( cellColor ) ;
+		gc.drawImage( image , Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col, Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE ,Constants.CELL_SIZE  );
 		return ;
 		
 	}
@@ -46,6 +46,17 @@ public class ColorCell extends Cell {
 	public void setCellColor( CellColor cellColor ) {
 		this.cellColor = cellColor ; 
 		return ; 
+	}
+	
+	public Image getCellImage( CellColor cellColor  ) {
+		switch ( cellColor ) {
+			case RED     : return Resources.getInstance().redCell    ;
+			case BLUE    : return Resources.getInstance().blueCell   ; 
+			case GREEN   : return Resources.getInstance().greenCell  ; 
+			case PURPLE  : return Resources.getInstance().purpleCell ; 
+			case YELLOW  : return Resources.getInstance().yellowCell ;
+		}
+		return null;
 	}
 	
 	public Color getCellColor( ColorCell colorCell ) {
@@ -69,7 +80,7 @@ public class ColorCell extends Cell {
 				gridCell.update();
 			}
 			gridCell.getGameScreen().getGameStatus().increaseScore( neighborCell.size()*((gridCell.getGameScreen().getGameStatus().getCombo()>>4)|1));
-			gridCell.getGameScreen().getGameStatus().increaseCombo( neighborCell.size()>>1 );
+			gridCell.getGameScreen().getGameStatus().increaseCombo( ( (gridCell.getGameScreen().getGameStatus().getCombo()>>3)+2)*(neighborCell.size()>>1) );
 		
 		} else {
 			Resources.getInstance().clickBox.play();
@@ -81,6 +92,7 @@ public class ColorCell extends Cell {
 	@Override
 	public boolean isInside(int x, int y) {
 		// TODO Auto-generated method stub
+		
 		if( x < Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col ) return false ;
 		if( x > Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col + Constants.CELL_SIZE ) return false ; 
 	

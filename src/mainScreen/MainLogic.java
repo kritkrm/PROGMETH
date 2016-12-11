@@ -11,10 +11,10 @@ public class MainLogic {
 		this.mainScreen = mainScreen ;
 	}
 	
-	public void updateLogic(int time) {
+	public void updateLogic( int step ) {
 		
-	    if( time > 160 ) {
-	    	mainScreen.getAboutButton().setVisible(true);
+		if( step > 120 ) {
+			mainScreen.getExitButton().setVisible(true);
 	    	if( InputUtility.isMouseClickedTriggered() ) {
 				Object object = mainScreen.getObjectAtPos(InputUtility.getMouseX(), InputUtility.getMouseY()) ; 
 				if( object != null ) {
@@ -22,20 +22,13 @@ public class MainLogic {
 						((MouseActionable) object).clickAction(InputUtility.getMouseX(), InputUtility.getMouseY()); 
 					}
 				}
-			}	
-	    } else if( time > 110 ) {
-			mainScreen.getExitButton().setVisible(true);
-			mainScreen.getPlayButton().setVisible(true);
-			if(mainScreen.getPlayButton().getY()>220) {
-				mainScreen.getPlayButton().setY(mainScreen.getPlayButton().getY()-1);
-				mainScreen.getExitButton().setY(mainScreen.getExitButton().getY()-1);
 			}
-		} else if( time > 40 ) {
+		} else if( step > 80 ) {
+			mainScreen.getAboutButton().setVisible(true);
+		} else if( step > 40 ) {
+			mainScreen.getPlayButton().setVisible(true);
+		} else {
 			mainScreen.getTitleGame().setVisible(true);
-			if(mainScreen.getTitleGame().getX()>=60 && time >70)   
-				mainScreen.getTitleGame().setX(mainScreen.getTitleGame().getX()-2);
-			else if(mainScreen.getTitleGame().getX()<=80 && time <70)   
-				mainScreen.getTitleGame().setX(mainScreen.getTitleGame().getX()+3);   	
 		}
 	}
 	

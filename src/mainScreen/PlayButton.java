@@ -3,17 +3,19 @@ package mainScreen;
 import core.ScreenManager;
 import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
+import util.Constants;
 import util.InputUtility;
 import util.Resources;
 
 public class PlayButton extends Button {
 	
 	private boolean isVisible;
-	private double count=0;
+	private int step ;
 	
 	public PlayButton(int x, int y){
-		super(x,y);
-		this.isVisible=false;
+		super( x , y );
+		this.isVisible = false;
+		step = 0 ;
 	}
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
@@ -39,13 +41,13 @@ public class PlayButton extends Button {
 	}
 
 	@Override
-	public boolean isInside(int xx, int yy) {
+	public boolean isInside(int posX , int posY ) {
 		// TODO Auto-generated method stub
-		if( xx < x) return false ;
-		if( xx > x+200) return false ; 
+		if( posX < this.x ) return false ;
+		if( posX > this.x+Constants.DEFAULT_BUTTON_SIZE.getWidth()  ) return false ; 
 	
-		if( yy < y) return false ; 
-		if( yy > y+77) return false ;
+		if( posY < this.y ) return false ; 
+		if( posY > this.y+Constants.DEFAULT_BUTTON_SIZE.getHeight()  ) return false ;
 		
 		return true;
 	}
@@ -53,14 +55,17 @@ public class PlayButton extends Button {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 			
-		if(isVisible){
-			gc.setGlobalAlpha(count);
-			count+=0.05;
-			if(isInside(InputUtility.getMouseX(),InputUtility.getMouseY())){
-				gc.drawImage(Resources.getInstance().playbutton2, x-10, y-10,220,85);
-			}
-			else{
-				gc.drawImage(Resources.getInstance().playbutton, x, y,200,77);
+		if( isVisible ){ 
+			gc.setGlobalAlpha( (double)step / 20 );
+			if( step < 20 ) step += 1 ;
+			if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
+				gc.drawImage( Resources.getInstance().playbutton2 , 
+							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 
+							  y - Constants.DEFAULT_BUTTON_EXPAND.getHeight() ,
+							  Constants.DEFAULT_BUTTON_SIZE.getWidth() + ( Constants.DEFAULT_BUTTON_EXPAND.getWidth()*2 ) , 
+							  Constants.DEFAULT_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_BUTTON_EXPAND.getHeight()*2) ) ;
+			} else {
+				gc.drawImage(Resources.getInstance().playbutton, x, y, Constants.DEFAULT_BUTTON_SIZE.getWidth() , Constants.DEFAULT_BUTTON_SIZE.getHeight() );
 			}
 			gc.setGlobalAlpha(1);
 		}

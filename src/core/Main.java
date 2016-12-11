@@ -21,7 +21,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		GameScreen gameScreen = ScreenManager.getInstance().getGameScreen();
+		
 
 		ScreenManager.getInstance().setStage( primaryStage );
 		Resources.getInstance().initialize() ;
@@ -30,9 +30,10 @@ public class Main extends Application {
 			
 			Random random = new Random();
 			long countCombo = 0 ;
-			
+			GameScreen gameScreen ;
 			while ( !Thread.currentThread().isInterrupted() ) {
 			    try {
+			    	gameScreen = ScreenManager.getInstance().getGameScreen();
 			    	int sleepTime = Constants.EVENT_MAKER_SLEEP_TIME ;
 			    	int countCell = gameScreen.getGridCell().countClickCell() ; 
 			    
@@ -40,10 +41,10 @@ public class Main extends Application {
 			    		if( !gameScreen.getGameLogic().getShuffle() )
 			    			gameScreen.getGameLogic().setShuffle( true );
 			    	}
-//			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
-//			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
+			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
+			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
 			    	if( gameScreen.isActive() ) {
-			    		countCombo += ( 1<< (gameScreen.getGameStatus().getCombo()>>3) ) ;
+			    		countCombo += ( 1 << (gameScreen.getGameStatus().getCombo()>>3) ) ;
 			    		if( gameScreen.getGridCell().countItemCell() >= Constants.MAX_ITEM_IN_GRID ) {
 			    			countCombo = 0l ;
 			    		}

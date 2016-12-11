@@ -88,7 +88,7 @@ public class ScreenManager {
 			} 
 			this.currentScreen = nextScreen;
 			this.nextScreen = null;
-			stage.setScene( getCurrentScreen() );
+			stage.setScene( currentScreen );
 			currentScreen.active(); 
 			InputUtility.postUpdate();
 			

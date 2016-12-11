@@ -13,9 +13,9 @@ public final class Constants {
 	public static int CELL_PER_ROW = 13 ;
 	public static int CELL_PER_COL = 10 ;
 	
-	public static int COMBO_THRESHOLD = 5000 ;
+	public static int COMBO_THRESHOLD = 1000 ;
 	
-	public static int MAX_REMAINING_TIME = 6 ;
+	public static int MAX_REMAINING_TIME = 60 ;
 	public static int MAX_COMBO = 60 ;
 	public static int MAX_ITEM_IN_GRID = 7 ;
 	
@@ -28,7 +28,9 @@ public final class Constants {
 	public static final Dimension2D RESUME_BUTTON_MARGIN = new Dimension2D( 100 , 140  ) ;
 
 	public static final Dimension2D DEFAULT_GRID_SIZE = new Dimension2D( CELL_PER_ROW * ( CELL_SIZE + 1 ) + 1 , CELL_PER_COL * ( CELL_SIZE + 1 ) + 1 ) ; 
-
+	
+	public static final Dimension2D DEFAULT_BUTTON_SIZE = new Dimension2D( 200 , 80 ) ; 
+	public static final Dimension2D DEFAULT_BUTTON_EXPAND = new Dimension2D( 10 , 5 ) ; 
 	
 	public enum CellColor {
 		RED , BLUE , GREEN , YELLOW , PURPLE ; 

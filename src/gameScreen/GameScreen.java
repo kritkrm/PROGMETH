@@ -37,7 +37,11 @@ public class GameScreen extends Screen {
 		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.restore(); 
-		gc.drawImage(Resources.getInstance().gameScreen,0,0);
+		gc.drawImage(Resources.getInstance().gameScreen,0,0 , Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() );
+		gc.setGlobalAlpha( 0.5 );
+		gc.setFill(Color.WHITE);
+		gc.fillRect ( Constants.GRID_CELL_MARGIN.getWidth()-2, Constants.GRID_CELL_MARGIN.getHeight()-2 , Constants.DEFAULT_GRID_SIZE.getWidth()+4 ,  Constants.DEFAULT_GRID_SIZE.getHeight()+4 );
+		gc.setGlobalAlpha( 1 );
 		for(ScreenObject renderable : GameScreenObjectHolder.getInstance().getEntities() ) {
 			renderable.draw(gc);
 		}
@@ -51,7 +55,7 @@ public class GameScreen extends Screen {
 		if( frameCount == Constants.MAX_FRAME_PER_SECOND ) {
 			frameCount = 0 ; 
 			gameStatus.decreaseRemainingTime( 1 );
-			gameStatus.decreaseCombo( 1 );
+			gameStatus.decreaseCombo( gameStatus.getCombo()/6 );
 		}
 		if( gameStatus.getRemainingTime() > 0 ) {
 			gameLogic.updateLogic(); 

@@ -30,10 +30,10 @@ public class ExitButton extends Button {
 	public boolean isInside(int xx, int yy) {
 		// TODO Auto-generated method stub
 		if( xx < x) return false ;
-		if( xx > x+150) return false ; 
+		if( xx > x+200) return false ; 
 	
 		if( yy < y) return false ; 
-		if( yy > y+58) return false ;
+		if( yy > y+77) return false ;
 		
 		return true;
 	}
@@ -45,10 +45,10 @@ public class ExitButton extends Button {
 			gc.setGlobalAlpha(count);
 			count+=0.05;
 			if(isInside(InputUtility.getMouseX(),InputUtility.getMouseY())){
-				gc.drawImage(Resources.getInstance().exitbutton2, x-10, y-10,170,65);
+				gc.drawImage(Resources.getInstance().exitbutton2, x-10, y-5, 220 , 90 );
 			}
 			else{
-				gc.drawImage(Resources.getInstance().exitbutton, x, y,150,58);
+				gc.drawImage(Resources.getInstance().exitbutton, x, y,200,80);
 			}
 			gc.setGlobalAlpha(1);
 		}

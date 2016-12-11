@@ -15,7 +15,9 @@ public class Resources {
 	public Image resumebutton, resumebutton2;
 	public Image LongStory;
 	public AudioClip soundMainScreen, soundGameScreen,clickButton, clickBox,boom;
-	
+	public Image yellowCell , blueCell , greenCell , purpleCell , redCell ;
+	public Image diamondCell , timeCell , bottleCell ;
+
 	private static Resources instance = new Resources() ; 
 	
 	public static Resources getInstance() {
@@ -58,6 +60,16 @@ public class Resources {
 	}
 	
 	private void loadImage() {
+		yellowCell = new Image(ClassLoader.getSystemResource("cell/cheeseCell.png").toString());
+		redCell = new Image(ClassLoader.getSystemResource("cell/blackCell.png").toString());
+		blueCell = new Image(ClassLoader.getSystemResource("cell/blueCell.png").toString());
+		greenCell = new Image(ClassLoader.getSystemResource("cell/purpleCell2.png").toString());
+		purpleCell = new Image(ClassLoader.getSystemResource("cell/purpleCell.png").toString());
+		
+		diamondCell = new Image(ClassLoader.getSystemResource("cell/diamondCell.png").toString());
+		bottleCell = new Image(ClassLoader.getSystemResource("cell/bottleCell.png").toString());
+		timeCell = new Image(ClassLoader.getSystemResource("cell/timeCell.png").toString());
+
 		aboutScreen = new Image(ClassLoader.getSystemResource("background/aboutScreen.png").toString());
 		endScreen = new Image(ClassLoader.getSystemResource("background/endScreen.png").toString());
 		gameScreen = new Image(ClassLoader.getSystemResource("background/gameScreen.png").toString());

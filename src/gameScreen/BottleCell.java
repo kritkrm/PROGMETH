@@ -5,6 +5,7 @@ import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;
+import util.Resources;
 import util.Constants.CellColor;
 
 public class BottleCell extends Cell {
@@ -23,11 +24,9 @@ public class BottleCell extends Cell {
 	
 	@Override
 	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		Color color = Color.TURQUOISE ;		
-		gc.setFill( color );
-		gc.fillRect( Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col , Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE , Constants.CELL_SIZE );		
-		gc.restore();
+
+		gc.drawImage( Resources.getInstance().bottleCell , Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col, Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE ,Constants.CELL_SIZE  );
+
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import util.Constants;
 import util.Resources;
 
 public class MainScreen extends Screen {
@@ -21,11 +22,12 @@ public class MainScreen extends Screen {
 		super( new StackPane() ) ;
 		MainScreenObjectHolder.getInstance().getEntities().clear();
 		mainLogic = new MainLogic(this);
-		this.playButton = new PlayButton(120,240);
-		this.exitButton = new ExitButton(145,360);
-		this.aboutButton = new AboutButton(600, 500);
+
+		this.aboutButton = new AboutButton(50,380);
+		this.playButton = new PlayButton(300,420);
+		this.exitButton = new ExitButton(550,380);
 		this.titleGame = new TitleGame(0,70);
-		time = 0;
+
 		MainScreenObjectHolder.getInstance().add( playButton );
 		MainScreenObjectHolder.getInstance().add( exitButton );
 		MainScreenObjectHolder.getInstance().add( aboutButton );
@@ -89,8 +91,9 @@ public class MainScreen extends Screen {
 		gc.setFill(Color.WHITE);
 		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
-		gc.restore();
-		gc.drawImage(Resources.getInstance().mainScreen,0,0);
+		
+		gc.drawImage(Resources.getInstance().mainScreen, 0 , 0 , Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() );
+		
 		for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
 			renderable.draw(gc);
 		}
