@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import core.MouseActionable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import screen.GameScreen;
@@ -12,7 +13,7 @@ import util.Constants;
 import util.InputUtility;
 import util.Constants.CellColor;
 
-public class GridCell implements ScreenObject {
+public class GridCell implements ScreenObject , MouseActionable {
 	
 	private Cell grid[][] ; 
 	private int maxCol , maxRow , z ;
@@ -245,6 +246,25 @@ public class GridCell implements ScreenObject {
 		}
 		extraAddCell.clear();
 		
+	}
+
+	@Override
+	public boolean isInside(int x, int y) {
+		// TODO Auto-generated method stub
+		if( x < Constants.GRID_CELL_MARGIN.getWidth() + 1 ) return false ;
+		if( x > Constants.GRID_CELL_MARGIN.getWidth() + (maxCol) * Constants.CELL_SIZE + maxCol ) return false ; 
+	
+		if( y < Constants.GRID_CELL_MARGIN.getHeight() + 1 ) return false ; 
+		if( y > Constants.GRID_CELL_MARGIN.getHeight() + (maxRow) * Constants.CELL_SIZE + maxCol ) return false ;
+		return true;
+	}
+
+	@Override
+	public void clickAction(int x, int y) {
+		// TODO Auto-generated method stub
+		Cell cell = getCellAtPos( x , y ) ;
+		if( cell != null && !cell.isDestroyed() )
+			cell.clickAction( x , y );
 	}
 	
 }

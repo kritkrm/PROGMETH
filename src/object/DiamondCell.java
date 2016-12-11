@@ -23,7 +23,7 @@ public class DiamondCell extends Cell {
 	}
 	
 	@Override
-	public void clickAction() {
+	public void clickAction( int x , int y ) {
 		// TODO Auto-generated method stub
 		Random random = new Random(); 
 		ArrayList<Cell> cellInLine ;

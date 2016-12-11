@@ -1,24 +1,24 @@
 package mainScreen;
 
-import core.MouseActionable;
+import core.ScreenManager;
 import javafx.scene.canvas.GraphicsContext;
-import object.ScreenObject;
+import object.Button;
+import screen.Screen;
 import util.InputUtility;
 import util.Resources;
 
-public class PlayButton implements ScreenObject, MouseActionable {
-	private int x,y;
+public class PlayButton extends Button {
+	
+	private boolean isVisible;
+	private double count=0;
 	
 	public PlayButton(int x, int y){
-		this.x=x;
-		this.y=y;
+		super(x,y);
+		this.isVisible=false;
 		MainScreenObjectHolder.getInstance().add( this );
 	}
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
+	public void setVisible(boolean isVisible) {
+		this.isVisible = isVisible;
 	}
 	@Override
 	public int getZ() {
@@ -28,35 +28,42 @@ public class PlayButton implements ScreenObject, MouseActionable {
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return true;
+		return isVisible;
 	}
 
 	@Override
-	public void clickAction() {
+	public void clickAction( int x , int y ) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("123");
+		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getGameScreen() ) ; 
+
 	}
 
 	@Override
 	public boolean isInside(int xx, int yy) {
 		// TODO Auto-generated method stub
 		if( xx < x) return false ;
-		if( xx > x+184) return false ; 
+		if( xx > x+200) return false ; 
 	
 		if( yy < y) return false ; 
-		if( yy > y+71) return false ;
+		if( yy > y+77) return false ;
 		
 		return true;
 	}
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if(x>=375){
-			gc.drawImage(Resources.getInstance().Play, x, y);
-			x-=1;
-		}
-		if(isInside(InputUtility.getMouseX(),InputUtility.getMouseY())){
-			//draw something
+			
+		if(isVisible){
+			gc.setGlobalAlpha(count);
+			count+=0.05;
+			if(isInside(InputUtility.getMouseX(),InputUtility.getMouseY())){
+				gc.drawImage(Resources.getInstance().playbutton2, x-10, y-10,220,85);
+			}
+			else{
+				gc.drawImage(Resources.getInstance().playbutton, x, y,200,77);
+			}
+			gc.setGlobalAlpha(1);
 		}
 	}
 }

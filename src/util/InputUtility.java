@@ -64,14 +64,19 @@ public class InputUtility {
 		InputUtility.mouseClickedTriggered = v;
 	}
 	public static boolean isMouseClickedTriggered() {
-		if (InputUtility.mouseClickedTriggered && !InputUtility.mouseTriggered.contains("Yes")) {
-			InputUtility.mouseTriggered.add("Yes");
+		if (InputUtility.mouseClickedTriggered && !InputUtility.mouseTriggered.contains("Left")&& !InputUtility.mouseTriggered.contains("Right")) {
+			if(InputUtility.mouseLeftDown)  InputUtility.mouseTriggered.add("Left");
+			if(InputUtility.mouseRightDown)  InputUtility.mouseTriggered.add("Right");
+			InputUtility.mouseClickedTriggered = true;
 		}
-		else if (InputUtility.mouseTriggered.contains("Yes")){
+		else if (InputUtility.mouseTriggered.contains("Left") ||InputUtility.mouseTriggered.contains("Right") ){
 			InputUtility.mouseClickedTriggered = false;
 		}
 		if (!InputUtility.mouseLeftDown)
-			InputUtility.mouseTriggered.remove("Yes");
+			InputUtility.mouseTriggered.remove("Left");
+		if (!InputUtility.mouseRightDown)
+			InputUtility.mouseTriggered.remove("Right");
+		
 		return InputUtility.mouseClickedTriggered;
 	}
 

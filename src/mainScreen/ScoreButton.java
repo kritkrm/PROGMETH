@@ -32,7 +32,7 @@ public class ScoreButton implements ScreenObject, MouseActionable{
 	}
 
 	@Override
-	public void clickAction() {
+	public void clickAction( int x , int y ) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -54,7 +54,7 @@ public class ScoreButton implements ScreenObject, MouseActionable{
 		if(x>=375){
 //			gc.setFill(Color.ALICEBLUE);
 //			gc.fillRect(x, y, 200, 80);
-			gc.drawImage(Resources.getInstance().Score, x, y);
+//			gc.drawImage(Resources.getInstance().Score, x, y);
 			x-=1;
 		}
 		if(isInside(InputUtility.getMouseX(),InputUtility.getMouseY())){

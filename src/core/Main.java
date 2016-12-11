@@ -25,14 +25,13 @@ import util.Resources;
 
 public class Main extends Application {
 	
-	private GameScreen gameScreen ;
-	private MainScreen mainScreen ;
 	private Thread eventMakerThread ; 
 	
 	@Override
 	public void start(Stage primaryStage) {
-		gameScreen = new GameScreen() ;
-		mainScreen = new MainScreen() ; 
+		GameScreen gameScreen = ScreenManager.getInstance().getGameScreen();
+//		mainScreen = new MainScreen() ; 
+		ScreenManager.getInstance().setStage( primaryStage );
 		Resources.getInstance().initialize() ;
 		
 		eventMakerThread = new Thread( () -> {
@@ -81,13 +80,13 @@ public class Main extends Application {
 		});
 	
 		// clear screenholder
-		ScreenManager.getInstance().setNextScreen( gameScreen );
-		ScreenManager.getInstance().update();
+//		ScreenManager.getInstance().setNextScreen( mainScreen );
+//		ScreenManager.getInstance().update();
 		
 		eventMakerThread.start();
 //		System.out.println(ScreenManager.getInstance().getCurrentScreen() );
 		
-		primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
+//		primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
 		primaryStage.setTitle( Constants.GAME_NAME );
 		primaryStage.setResizable( false );
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -108,7 +107,7 @@ public class Main extends Application {
 				
 				updateTime = currentTime ; 
 				ScreenManager.getInstance().update() ; 
-				primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
+//				primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
 				updateTime = currentTime ;
 //				System.out.println(System.nanoTime());
 //				System.out.println(currentTime);

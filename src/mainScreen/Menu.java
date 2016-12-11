@@ -30,8 +30,14 @@ public class Menu implements ScreenObject {
 		if(x>=320){
 //			gc.setFill(Color.ALICEBLUE);
 //			gc.fillRect(x, y, 300, 350);
-			gc.drawImage(Resources.getInstance().Menu, x, y);
+//			gc.drawImage(Resources.getInstance().me, x, y);
 			x-=1;
 		}
+	}
+
+	@Override
+	public boolean isInside(int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

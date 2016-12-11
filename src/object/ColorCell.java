@@ -59,7 +59,7 @@ public class ColorCell extends Cell {
 	}
 
 	@Override
-	public void clickAction() {
+	public void clickAction( int x , int y ) {
 		// TODO Auto-generated method stub
 		ArrayList<ColorCell> neighborCell = gridCell.getNeighborOf(this) ;
 		if( neighborCell.size() >= 3 ) {

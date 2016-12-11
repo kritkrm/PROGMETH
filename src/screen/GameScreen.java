@@ -4,6 +4,7 @@ package screen;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import mainScreen.MainScreenObjectHolder;
 import object.GameLogic;
 import object.GameScreenObjectHolder;
 import object.GameStatus;
@@ -56,6 +57,19 @@ public class GameScreen extends Screen {
 //		
 		drawComponenet();
 		
+	}
+	
+	public Object getObjectAtPos( int x , int y ) {
+		int currentObjectZ = -1 ; 
+		Object currentObject = null ;
+		for(ScreenObject renderable : GameScreenObjectHolder.getInstance().getEntities() ) {
+			if( renderable.isInside(x, y) ) {
+				if( currentObjectZ < renderable.getZ() ) {
+					currentObject = renderable ; 
+				}				
+			}
+		}
+		return currentObject;
 	}
 	
 }

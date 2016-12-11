@@ -1,5 +1,6 @@
 package object;
 
+import core.MouseActionable;
 import screen.GameScreen;
 import util.InputUtility;
 
@@ -24,10 +25,14 @@ public class GameLogic {
 	public void updateLogic() {
 		
 		if( gameScreen.isActive() ) {
+			
 			if( InputUtility.isMouseClickedTriggered() ) {
-				Cell cell = gameScreen.getGridCell().getCellAtPos( InputUtility.getMouseX() , InputUtility.getMouseY() ) ;
-				if( cell != null && !cell.isDestroyed() )
-					cell.clickAction();
+				Object object = gameScreen.getObjectAtPos(InputUtility.getMouseX(), InputUtility.getMouseY()) ; 
+				if( object != null ) {
+					if( object instanceof MouseActionable ) {
+						((MouseActionable) object).clickAction(InputUtility.getMouseX(), InputUtility.getMouseY()); 
+					}
+				}
 			}	
 			if( shuffle ) {
 				gameScreen.getGridCell().shuffle() ;

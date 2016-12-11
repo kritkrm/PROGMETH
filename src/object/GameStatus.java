@@ -150,5 +150,11 @@ public class GameStatus implements ScreenObject {
 	public void setGameScreen(GameScreen gameScreen) {
 		this.gameScreen = gameScreen;
 	}
+
+	@Override
+	public boolean isInside(int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

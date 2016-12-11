@@ -46,6 +46,8 @@ public abstract class Screen extends Scene {
 		return canvas ; 
 	}
 	
+	public abstract Object getObjectAtPos( int x , int y ) ;
+	
 	public abstract void drawComponenet() ; 
 	
 	private void addListener() {

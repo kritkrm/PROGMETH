@@ -10,39 +10,18 @@ import object.ScreenObject;
 public class MainScreenObjectHolder {
 	
 	private static final MainScreenObjectHolder instance = new MainScreenObjectHolder();
-
 	private List<ScreenObject> entities;
-	private Comparator<ScreenObject> comparator;
 	
 	public MainScreenObjectHolder() {
 		entities = new ArrayList<ScreenObject>();
-		comparator = ( ScreenObject A , ScreenObject B ) -> {
-			if ( A.getZ() > B.getZ() )
-				return 1;
-			return -1;
-		};
 	}
-	
-	public static MainScreenObjectHolder getInstance() {
+	public synchronized static MainScreenObjectHolder getInstance() {
 		return instance;
 	}
-	
-	public void addAndSort(ScreenObject entity) {
-		add(entity);
-//		sort();
-	}
-	
-	public void add(ScreenObject entity) {
+	public synchronized void add(ScreenObject entity) {
 		entities.add(entity);
-//		sort();
 	}
-	
-	public void sort(){
-		Collections.sort(entities, comparator);
-	}
-	
-	
-	public List<ScreenObject> getEntities() {
+	public synchronized List<ScreenObject> getEntities() {
 		return entities;
 	}
 	

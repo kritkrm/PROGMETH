@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class ResumeButton implements ScreenObject , MouseActionable{
 
 	@Override
-	public void clickAction() {
+	public void clickAction(int x , int y) {
 		// TODO Auto-generated method stub
 		
 	}
