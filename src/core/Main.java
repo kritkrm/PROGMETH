@@ -30,7 +30,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		GameScreen gameScreen = ScreenManager.getInstance().getGameScreen();
-//		mainScreen = new MainScreen() ; 
+
 		ScreenManager.getInstance().setStage( primaryStage );
 		Resources.getInstance().initialize() ;
 		
@@ -78,15 +78,9 @@ public class Main extends Application {
 			}
 			
 		});
-	
-		// clear screenholder
-//		ScreenManager.getInstance().setNextScreen( mainScreen );
-//		ScreenManager.getInstance().update();
 		
 		eventMakerThread.start();
-//		System.out.println(ScreenManager.getInstance().getCurrentScreen() );
-		
-//		primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
+
 		primaryStage.setTitle( Constants.GAME_NAME );
 		primaryStage.setResizable( false );
 		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {

@@ -5,6 +5,7 @@ import gameScreen.GameScreen;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainScreen.MainScreen;
+import pauseScreen.PauseScreen;
 import util.InputUtility;
 
 public class ScreenManager {
@@ -22,12 +23,13 @@ public class ScreenManager {
 	private GameScreen gameScreen ;
 	private MainScreen mainScreen ;
 	private AboutScreen aboutScreen ;
+	private PauseScreen pauseScreen ; 
 
-	
 	public ScreenManager() {
 		mainScreen = new MainScreen() ;
 		gameScreen = new GameScreen() ;
 		aboutScreen = new AboutScreen() ;
+		pauseScreen = new PauseScreen() ; 
 		setNextScreen( mainScreen );
 	}
 	

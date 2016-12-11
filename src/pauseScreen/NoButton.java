@@ -27,12 +27,6 @@ public class NoButton extends Button {
 	}
 
 	@Override
-	public void clickAction() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean isInside(int xx, int yy) {
 		// TODO Auto-generated method stub
 		if( xx < x) return false ;
@@ -54,5 +48,10 @@ public class NoButton extends Button {
 				gc.drawImage(Resources.getInstance().nobutton, x, y,121,70);
 			}
 		}
+	}
+	@Override
+	public void clickAction(int x, int y) {
+		// TODO Auto-generated method stub
+		
 	}
 }
