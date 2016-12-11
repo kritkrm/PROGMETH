@@ -1,8 +1,8 @@
 package mainScreen;
 
 import core.MouseActionable;
+import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
-import object.ScreenObject;
 import util.InputUtility;
 import util.Resources;
 
@@ -11,7 +11,6 @@ public class ScoreButton implements ScreenObject, MouseActionable{
 	public ScoreButton(int x, int y){
 		this.x=x;
 		this.y=y;
-		MainScreenObjectHolder.getInstance().add( this );
 	}
 	
 	public int getX() {

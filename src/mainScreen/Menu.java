@@ -1,16 +1,16 @@
 package mainScreen;
 
+import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
-import object.ScreenObject;
 import util.Resources;
 
 public class Menu implements ScreenObject {
-	private int x,y;
+
+	private int x , y ;
 	
-	public Menu(int x, int y){
-		this.x=x;
-		this.y=y;
-		MainScreenObjectHolder.getInstance().add( this );
+	public Menu( int x, int y ){
+		this.x = x;
+		this.y = y;
 	}
 
 	@Override

@@ -1,12 +1,13 @@
 package mainScreen;
 
 
+import aboutScreen.AboutScreenObjectHolder;
+import core.Screen;
+import core.ScreenObject;
+import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import object.Button;
-import object.ScreenObject;
-import screen.Screen;
 import util.Resources;
 
 public class MainScreen extends Screen {
@@ -21,12 +22,17 @@ public class MainScreen extends Screen {
 	public MainScreen() {
 		
 		super( new StackPane() ) ;
-		this.mainLogic = new MainLogic(this);
+		MainScreenObjectHolder.getInstance().getEntities().clear();
+		mainLogic = new MainLogic(this);
 		this.playButton = new PlayButton(120,240);
 		this.exitButton = new ExitButton(145,360);
 		this.aboutButton = new AboutButton(600, 500);
 		this.titleGame = new TitleGame(0,70);
-		time=0;
+		time = 0;
+		MainScreenObjectHolder.getInstance().add( playButton );
+		MainScreenObjectHolder.getInstance().add( exitButton );
+		MainScreenObjectHolder.getInstance().add( aboutButton );
+		MainScreenObjectHolder.getInstance().add( titleGame );
 		
 	}
 	
@@ -80,19 +86,21 @@ public class MainScreen extends Screen {
 	}
 
 	@Override
-	public void drawComponenet(){
-		if(!Resources.getInstance().soundMainScreen.isPlaying())	Resources.getInstance().soundMainScreen.play();
-		if( isActive ) {
-			GraphicsContext gc = canvas.getGraphicsContext2D();
-			gc.setFill(Color.WHITE);
-			gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
-			gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
-			gc.restore();
-			gc.drawImage(Resources.getInstance().mainScreen,0,0);
-			for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
-				renderable.draw(gc);
-			}
+	public void drawComponenet() {
+
+		if( !Resources.getInstance().soundMainScreen.isPlaying() )
+			Resources.getInstance().soundMainScreen.play();
+		
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.setFill(Color.WHITE);
+		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
+		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
+		gc.restore();
+		gc.drawImage(Resources.getInstance().mainScreen,0,0);
+		for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
+			renderable.draw(gc);
 		}
+		
 	}
 	
 	public Object getObjectAtPos( int x , int y ) {
@@ -111,7 +119,7 @@ public class MainScreen extends Screen {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		time+=1;
+		time += 1;
 		mainLogic.updateLogic( time );
 		drawComponenet();
 		

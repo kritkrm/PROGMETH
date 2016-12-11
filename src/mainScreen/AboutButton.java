@@ -1,7 +1,8 @@
 package mainScreen;
 
+import core.ScreenManager;
+import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
-import object.Button;
 import util.InputUtility;
 import util.Resources;
 
@@ -12,7 +13,6 @@ public class AboutButton extends Button {
 	public AboutButton(int x, int y){
 		super(x,y);
 		this.isVisible=false;
-		MainScreenObjectHolder.getInstance().add( this );
 	}
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
@@ -55,10 +55,12 @@ public class AboutButton extends Button {
 			}
 			gc.setGlobalAlpha(1);
 		}
+		
 	}
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stub
-		
+		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getAboutScreen() ) ; 
+
 	}
 }

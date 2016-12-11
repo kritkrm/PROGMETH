@@ -1,7 +1,7 @@
 package mainScreen;
 
+import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
-import object.Button;
 import util.InputUtility;
 import util.Resources;
 
@@ -12,7 +12,6 @@ public class TitleGame extends Button {
 		super(x,y);
 		this.isVisible=false;
 		//this.count=0;
-		MainScreenObjectHolder.getInstance().add( this );
 	}
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;

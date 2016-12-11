@@ -4,11 +4,12 @@ package pauseScreen;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.Screen;
+import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import object.ScreenObject;
-import screen.Screen;
+import mainScreen.MainScreenObjectHolder;
 import util.Resources;
 
 public class PauseScreen extends Screen {
@@ -42,16 +43,14 @@ public class PauseScreen extends Screen {
 
 	@Override
 	public void drawComponenet(){
-		if( isActive ) {
-			GraphicsContext gc = canvas.getGraphicsContext2D();
-			gc.setFill(Color.WHITE);
-			gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
-			gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
-			gc.restore();
-			gc.drawImage(Resources.getInstance().pauseScreen,0,0);
-			for(ScreenObject renderable :  pauseBox) {
-				renderable.draw(gc);
-			}
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.setFill(Color.WHITE);
+		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
+		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
+		gc.restore();
+		gc.drawImage(Resources.getInstance().pauseScreen,0,0);
+		for(ScreenObject renderable :  pauseBox ) {
+			renderable.draw(gc);
 		}
 	}
 	
@@ -61,6 +60,19 @@ public class PauseScreen extends Screen {
 		drawComponenet();
 		
 	}
-	
+
+	@Override
+	public Object getObjectAtPos( int x , int y ) {
+		int currentObjectZ = -1 ; 
+		Object currentObject = null ;
+		for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
+			if( renderable.isInside(x, y) ) {
+				if( currentObjectZ < renderable.getZ() ) {
+					currentObject = renderable ; 
+				}				
+			}
+		}
+		return currentObject;
+	}
 }
 

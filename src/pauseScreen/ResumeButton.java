@@ -1,7 +1,7 @@
 package pauseScreen;
 
+import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
-import object.Button;
 import util.InputUtility;
 import util.Resources;
 
@@ -27,7 +27,7 @@ public class ResumeButton extends Button {
 	}
 
 	@Override
-	public void clickAction() {
+	public void clickAction( int x , int  y ) {
 		// TODO Auto-generated method stub
 		
 	}

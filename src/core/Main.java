@@ -3,6 +3,11 @@ package core;
 import java.awt.Container;
 import java.util.Random;
 
+import gameScreen.BottleCell;
+import gameScreen.DiamondCell;
+import gameScreen.GameScreen;
+import gameScreen.GridCell;
+import gameScreen.TimeCell;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -15,11 +20,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import mainScreen.MainScreen;
-import object.BottleCell;
-import object.DiamondCell;
-import object.GridCell;
-import object.TimeCell;
-import screen.GameScreen;
 import util.Constants;
 import util.Resources;
 
@@ -48,8 +48,8 @@ public class Main extends Application {
 			    		if( !gameScreen.getGameLogic().getShuffle() )
 			    			gameScreen.getGameLogic().setShuffle( true );
 			    	}
-			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
-			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
+//			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
+//			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
 			    	if( gameScreen.isActive() ) {
 			    		countCombo += ( 1<< (gameScreen.getGameStatus().getCombo()>>3) ) ;
 			    		if( gameScreen.getGridCell().countItemCell() >= Constants.MAX_ITEM_IN_GRID ) {

@@ -1,7 +1,8 @@
 package aboutScreen;
 
+import core.ScreenManager;
+import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
-import object.Button;
 import util.InputUtility;
 import util.Resources;
 
@@ -27,12 +28,6 @@ public class HomeButton extends Button {
 	}
 
 	@Override
-	public void clickAction() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean isInside(int xx, int yy) {
 		// TODO Auto-generated method stub
 		if( xx < x) return false ;
@@ -54,5 +49,10 @@ public class HomeButton extends Button {
 				gc.drawImage(Resources.getInstance().HomeButton2, x, y,80,86);
 			}
 		}
+	}
+	@Override
+	public void clickAction(int x, int y) {
+		// TODO Auto-generated method stub
+		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getMainScreen() ) ; 
 	}
 }

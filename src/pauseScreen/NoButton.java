@@ -1,7 +1,7 @@
 package pauseScreen;
 
+import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
-import object.Button;
 import util.InputUtility;
 import util.Resources;
 

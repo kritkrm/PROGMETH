@@ -1,10 +1,11 @@
 package core;
 
+import aboutScreen.AboutScreen;
+import gameScreen.GameScreen;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mainScreen.MainScreen;
-import screen.GameScreen;
-import screen.Screen;
+import util.InputUtility;
 
 public class ScreenManager {
 	
@@ -20,15 +21,26 @@ public class ScreenManager {
 	
 	private GameScreen gameScreen ;
 	private MainScreen mainScreen ;
+	private AboutScreen aboutScreen ;
+
 	
 	public ScreenManager() {
 		mainScreen = new MainScreen() ;
 		gameScreen = new GameScreen() ;
+		aboutScreen = new AboutScreen() ;
 		setNextScreen( mainScreen );
 	}
 	
 	public GameScreen getGameScreen() {
 		return this.gameScreen ;
+	}
+	
+	public MainScreen getMainScreen() {
+		return this.mainScreen ;
+	}
+	
+	public AboutScreen getAboutScreen() {
+		return this.aboutScreen ;
 	}
 	
 	public void setNextScreen( Screen screen ) {
@@ -52,7 +64,7 @@ public class ScreenManager {
 			this.currentScreen = nextScreen;
 			this.nextScreen = null;
 			stage.setScene( getCurrentScreen() );
-
+			InputUtility.postUpdate();
 		}
 
 		if (this.currentScreen != null) {
