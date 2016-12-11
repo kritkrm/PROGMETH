@@ -1,10 +1,7 @@
 package mainScreen;
 
 import core.MouseActionable;
-import gameScreen.Cell;
-import gameScreen.GameScreen;
 import util.InputUtility;
-import util.Resources;
 
 public class MainLogic {
 	

@@ -3,7 +3,6 @@ package gameScreen;
 import java.util.ArrayList;
 import java.util.Random;
 
-import core.MouseActionable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;

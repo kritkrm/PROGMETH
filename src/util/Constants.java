@@ -15,7 +15,7 @@ public final class Constants {
 	
 	public static int COMBO_THRESHOLD = 5000 ;
 	
-	public static int MAX_REMAINING_TIME = 60 ;
+	public static int MAX_REMAINING_TIME = 6 ;
 	public static int MAX_COMBO = 60 ;
 	public static int MAX_ITEM_IN_GRID = 7 ;
 	

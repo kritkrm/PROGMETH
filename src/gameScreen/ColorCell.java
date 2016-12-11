@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;
+import util.Resources;
 import util.Constants.CellColor;
 
 public class ColorCell extends Cell {
@@ -71,6 +72,7 @@ public class ColorCell extends Cell {
 			gridCell.getGameScreen().getGameStatus().increaseCombo( neighborCell.size()>>1 );
 		
 		} else {
+			Resources.getInstance().clickBox.play();
 			gridCell.getGameScreen().getGameStatus().clearCombo();
 			
 		} 	

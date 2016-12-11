@@ -59,7 +59,8 @@ public class AboutButton extends Button {
 	}
 	@Override
 	public void clickAction(int x, int y) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubclickButton
+		Resources.getInstance().clickButton.play();
 		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getAboutScreen() ) ; 
 
 	}

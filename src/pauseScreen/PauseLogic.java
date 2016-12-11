@@ -1,6 +1,5 @@
 package pauseScreen;
 
-import aboutScreen.AboutScreen;
 import core.MouseActionable;
 import util.InputUtility;
 

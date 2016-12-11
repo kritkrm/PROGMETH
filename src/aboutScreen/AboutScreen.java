@@ -1,15 +1,11 @@
 package aboutScreen;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 import core.Screen;
 import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import mainScreen.MainScreenObjectHolder;
+import util.Constants;
 import util.Resources;
 
 public class AboutScreen extends Screen {
@@ -20,8 +16,8 @@ public class AboutScreen extends Screen {
 	public AboutScreen() {
 		super( new StackPane() ) ;
 		AboutScreenObjectHolder.getInstance().getEntities().clear();
-		homeButton = new HomeButton(650, 480);
-		aboutLogic = new AboutLogic(this) ;
+		aboutLogic = new AboutLogic( this ) ; 
+		homeButton = new HomeButton(600, 500);
 		AboutScreenObjectHolder.getInstance().add( homeButton );
 	}
 	
@@ -50,8 +46,13 @@ public class AboutScreen extends Screen {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		drawComponenet();
-		aboutLogic.updateLogic();
+//		if( step < 1000 ) {
+//			step += 1 ; 
+//			drawIntro() ;
+//		} else {
+			drawComponenet();
+			aboutLogic.updateLogic(); 
+//		}
 	}
 
 	@Override
@@ -66,6 +67,18 @@ public class AboutScreen extends Screen {
 			}
 		}
 		return currentObject;
+	}
+
+	@Override
+	public void active() {
+		// TODO Auto-generated method stub
+		isActive = true ;
+	}
+
+	@Override
+	public void inactive() {
+		// TODO Auto-generated method stub
+		isActive = false ;
 	}
 	
 }

@@ -2,7 +2,6 @@ package mainScreen;
 
 import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
-import util.Resources;
 
 public class Menu implements ScreenObject {
 

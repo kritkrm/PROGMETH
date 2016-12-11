@@ -1,4 +1,4 @@
-package pauseScreen;
+package endScreen;
 
 import core.ScreenManager;
 import gameScreen.Button;
@@ -6,16 +6,15 @@ import javafx.scene.canvas.GraphicsContext;
 import util.InputUtility;
 import util.Resources;
 
-public class ResumeButton extends Button {
-	private boolean isVisible;	
-	public ResumeButton(int x, int y){
+public class RetryButton extends Button {
+	private boolean isVisible;
+	public RetryButton(int x, int y){
 		super(x,y);
 		this.isVisible=true;
 	}
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
 	}
-
 	@Override
 	public int getZ() {
 		return Integer.MAX_VALUE;
@@ -24,37 +23,38 @@ public class ResumeButton extends Button {
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return isVisible;
-	}
-
-	@Override
-	public void clickAction( int x , int  y ) {
-		// TODO Auto-generated method stub
-		Resources.getInstance().clickButton.play();
-		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getGameScreen() ) ; 
+		return true;
 	}
 
 	@Override
 	public boolean isInside(int xx, int yy) {
 		// TODO Auto-generated method stub
 		if( xx < x) return false ;
-		if( xx > x+218) return false ; 
+		if( xx > x+150) return false ; 
 	
 		if( yy < y) return false ; 
-		if( yy > y+70) return false ;
+		if( yy > y+58) return false ;
 		
 		return true;
 	}
 	@Override
 	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+			
 		if(isVisible){
 			if(isInside(InputUtility.getMouseX(),InputUtility.getMouseY())){
-				gc.drawImage(Resources.getInstance().resumebutton2, x-10, y-10 ,250 ,80);
+				gc.drawImage(Resources.getInstance().retrybutton2, x-10, y-10,170,65);
 			}
 			else{
-				gc.drawImage(Resources.getInstance().resumebutton, x, y,218,70);
+				gc.drawImage(Resources.getInstance().retrybutton, x, y,150,58);
 			}
 		}
+	}
+	@Override
+	public void clickAction(int x, int y) {
+		// TODO Auto-generated method stub
+		Resources.getInstance().clickButton.play();
+		ScreenManager.getInstance().newGameScreen();
+		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getGameScreen() ) ; 
 	}
 }

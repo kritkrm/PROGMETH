@@ -14,6 +14,7 @@ public class GameLogic {
 	}
 	
 	public void updateLogic() {
+
 		if( InputUtility.isMouseClickedTriggered() ) {
 			Object object = gameScreen.getObjectAtPos(InputUtility.getMouseX(), InputUtility.getMouseY()) ; 
 			if( object != null ) {
@@ -26,7 +27,6 @@ public class GameLogic {
 			gameScreen.getGridCell().shuffle() ;
 			setShuffle( false );
 		}
-
 		gameScreen.getGridCell().update();
 	}
 	

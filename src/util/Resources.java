@@ -6,10 +6,10 @@ import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 
 public class Resources {
-	public Image mainScreen,pauseScreen,aboutScreen,gameScreen;
+	public Image mainScreen,pauseScreen,aboutScreen,gameScreen,endScreen;
 	public Image BlueBox,GreenBox,PurpleBox,RedBox,YellowBox;
 	public Image aboutbutton,aboutbutton2,exitbutton,exitbutton2;
-	public Image HomeButton1,HomeButton2;
+	public Image homebutton,homebutton2,retrybutton,retrybutton2;
 	public Image nobutton,nobutton2,pausebutton,pausebutton2;
 	public Image playbutton,playbutton2;
 	public Image resumebutton, resumebutton2;
@@ -59,11 +59,14 @@ public class Resources {
 	
 	private void loadImage() {
 		aboutScreen = new Image(ClassLoader.getSystemResource("background/aboutScreen.png").toString());
+		endScreen = new Image(ClassLoader.getSystemResource("background/endScreen.png").toString());
 		gameScreen = new Image(ClassLoader.getSystemResource("background/gameScreen.png").toString());
 		mainScreen = new Image(ClassLoader.getSystemResource("background/mainScreen.png").toString());
 		pauseScreen = new Image(ClassLoader.getSystemResource("background/pauseScreen.png").toString());
-		HomeButton1 = new Image(ClassLoader.getSystemResource("button/HomeButton1.png").toString());
-		HomeButton2 = new Image(ClassLoader.getSystemResource("button/HomeButton2.png").toString());
+		homebutton = new Image(ClassLoader.getSystemResource("button/homebutton.png").toString());
+		homebutton2 = new Image(ClassLoader.getSystemResource("button/homebutton2.png").toString());
+		retrybutton = new Image(ClassLoader.getSystemResource("button/retrybutton.png").toString());
+		retrybutton2 = new Image(ClassLoader.getSystemResource("button/retrybutton2.png").toString());
 		BlueBox   = new Image(ClassLoader.getSystemResource("box/BlueBox.png").toString());
 		GreenBox  = new Image(ClassLoader.getSystemResource("box/GreenBox.png").toString());
 		PurpleBox = new Image(ClassLoader.getSystemResource("box/PurpleBox.png").toString());

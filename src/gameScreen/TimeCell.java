@@ -1,6 +1,5 @@
 package gameScreen;
 
-import core.MouseActionable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;

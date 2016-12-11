@@ -1,7 +1,7 @@
 package core;
 
 public class NegativeValueException extends RuntimeException {
-	 
+
 	public NegativeValueException() {
 		super();
 		System.out.println("NegativeValueException.");

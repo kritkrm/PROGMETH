@@ -1,6 +1,5 @@
 package mainScreen;
 
-import core.Screen;
 import core.ScreenManager;
 import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
@@ -33,6 +32,8 @@ public class PlayButton extends Button {
 	@Override
 	public void clickAction( int x , int y ) {
 		// TODO Auto-generated method stub
+		Resources.getInstance().clickButton.play();
+		ScreenManager.getInstance().newGameScreen();
 		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getGameScreen() ) ; 
 
 	}

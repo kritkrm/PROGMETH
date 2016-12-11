@@ -4,7 +4,6 @@ import core.MouseActionable;
 import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
 import util.InputUtility;
-import util.Resources;
 
 public class ScoreButton implements ScreenObject, MouseActionable{
 	private int x,y;

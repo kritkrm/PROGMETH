@@ -4,6 +4,8 @@ package pauseScreen;
 import java.util.ArrayList;
 import java.util.List;
 
+import aboutScreen.AboutLogic;
+import aboutScreen.AboutScreenObjectHolder;
 import core.Screen;
 import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,16 +15,18 @@ import mainScreen.MainScreenObjectHolder;
 import util.Resources;
 
 public class PauseScreen extends Screen {
-	private List<ScreenObject> pauseBox;
+
 	private NoButton noButton;
 	private ResumeButton resumeButton;
+	private PauseLogic pauseLogic ;
 	public PauseScreen() {
 		super( new StackPane() ) ;
-		pauseBox = new ArrayList<ScreenObject>();
+		PauseScreenObjectHolder.getInstance().getEntities().clear();
+		pauseLogic = new PauseLogic( this ) ; 
 		this.noButton = new NoButton(480, 390);
 		this.resumeButton = new ResumeButton(190 ,390);
-		pauseBox.add(this.noButton);
-		pauseBox.add(this.resumeButton);
+		PauseScreenObjectHolder.getInstance().add(this.noButton);
+		PauseScreenObjectHolder.getInstance().add(this.resumeButton);
 	}
 	
 	public NoButton getNoButton() {
@@ -49,7 +53,7 @@ public class PauseScreen extends Screen {
 		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.restore();
 		gc.drawImage(Resources.getInstance().pauseScreen,0,0);
-		for(ScreenObject renderable :  pauseBox ) {
+		for(ScreenObject renderable : PauseScreenObjectHolder.getInstance().getEntities() ) {
 			renderable.draw(gc);
 		}
 	}
@@ -58,14 +62,14 @@ public class PauseScreen extends Screen {
 	public void update() {
 		// TODO Auto-generated method stub
 		drawComponenet();
-		
+		pauseLogic.updateLogic();
 	}
 
 	@Override
 	public Object getObjectAtPos( int x , int y ) {
 		int currentObjectZ = -1 ; 
 		Object currentObject = null ;
-		for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
+		for(ScreenObject renderable : PauseScreenObjectHolder.getInstance().getEntities() ) {
 			if( renderable.isInside(x, y) ) {
 				if( currentObjectZ < renderable.getZ() ) {
 					currentObject = renderable ; 
@@ -73,6 +77,18 @@ public class PauseScreen extends Screen {
 			}
 		}
 		return currentObject;
+	}
+
+	@Override
+	public void active() {
+		// TODO Auto-generated method stub
+		isActive = true;
+	}
+
+	@Override
+	public void inactive() {
+		// TODO Auto-generated method stub
+		isActive = false;
 	}
 }
 

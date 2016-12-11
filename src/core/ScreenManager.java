@@ -1,11 +1,14 @@
 package core;
 
 import aboutScreen.AboutScreen;
+import endScreen.EndScreen;
 import gameScreen.GameScreen;
-import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import mainScreen.MainScreen;
 import pauseScreen.PauseScreen;
+import util.Constants;
 import util.InputUtility;
 
 public class ScreenManager {
@@ -24,21 +27,40 @@ public class ScreenManager {
 	private MainScreen mainScreen ;
 	private AboutScreen aboutScreen ;
 	private PauseScreen pauseScreen ; 
+	private EndScreen endScreen ; 
+
+	
+	private int step ;
+	
 
 	public ScreenManager() {
 		mainScreen = new MainScreen() ;
 		gameScreen = new GameScreen() ;
 		aboutScreen = new AboutScreen() ;
 		pauseScreen = new PauseScreen() ; 
+		endScreen = new EndScreen() ;
 		setNextScreen( mainScreen );
+		step = 0 ;
 	}
 	
 	public GameScreen getGameScreen() {
 		return this.gameScreen ;
 	}
 	
+	public void newGameScreen() {
+		gameScreen = new GameScreen() ; 
+	}
+	
+	public EndScreen getEndScreen() {
+		return this.endScreen ;
+	}
+	
 	public MainScreen getMainScreen() {
 		return this.mainScreen ;
+	}
+	
+	public PauseScreen getPauseScreen() {
+		return this.pauseScreen ;
 	}
 	
 	public AboutScreen getAboutScreen() {
@@ -60,17 +82,19 @@ public class ScreenManager {
 	public void update() {
 		
 		if (this.nextScreen != null) {
+			
 			if( currentScreen != null ) {
 				currentScreen.inactive(); 
-			}
+			} 
 			this.currentScreen = nextScreen;
 			this.nextScreen = null;
 			stage.setScene( getCurrentScreen() );
+			currentScreen.active(); 
 			InputUtility.postUpdate();
+			
 		}
 
 		if (this.currentScreen != null) {
-			currentScreen.active(); 
 			this.currentScreen.update();
 		}
 

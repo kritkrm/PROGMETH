@@ -56,6 +56,6 @@ public class ExitButton extends Button {
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stub
-		
+		Resources.getInstance().clickButton.play();
 	}
 }

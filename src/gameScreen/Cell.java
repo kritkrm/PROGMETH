@@ -2,6 +2,7 @@ package gameScreen;
 
 import core.MouseActionable;
 import core.ScreenObject;
+import util.Resources;
 
 public abstract class Cell implements ScreenObject , MouseActionable {
 
@@ -49,6 +50,7 @@ public abstract class Cell implements ScreenObject , MouseActionable {
 	}
 	
 	public void destroy() {
+		Resources.getInstance().boom.play();
 		isDestroyed = true ; 
 		return ;
 	}

@@ -1,8 +1,5 @@
 package gameScreen;
 
-import java.awt.Container;
-import java.awt.PageAttributes.ColorType;
-import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;

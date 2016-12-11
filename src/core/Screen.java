@@ -16,6 +16,7 @@ public abstract class Screen extends Scene {
 	protected Canvas canvas ;
 	private StackPane stackPane ;
 	protected boolean isActive ;
+	protected int step ;
 	
 	
 	public Screen( StackPane stackPane ) {
@@ -25,6 +26,7 @@ public abstract class Screen extends Scene {
 		this.stackPane.getChildren().add( canvas ) ;
 		addListener();
 		this.isActive = false ;
+		step = 0 ;
 		
 	}
 	
@@ -34,13 +36,9 @@ public abstract class Screen extends Scene {
 		return this.isActive ; 
 	}
 	
-	public void active() {
-		isActive = true ;
-	}
+	public abstract void active() ;
 	
-	public void inactive() {
-		isActive = false ; 
-	}
+	public abstract void inactive() ;
 	
 	public Canvas getCanvas() {
 		return canvas ; 
@@ -49,6 +47,17 @@ public abstract class Screen extends Scene {
 	public abstract Object getObjectAtPos( int x , int y ) ;
 	
 	public abstract void drawComponenet() ; 
+	
+	public void drawIntro( double level ) {
+		
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		
+		gc.setFill(Color.BLACK);
+		gc.setGlobalAlpha( level );
+		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
+		gc.setGlobalAlpha( 1 );
+		
+	}
 	
 	private void addListener() {
 		

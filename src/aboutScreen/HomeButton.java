@@ -31,10 +31,10 @@ public class HomeButton extends Button {
 	public boolean isInside(int xx, int yy) {
 		// TODO Auto-generated method stub
 		if( xx < x) return false ;
-		if( xx > x+80) return false ; 
+		if( xx > x+150) return false ; 
 	
 		if( yy < y) return false ; 
-		if( yy > y+86) return false ;
+		if( yy > y+58) return false ;
 		
 		return true;
 	}
@@ -43,16 +43,17 @@ public class HomeButton extends Button {
 		// TODO Auto-generated method stub	
 		if(isVisible){
 			if(isInside(InputUtility.getMouseX(),InputUtility.getMouseY())){
-				gc.drawImage(Resources.getInstance().HomeButton1, x-5, y-5,90,97);
+				gc.drawImage(Resources.getInstance().homebutton2, x-10, y-10,170,65);
 			}
 			else{
-				gc.drawImage(Resources.getInstance().HomeButton2, x, y,80,86);
+				gc.drawImage(Resources.getInstance().homebutton, x, y,150,58);
 			}
 		}
 	}
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stub
+		Resources.getInstance().clickButton.play();
 		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getMainScreen() ) ; 
 	}
 }

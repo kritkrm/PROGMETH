@@ -1,25 +1,17 @@
+
 package core;
 
-import java.awt.Container;
 import java.util.Random;
 
 import gameScreen.BottleCell;
 import gameScreen.DiamondCell;
 import gameScreen.GameScreen;
-import gameScreen.GridCell;
 import gameScreen.TimeCell;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import mainScreen.MainScreen;
 import util.Constants;
 import util.Resources;
 
@@ -98,22 +90,18 @@ public class Main extends Application {
 			@Override
 			public void handle( long currentTime ) {
 				// TODO Auto-generated method stub
-				
 				updateTime = currentTime ; 
 				ScreenManager.getInstance().update() ; 
-//				primaryStage.setScene( ScreenManager.getInstance().getCurrentScreen() );
 				updateTime = currentTime ;
-//				System.out.println(System.nanoTime());
-//				System.out.println(currentTime);
-//				if ( updateTime < maximumWaitTime ) {
-//					try {
-//						Thread.sleep( (maximumWaitTime - updateTime) / 1000000l );
-//					} catch (InterruptedException e) {
-//						// TODO: handle exception
-//						Thread.interrupted() ; 
-//						e.printStackTrace();
-//					}
-//				}
+				if ( updateTime < maximumWaitTime ) {
+					try {
+						Thread.sleep( (maximumWaitTime - updateTime) / 1000000l );
+					} catch (InterruptedException e) {
+						// TODO: handle exception
+						Thread.interrupted() ; 
+						e.printStackTrace();
+					}
+				}
 			}
 		}.start();
 		

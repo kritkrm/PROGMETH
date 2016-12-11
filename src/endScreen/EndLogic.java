@@ -1,6 +1,5 @@
 package endScreen;
 
-import aboutScreen.AboutScreen;
 import core.MouseActionable;
 import util.InputUtility;
 

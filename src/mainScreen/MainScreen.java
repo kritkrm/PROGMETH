@@ -1,10 +1,7 @@
 package mainScreen;
 
-
-import aboutScreen.AboutScreenObjectHolder;
 import core.Screen;
 import core.ScreenObject;
-import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -87,9 +84,6 @@ public class MainScreen extends Screen {
 
 	@Override
 	public void drawComponenet() {
-
-		if( !Resources.getInstance().soundMainScreen.isPlaying() )
-			Resources.getInstance().soundMainScreen.play();
 		
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.setFill(Color.WHITE);
@@ -123,6 +117,22 @@ public class MainScreen extends Screen {
 		mainLogic.updateLogic( time );
 		drawComponenet();
 		
+	}
+
+	@Override
+	public void active() {
+		// TODO Auto-generated method stub
+		isActive = true ;
+		if( !Resources.getInstance().soundMainScreen.isPlaying() )
+			Resources.getInstance().soundMainScreen.play();
+	}
+
+	@Override
+	public void inactive() {
+		// TODO Auto-generated method stub
+		isActive = false ;
+		if( Resources.getInstance().soundMainScreen.isPlaying() )
+			Resources.getInstance().soundMainScreen.stop(); 
 	}
 	
 }

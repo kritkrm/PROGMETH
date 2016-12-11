@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import aboutScreen.AboutScreenObjectHolder;
-
 public abstract class ScreenObjectHolder {
 	
 	private List<ScreenObject> entities;
