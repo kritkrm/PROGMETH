@@ -42,7 +42,7 @@ public abstract class Cell implements ScreenObject , MouseActionable {
 	}
 	
 	public void setAlive() {
-		isDestroyed = true ; 
+		isDestroyed = false ; 
 	}
 	
 	public boolean isDestroyed() {

@@ -27,13 +27,14 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		
+
+		Resources.getInstance().initialize() ;
+
 		StackPane mainPane = new StackPane() ;
 		mainPane.getChildren().add( ScreenManager.getInstance().getCanvas() ) ;
 		primaryStage.setScene( new Scene( mainPane ) );
 		
 //		try {
-			Resources.getInstance().initialize() ;
 //		} catch (Exception e) {
 //			// TODO: handle exception
 //			Platform.runLater( () -> {

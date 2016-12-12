@@ -156,14 +156,13 @@ public class GameStatus implements ScreenObject {
 	}
 
 	public void pause() {
-		InputUtility.postUpdate();
+//		InputUtility.postUpdate();
 		gameScreen.getPauseButton().setVisible( false );
 		this.isPause = true;
 	}
 	
 	public void unpause() {
-
-		InputUtility.postUpdate();
+//		InputUtility.postUpdate();
 		gameScreen.getPauseButton().setVisible( true );
 		this.isPause = false;
 	}

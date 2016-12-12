@@ -46,8 +46,8 @@ public class Resources {
 	}
 	
 	private void loadFonts() {
-		pauseFont = Font.loadFont(getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 40);
-		scoreFont = Font.loadFont(getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 30);
+		pauseFont = Font.loadFont(getClass().getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 40);
+		scoreFont = Font.loadFont(getClass().getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 30);
 		return ; 
 
 	}

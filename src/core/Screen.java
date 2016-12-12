@@ -21,7 +21,6 @@ public abstract class Screen {
 	public Screen( Canvas canvas ) {
 		this.canvas = canvas ;
 		this.isActive = false ;
-		addListener();
 		step = 0 ;
 		
 	}
@@ -44,76 +43,4 @@ public abstract class Screen {
 	
 	public abstract void drawComponenet() ; 
 
-	private void addListener() {
-		
-		this.canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				System.out.println("MouseReleased : " + event.getButton().toString());
-				if (event.getButton() == MouseButton.PRIMARY)
-					InputUtility.setMouseLeftDown(false);
-				if (event.getButton() == MouseButton.SECONDARY)
-					InputUtility.setMouseRightDown(false);
-			}
-		});
-		
-		this.canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				System.out.println("MousePressed : " + event.getButton().toString());
-				System.out.println(InputUtility.isMouseClickedTriggered());
-				if (event.getButton() == MouseButton.PRIMARY) {
-										
-					InputUtility.setMouseLeftDown(true);
-					InputUtility.setMouseLeftLastDown(true);
-					InputUtility.setMouseClickedTriggered(true); 
-				}
-				if (event.getButton() == MouseButton.SECONDARY) {
-					InputUtility.setMouseRightDown(true);
-					InputUtility.setMouseRightLastDown(true);
-					InputUtility.setMouseClickedTriggered(true);
-				}
-
-			}
-		});
-
-		this.canvas.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				InputUtility.setMouseOnScreen(false);
-			}
-		});
-
-		this.canvas.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				InputUtility.setMouseOnScreen(true);
-			}
-		});
-
-		this.canvas.setOnMouseMoved(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				if (InputUtility.isMouseOnScreen()) {
-					InputUtility.setMouseX((int) event.getX());
-					InputUtility.setMouseY((int) event.getY());
-				}
-			}
-		});
-
-		this.canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				if (InputUtility.isMouseOnScreen()) {
-					InputUtility.setMouseX((int) event.getX());
-					InputUtility.setMouseY((int) event.getY());
-				}
-			}
-		});
-				
-	}
 }
