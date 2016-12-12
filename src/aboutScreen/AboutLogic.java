@@ -1,6 +1,7 @@
 package aboutScreen;
 
 import core.MouseActionable;
+import core.ScreenObject;
 import util.InputUtility;
 
 public class AboutLogic {

@@ -95,7 +95,8 @@ public class MainScreen extends Screen {
 		gc.drawImage(Resources.getInstance().mainScreen, 0 , 0 , Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() );
 		
 		for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
-			renderable.draw(gc);
+			if( renderable.isVisible() ) 
+				renderable.draw(gc);
 		}
 		
 	}
@@ -104,7 +105,7 @@ public class MainScreen extends Screen {
 		int currentObjectZ = -1 ; 
 		Object currentObject = null ;
 		for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
-			if( renderable.isInside(x, y) ) {
+			if( renderable.isInside(x, y) && renderable.isVisible() ) {
 				if( currentObjectZ < renderable.getZ() ) {
 					currentObject = renderable ; 
 				}				

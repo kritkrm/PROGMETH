@@ -2,6 +2,7 @@ package aboutScreen;
 
 import core.Screen;
 import core.ScreenObject;
+import gameScreen.LittleHomeButton;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -10,22 +11,22 @@ import util.Resources;
 
 public class AboutScreen extends Screen {
 
-	private HomeButton homeButton ;
+	private LittleHomeButton homeButton ;
 	private AboutLogic aboutLogic ; 
 	
 	public AboutScreen() {
 		super( new StackPane() ) ;
 		AboutScreenObjectHolder.getInstance().getEntities().clear();
 		aboutLogic = new AboutLogic( this ) ; 
-		homeButton = new HomeButton(600, 500);
+		homeButton = new LittleHomeButton( 710 , 40 );
 		AboutScreenObjectHolder.getInstance().add( homeButton );
 	}
 	
-	public HomeButton getHomeButton() {
+	public LittleHomeButton getHomeButton() {
 		return homeButton;
 	}
 
-	public void setHomeButton(HomeButton homeButton) {
+	public void setHomeButton(LittleHomeButton homeButton) {
 		this.homeButton = homeButton;
 	}
 
@@ -38,7 +39,8 @@ public class AboutScreen extends Screen {
 		gc.restore();
 		gc.drawImage(Resources.getInstance().aboutScreen,0,0);
 		for(ScreenObject renderable : AboutScreenObjectHolder.getInstance().getEntities() ) {
-			renderable.draw(gc);
+			if( renderable.isVisible() ) 
+				renderable.draw(gc);
 		}
 		
 	}
@@ -60,7 +62,7 @@ public class AboutScreen extends Screen {
 		int currentObjectZ = -1 ; 
 		Object currentObject = null ;
 		for(ScreenObject renderable : AboutScreenObjectHolder.getInstance().getEntities() ) {
-			if( renderable.isInside(x, y) ) {
+			if( renderable.isInside(x, y) && renderable.isVisible() ) {
 				if( currentObjectZ < renderable.getZ() ) {
 					currentObject = renderable ; 
 				}				

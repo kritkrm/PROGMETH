@@ -59,4 +59,10 @@ public class ScoreButton implements ScreenObject, MouseActionable{
 			//draw something
 		}
 	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		// TODO Auto-generated method stub
+		
+	}
 }

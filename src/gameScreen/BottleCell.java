@@ -24,9 +24,7 @@ public class BottleCell extends Cell {
 	
 	@Override
 	public void draw(GraphicsContext gc) {
-
 		gc.drawImage( Resources.getInstance().bottleCell , Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col, Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE ,Constants.CELL_SIZE  );
-
 	}
 
 	@Override
@@ -74,7 +72,12 @@ public class BottleCell extends Cell {
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return false;
+		return isVisible;
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		// TODO Auto-generated method stub
 	}
 
 }

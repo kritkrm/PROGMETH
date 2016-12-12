@@ -66,18 +66,21 @@ public class DiamondCell extends Cell {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-//		Color color = Color.BLACK ;		
-//		gc.setFill( color );
-//		gc.fillRect( Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col , Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE , Constants.CELL_SIZE );		
 		gc.drawImage( Resources.getInstance().diamondCell , Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col, Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE ,Constants.CELL_SIZE  );
-
-		gc.restore();
+		
+		return ;
 	}
 
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return false;
+		return isVisible;
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		// TODO Auto-generated method stub
+		this.isVisible = visible ; 
 	}
 
 }

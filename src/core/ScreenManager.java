@@ -1,13 +1,11 @@
 package core;
 
 import aboutScreen.AboutScreen;
-import endScreen.EndScreen;
 import gameScreen.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import mainScreen.MainScreen;
-import pauseScreen.PauseScreen;
 import util.Constants;
 import util.InputUtility;
 
@@ -26,9 +24,6 @@ public class ScreenManager {
 	private GameScreen gameScreen ;
 	private MainScreen mainScreen ;
 	private AboutScreen aboutScreen ;
-	private PauseScreen pauseScreen ; 
-	private EndScreen endScreen ; 
-
 	
 	private int step ;
 	
@@ -37,8 +32,6 @@ public class ScreenManager {
 		mainScreen = new MainScreen() ;
 		gameScreen = new GameScreen() ;
 		aboutScreen = new AboutScreen() ;
-		pauseScreen = new PauseScreen() ; 
-		endScreen = new EndScreen() ;
 		setNextScreen( mainScreen );
 		step = 0 ;
 	}
@@ -51,16 +44,8 @@ public class ScreenManager {
 		gameScreen = new GameScreen() ; 
 	}
 	
-	public EndScreen getEndScreen() {
-		return this.endScreen ;
-	}
-	
 	public MainScreen getMainScreen() {
 		return this.mainScreen ;
-	}
-	
-	public PauseScreen getPauseScreen() {
-		return this.pauseScreen ;
 	}
 	
 	public AboutScreen getAboutScreen() {

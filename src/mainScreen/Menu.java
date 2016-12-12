@@ -39,4 +39,10 @@ public class Menu implements ScreenObject {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		// TODO Auto-generated method stub
+		
+	}
 }

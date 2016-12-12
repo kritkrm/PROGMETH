@@ -253,9 +253,11 @@ public class GridCell implements ScreenObject , MouseActionable {
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stub
-		Cell cell = getCellAtPos( x , y ) ;
-		if( cell != null && !cell.isDestroyed() )
-			cell.clickAction( x , y );
+//		if( !gameScreen.getGameStatus().isPause() ) {
+			Cell cell = getCellAtPos( x , y ) ;
+			if( cell != null && !cell.isDestroyed() )
+				cell.clickAction( x , y );
+//		}/
 	}
 	
 	public GameScreen getGameScreen() {
@@ -264,6 +266,12 @@ public class GridCell implements ScreenObject , MouseActionable {
 	
 	public Cell getCellAtIndex( int r , int c ) {
 		return grid[r][c] ; 
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

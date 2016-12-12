@@ -4,6 +4,7 @@ import java.io.InputStream;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import javafx.scene.text.Font;
 
 public class Resources {
 	public Image mainScreen,pauseScreen,aboutScreen,gameScreen,endScreen;
@@ -17,7 +18,8 @@ public class Resources {
 	public AudioClip soundMainScreen, soundGameScreen,clickButton, clickBox,boom;
 	public Image yellowCell , blueCell , greenCell , purpleCell , redCell ;
 	public Image diamondCell , timeCell , bottleCell ;
-
+	public Image littleHomeButton , littleRetryButton , littlePlayButton ;
+	public Font pauseFont , scoreFont ;
 	private static Resources instance = new Resources() ; 
 	
 	public static Resources getInstance() {
@@ -45,7 +47,9 @@ public class Resources {
 	}
 	
 	private void loadFonts() {
-		
+		pauseFont = Font.loadFont(getClass().getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 40);
+		scoreFont = Font.loadFont(getClass().getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 30);
+
 		return ; 
 
 	}
@@ -60,6 +64,7 @@ public class Resources {
 	}
 	
 	private void loadImage() {
+		
 		yellowCell = new Image(ClassLoader.getSystemResource("cell/cheeseCell.png").toString());
 		redCell = new Image(ClassLoader.getSystemResource("cell/blackCell.png").toString());
 		blueCell = new Image(ClassLoader.getSystemResource("cell/blueCell.png").toString());
@@ -69,6 +74,10 @@ public class Resources {
 		diamondCell = new Image(ClassLoader.getSystemResource("cell/diamondCell.png").toString());
 		bottleCell = new Image(ClassLoader.getSystemResource("cell/bottleCell.png").toString());
 		timeCell = new Image(ClassLoader.getSystemResource("cell/timeCell.png").toString());
+		
+		littleHomeButton = new Image(ClassLoader.getSystemResource("button/littleHomeButton.png").toString());
+		littleRetryButton = new Image(ClassLoader.getSystemResource("button/littleRetryButton.png").toString());
+		littlePlayButton = new Image(ClassLoader.getSystemResource("button/littlePlayButton.png").toString());
 
 		aboutScreen = new Image(ClassLoader.getSystemResource("background/aboutScreen.png").toString());
 		endScreen = new Image(ClassLoader.getSystemResource("background/endScreen.png").toString());

@@ -8,7 +8,7 @@ public abstract class Cell implements ScreenObject , MouseActionable {
 
 	protected int row , col ; 
 	private boolean isDestroyed ;
-	private boolean isVisible ;
+	protected boolean isVisible ;
 	protected GridCell gridCell ; 
 	
 	public Cell ( int row , int col , GridCell gridCell ) {

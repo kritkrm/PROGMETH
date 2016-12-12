@@ -5,6 +5,7 @@ import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import util.Constants;
+import util.InputUtility;
 
 public class GameStatus implements ScreenObject {
 
@@ -13,11 +14,13 @@ public class GameStatus implements ScreenObject {
 	private boolean isPause ;
 	private int combo ; 
 	private GameScreen gameScreen ;
+	private boolean isVisible ;
 	
 	public GameStatus( GameScreen gameScreen ) {
 		this.setGameScreen(gameScreen) ;
 		this.remainingTime = Constants.MAX_REMAINING_TIME ; 
 		this.isPause = false ;
+		this.isVisible = true ;
 		clearCombo();  
 		clearScore(); 
 	}
@@ -128,15 +131,22 @@ public class GameStatus implements ScreenObject {
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return false;
+		return isVisible;
 	}
 
 	public boolean isPause() {
 		return isPause;
 	}
 
-	public void togglePause() {
-		this.isPause = !this.isPause;
+	public void pause() {
+		InputUtility.postUpdate();
+		this.isPause = true;
+	}
+	
+	public void unpause() {
+
+		InputUtility.postUpdate();
+		this.isPause = false;
 	}
 
 	public int getCombo() {
@@ -155,6 +165,12 @@ public class GameStatus implements ScreenObject {
 	public boolean isInside(int x, int y) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

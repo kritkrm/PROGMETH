@@ -14,7 +14,7 @@ public class GameLogic {
 	}
 	
 	public void updateLogic() {
-
+		
 		if( InputUtility.isMouseClickedTriggered() ) {
 			Object object = gameScreen.getObjectAtPos(InputUtility.getMouseX(), InputUtility.getMouseY()) ; 
 			if( object != null ) {
