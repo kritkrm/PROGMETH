@@ -36,7 +36,6 @@ public class ColorCell extends Cell {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-//		Color color = getCellColor( this ) ;
 		if( isVisible ) {
 			Image image = getCellImage( cellColor ) ;
 			gc.drawImage( image , Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col, Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE ,Constants.CELL_SIZE  );
@@ -87,6 +86,7 @@ public class ColorCell extends Cell {
 		} else {
 			Resources.getInstance().clickBox.play();
 			gridCell.getGameScreen().getGameStatus().clearCombo();
+			gridCell.getGameScreen().getGameStatus().decreaseRemainingTime(2);
 			
 		} 	
 	}

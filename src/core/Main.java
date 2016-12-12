@@ -43,7 +43,7 @@ public class Main extends Application {
 			    	}
 			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
 			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
-			    	if( gameScreen.isActive() ) {
+			    	if( !gameScreen.getGameStatus().isPause() ) {
 			    		countCombo += ( 1 << (gameScreen.getGameStatus().getCombo()>>3) ) ;
 			    		if( gameScreen.getGridCell().countItemCell() >= Constants.MAX_ITEM_IN_GRID ) {
 			    			countCombo = 0l ;

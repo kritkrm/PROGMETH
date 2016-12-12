@@ -186,7 +186,7 @@ public class GridCell implements ScreenObject , MouseActionable {
 		// TODO Auto-generated method stub
 		for( int i=1 ; i<=maxRow ; i++ ) {
 			for( int j=1 ; j<=maxCol ; j++ ) {
-				if( !grid[i][j].isDestroyed() ) {
+				if( !grid[i][j].isDestroyed() && grid[i][j].isVisible() ) {
 					grid[i][j].draw( gc );
 					if( grid[i][j].isInside( InputUtility.getMouseX() , InputUtility.getMouseY() ) ) {
 						gc.setGlobalAlpha( 0.7 );
