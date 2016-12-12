@@ -3,13 +3,19 @@ package core;
 
 import java.util.Random;
 
-import gameScreen.BottleCell;
-import gameScreen.DiamondCell;
-import gameScreen.GameScreen;
-import gameScreen.TimeCell;
+import Screen.GameScreen;
+import gridObject.BottleCell;
+import gridObject.DiamondCell;
+import gridObject.TimeCell;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import util.Constants;
@@ -22,10 +28,31 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-
-		ScreenManager.getInstance().setStage( primaryStage );
-		Resources.getInstance().initialize() ;
+		StackPane mainPane = new StackPane() ;
+		mainPane.getChildren().add( ScreenManager.getInstance().getCanvas() ) ;
+		primaryStage.setScene( new Scene( mainPane ) );
 		
+//		try {
+			Resources.getInstance().initialize() ;
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			Platform.runLater( () -> {
+//				Alert alert = new Alert(AlertType.INFORMATION);
+//		        alert.setTitle("Alert");
+//		        alert.setHeaderText(null);
+//		        alert.setContentText(null);
+//		        alert.showAndWait();
+//			});
+//	        Platform.exit();
+//		}
+//		Platform.runLater( () -> {
+//			Alert alert = new Alert(AlertType.INFORMATION);
+//	        alert.setTitle("Alert");
+//	        alert.setHeaderText(null);
+//	        alert.setContentText(null);
+//	        alert.showAndWait();
+//		});
+//        Platform.exit();
 		eventMakerThread = new Thread( () -> {
 			
 			Random random = new Random();
@@ -43,7 +70,7 @@ public class Main extends Application {
 			    	}
 			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
 			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
-			    	if( !gameScreen.getGameStatus().isPause() ) {
+			    	if( !gameScreen.getGameStatus().isPause()  ) {
 			    		countCombo += ( 1 << (gameScreen.getGameStatus().getCombo()>>3) ) ;
 			    		if( gameScreen.getGridCell().countItemCell() >= Constants.MAX_ITEM_IN_GRID ) {
 			    			countCombo = 0l ;

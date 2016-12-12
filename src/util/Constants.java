@@ -39,6 +39,10 @@ public final class Constants {
 	public static final Dimension2D DEFAULT_MEDIUM_BUTTON_EXPAND = new Dimension2D( 3 , 3 ) ; 
 	public static final Dimension2D DEFAULT_MEDIUM_BUTTON_SIZE = new Dimension2D( 66 , 70 ) ; 	
 	
+	public static final int DEFAULT_Z_CELL = 4 ;
+	public static final int DEFAULT_Z_GAME_STATUS = 3 ;
+	public static final int DEFAULT_Z_GRID = 4 ;
+
 	public enum CellColor {
 		RED , BLUE , GREEN , YELLOW , PURPLE ; 
 		public static CellColor getRandom() {

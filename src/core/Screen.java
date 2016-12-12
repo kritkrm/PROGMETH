@@ -11,21 +11,17 @@ import javafx.scene.paint.Color;
 import util.Constants;
 import util.InputUtility;
 
-public abstract class Screen extends Scene {
+public abstract class Screen {
 
 	protected Canvas canvas ;
-	private StackPane stackPane ;
 	protected boolean isActive ;
 	protected int step ;
 	
 	
-	public Screen( StackPane stackPane ) {
-		super( stackPane ) ;
-		this.canvas = new Canvas( Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() ) ;
- 		this.stackPane = stackPane ;
-		this.stackPane.getChildren().add( canvas ) ;
-		addListener();
+	public Screen( Canvas canvas ) {
+		this.canvas = canvas ;
 		this.isActive = false ;
+		addListener();
 		step = 0 ;
 		
 	}
@@ -47,18 +43,7 @@ public abstract class Screen extends Scene {
 	public abstract Object getObjectAtPos( int x , int y ) ;
 	
 	public abstract void drawComponenet() ; 
-	
-	public void drawIntro( double level ) {
-		
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		
-		gc.setFill(Color.BLACK);
-		gc.setGlobalAlpha( level );
-		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
-		gc.setGlobalAlpha( 1 );
-		
-	}
-	
+
 	private void addListener() {
 		
 		this.canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {

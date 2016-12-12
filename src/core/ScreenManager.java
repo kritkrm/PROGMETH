@@ -1,11 +1,12 @@
 package core;
 
-import aboutScreen.AboutScreen;
-import gameScreen.GameScreen;
+import Screen.AboutScreen;
+import Screen.GameScreen;
+import Screen.MainScreen;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import mainScreen.MainScreen;
 import util.Constants;
 import util.InputUtility;
 
@@ -19,29 +20,32 @@ public class ScreenManager {
 	
 	private Screen nextScreen ;
 	private Screen currentScreen ;
-	private Stage stage ; 
 	
 	private GameScreen gameScreen ;
 	private MainScreen mainScreen ;
-	private AboutScreen aboutScreen ;
+	private AboutScreen aboutScreen ;	
+	private Canvas canvas ; 
 	
-	private int step ;
-	
-
 	public ScreenManager() {
-		mainScreen = new MainScreen() ;
-		gameScreen = new GameScreen() ;
-		aboutScreen = new AboutScreen() ;
+		
+		canvas = new Canvas( Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() ) ; 
+		mainScreen = new MainScreen( canvas ) ;
+		gameScreen = new GameScreen( canvas ) ;
+		aboutScreen = new AboutScreen( canvas ) ;
 		setNextScreen( mainScreen );
-		step = 0 ;
 	}
+	
+	public Canvas getCanvas() {
+		return this.canvas ;
+	}
+	
 	
 	public GameScreen getGameScreen() {
 		return this.gameScreen ;
 	}
 	
 	public void newGameScreen() {
-		gameScreen = new GameScreen() ; 
+		gameScreen = new GameScreen( canvas ) ; 
 	}
 	
 	public MainScreen getMainScreen() {
@@ -54,10 +58,6 @@ public class ScreenManager {
 	
 	public void setNextScreen( Screen screen ) {
 		this.nextScreen = screen ;
-	}
-	
-	public void setStage( Stage stage ) {
-		this.stage = stage ;
 	}
 	
 	public Screen getCurrentScreen() {
@@ -73,7 +73,6 @@ public class ScreenManager {
 			} 
 			this.currentScreen = nextScreen;
 			this.nextScreen = null;
-			stage.setScene( currentScreen );
 			currentScreen.active(); 
 			InputUtility.postUpdate();
 			
