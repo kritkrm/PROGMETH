@@ -93,6 +93,7 @@ public class Resources {
 		
 		aboutbutton 	= new Image(ClassLoader.getSystemResource("button/aboutbutton.png").toString());
 		aboutbutton2 	= new Image(ClassLoader.getSystemResource("button/aboutbutton2.png").toString());
+		
 		exitbutton 		= new Image(ClassLoader.getSystemResource("button/exitbutton.png").toString());
 		exitbutton2 	= new Image(ClassLoader.getSystemResource("button/exitbutton2.png").toString());
 		

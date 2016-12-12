@@ -8,10 +8,10 @@ import core.ScreenObject;
 import gameScreen.GameTitle;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import logic.MainLogic;
 import objectHolder.MainScreenObjectHolder;
+import objectHolder.PausePopUpObjectHolder;
 import util.Constants;
 import util.Resources;
 
@@ -22,7 +22,7 @@ public class MainScreen extends Screen {
 	private AboutButton aboutButton ;
 	private GameTitle gameTitle ;
 	private MainLogic mainLogic;
-	private int time;
+	private int step;
 	
 	public MainScreen( Canvas canvas ) {
 		
@@ -41,37 +41,13 @@ public class MainScreen extends Screen {
 		MainScreenObjectHolder.getInstance().add( gameTitle );
 		
 	}
-	
-	public PlayButton getPlayButton() {
-		return playButton ;
-	}
-	
-	public ExitButton getExitButton() {
-		return exitButton;
-	}
-
-	public AboutButton getAboutButton() {
-		return aboutButton;
-	}
-
-	public GameTitle getGameTitle() {
-		return gameTitle;
-	}
 
 	public MainLogic getMainLogic() {
 		return mainLogic;
 	}
 
-	public int getTime(){
-		return time;
-	}
-	
 	public void setMainLogic(MainLogic mainLogic) {
 		this.mainLogic = mainLogic;
-	}
-
-	public void setTime(int time) {
-		this.time = time;
 	}
 
 	@Override
@@ -107,16 +83,28 @@ public class MainScreen extends Screen {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		time += 1;
-		mainLogic.updateLogic( time );
-		drawComponenet();
+		drawComponenet();		
 		
+		if( step > 100 ) {
+			mainLogic.updateLogic();				
+			exitButton.setVisible(true);
+		} else {
+			step += 1 ;
+			if( step > 50 ) 
+				aboutButton.setVisible(true);
+			else if( step > 20 )
+				playButton.setVisible(true);
+			else 
+				gameTitle.setVisible(true);
+		}
+
 	}
 
 	@Override
 	public void active() {
 		// TODO Auto-generated method stub
 		isActive = true ;
+		step = 0 ;	
 		if( !Resources.getInstance().soundMainScreen.isPlaying() )
 			Resources.getInstance().soundMainScreen.play();
 	}
@@ -125,6 +113,9 @@ public class MainScreen extends Screen {
 	public void inactive() {
 		// TODO Auto-generated method stub
 		isActive = false ;
+		for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
+			renderable.setVisible(false); 
+		}	
 		if( Resources.getInstance().soundMainScreen.isPlaying() )
 			Resources.getInstance().soundMainScreen.stop(); 
 	}

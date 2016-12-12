@@ -18,6 +18,8 @@ public class AboutButton extends Button {
 	}
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
+		if( !isVisible ) step = 0 ;
+		return ;
 	}
 
 	@Override

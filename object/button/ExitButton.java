@@ -19,10 +19,11 @@ public class ExitButton extends Button {
 	}
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
+		if( !isVisible ) step = 0 ;
 	}
 	@Override
 	public int getZ() {
-		return Integer.MAX_VALUE;
+		return 4;
 	}
 
 	@Override
@@ -45,7 +46,6 @@ public class ExitButton extends Button {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-			
 		if( isVisible ) {
 			gc.setGlobalAlpha((double)step / 20.0 );
 			if( step < 20 ) step += 1 ;
@@ -64,8 +64,6 @@ public class ExitButton extends Button {
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stubclickButton
-//		Resources.getInstance().clickButton.play();
-//		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getAboutScreen() ) ; 
 		Platform.exit();
 	}
 }
