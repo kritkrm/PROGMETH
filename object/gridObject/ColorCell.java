@@ -78,7 +78,8 @@ public class ColorCell extends Cell {
 				i.destroy(); 
 				gridCell.update();
 			}
-			gridCell.getGameScreen().getGameStatus().increaseScore( neighborCell.size()*((gridCell.getGameScreen().getGameStatus().getCombo()>>4)|1));
+			gridCell.getGameScreen().getGameStatus().increaseScore( neighborCell.size()*((gridCell.getGameScreen().getGameStatus().getCombo())|1)); // extar score rate
+//			gridCell.getGameScreen().getGameStatus().increaseScore( neighborCell.size()*((gridCell.getGameScreen().getGameStatus().getCombo()>>4)|1)); // nornal score rate
 			gridCell.getGameScreen().getGameStatus().increaseCombo( ( (gridCell.getGameScreen().getGameStatus().getCombo()>>3)+2)*(neighborCell.size()>>1) );
 		
 		} else {

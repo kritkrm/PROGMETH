@@ -4,6 +4,7 @@ import core.Button;
 import core.ScreenManager;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
+import objectHolder.MainScreenObjectHolder;
 import util.Constants;
 import util.InputUtility;
 import util.Resources;
@@ -50,6 +51,7 @@ public class ExitButton extends Button {
 			gc.setGlobalAlpha((double)step / 15.0 );
 			if( step < 15 ) step += 1 ;
 			if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
+				MainScreenObjectHolder.getInstance().setCenterDiamond(2);
 				gc.drawImage( Resources.getInstance().exitbutton2 , 
 							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 
 							  y - Constants.DEFAULT_BUTTON_EXPAND.getHeight() ,

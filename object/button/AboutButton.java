@@ -3,6 +3,7 @@ package button;
 import core.Button;
 import core.ScreenManager;
 import javafx.scene.canvas.GraphicsContext;
+import objectHolder.MainScreenObjectHolder;
 import util.Constants;
 import util.InputUtility;
 import util.Resources;
@@ -51,6 +52,7 @@ public class AboutButton extends Button {
 			gc.setGlobalAlpha((double)step / 15.0 );
 			if( step < 15 ) step += 1 ;
 			if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
+				MainScreenObjectHolder.getInstance().setCenterDiamond(1);
 				gc.drawImage( Resources.getInstance().aboutbutton2 , 
 							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 
 							  y - Constants.DEFAULT_BUTTON_EXPAND.getHeight() ,

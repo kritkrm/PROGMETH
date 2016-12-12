@@ -31,15 +31,17 @@ public class MainScreen extends Screen {
 		MainScreenObjectHolder.getInstance().getEntities().clear();
 		mainLogic = new MainLogic(this);
 
-		aboutButton = new AboutButton(50,380);
-		playButton = new PlayButton(300,420);
-		exitButton = new ExitButton(550,380);
-		gameTitle = new GameTitle( 400-240 ,50);
+		aboutButton = new AboutButton(60,420);
+		playButton = new PlayButton(310,440);
+		exitButton = new ExitButton(560,420);
+		gameTitle = new GameTitle( 410-240 ,50);
 
 		MainScreenObjectHolder.getInstance().add( playButton );
 		MainScreenObjectHolder.getInstance().add( exitButton );
 		MainScreenObjectHolder.getInstance().add( aboutButton );
 		MainScreenObjectHolder.getInstance().add( gameTitle );
+		
+		MainScreenObjectHolder.getInstance().setCenterDiamond( 0 );
 		
 	}
 
@@ -55,6 +57,7 @@ public class MainScreen extends Screen {
 	public void drawComponenet() {
 		
 		GraphicsContext gc = canvas.getGraphicsContext2D();
+		
 		gc.setFill(Color.WHITE);
 		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
@@ -65,6 +68,15 @@ public class MainScreen extends Screen {
 			if( renderable.isVisible() ) 
 				renderable.draw(gc);
 		}
+	
+		if( MainScreenObjectHolder.getInstance().getCenterDiamond() == 0 ) {
+			gc.drawImage( Resources.getInstance().playCell, 280, 160);
+		} else if( MainScreenObjectHolder.getInstance().getCenterDiamond() == 1 ){
+			gc.drawImage( Resources.getInstance().aboutCell, 270, 140);
+		} else {
+			gc.drawImage( Resources.getInstance().exitCell, 265, 145);
+		}
+		
 		
 	}
 	

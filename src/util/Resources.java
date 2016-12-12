@@ -19,6 +19,7 @@ public class Resources {
 	public Image[] heart;
 	public Image littleHomeButton , littleRetryButton , littlePlayButton , littlePauseButton;
 	public Font pauseFont , scoreFont ;
+	public Image playCell , aboutCell , exitCell ;
 	private static Resources instance = new Resources() ; 
 	
 	public static Resources getInstance() {
@@ -62,6 +63,11 @@ public class Resources {
 	}
 	
 	private void loadImage() {
+		
+		playCell 	= new Image(ClassLoader.getSystemResource("cell/1.png").toString());
+		exitCell 	= new Image(ClassLoader.getSystemResource("cell/3.png").toString());
+		aboutCell 	= new Image(ClassLoader.getSystemResource("cell/2.png").toString());
+
 		
 		yellowCell 	= new Image(ClassLoader.getSystemResource("cell/cheeseCell.png").toString());
 		redCell 	= new Image(ClassLoader.getSystemResource("cell/blackCell.png").toString());

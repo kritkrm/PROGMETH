@@ -193,7 +193,7 @@ public class GridCell implements ScreenObject , MouseActionable {
 					if( grid[i][j].isInside( InputUtility.getMouseX() , InputUtility.getMouseY() ) ) {
 						gc.setGlobalAlpha( 0.7 );
 						gc.setFill( Color.WHEAT );
-						gc.fillRect( Constants.GRID_CELL_MARGIN.getWidth() + (j-1) * Constants.CELL_SIZE + j , Constants.GRID_CELL_MARGIN.getHeight() + (i-1) * Constants.CELL_SIZE + i , Constants.CELL_SIZE , Constants.CELL_SIZE );		
+						gc.fillRoundRect( Constants.GRID_CELL_MARGIN.getWidth() + (j-1) * Constants.CELL_SIZE + j , Constants.GRID_CELL_MARGIN.getHeight() + (i-1) * Constants.CELL_SIZE + i , Constants.CELL_SIZE , Constants.CELL_SIZE , 5, 5);		
 						gc.setGlobalAlpha( 1 );
 					}
 				}
