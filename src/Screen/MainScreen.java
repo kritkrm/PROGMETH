@@ -5,7 +5,7 @@ import button.ExitButton;
 import button.PlayButton;
 import core.Screen;
 import core.ScreenObject;
-import gameScreen.TitleGame;
+import gameScreen.GameTitle;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
@@ -20,7 +20,7 @@ public class MainScreen extends Screen {
 	private PlayButton playButton ;
 	private ExitButton exitButton ;
 	private AboutButton aboutButton ;
-	private TitleGame titleGame ;
+	private GameTitle gameTitle ;
 	private MainLogic mainLogic;
 	private int time;
 	
@@ -30,15 +30,15 @@ public class MainScreen extends Screen {
 		MainScreenObjectHolder.getInstance().getEntities().clear();
 		mainLogic = new MainLogic(this);
 
-		this.aboutButton = new AboutButton(50,380);
-		this.playButton = new PlayButton(300,420);
-		this.exitButton = new ExitButton(550,380);
-		this.titleGame = new TitleGame( 400-240 ,50);
+		aboutButton = new AboutButton(50,380);
+		playButton = new PlayButton(300,420);
+		exitButton = new ExitButton(550,380);
+		gameTitle = new GameTitle( 400-240 ,50);
 
 		MainScreenObjectHolder.getInstance().add( playButton );
 		MainScreenObjectHolder.getInstance().add( exitButton );
 		MainScreenObjectHolder.getInstance().add( aboutButton );
-		MainScreenObjectHolder.getInstance().add( titleGame );
+		MainScreenObjectHolder.getInstance().add( gameTitle );
 		
 	}
 	
@@ -54,8 +54,8 @@ public class MainScreen extends Screen {
 		return aboutButton;
 	}
 
-	public TitleGame getTitleGame() {
-		return titleGame;
+	public GameTitle getGameTitle() {
+		return gameTitle;
 	}
 
 	public MainLogic getMainLogic() {
@@ -66,23 +66,6 @@ public class MainScreen extends Screen {
 		return time;
 	}
 	
-	
-	public void setPlayButton(PlayButton playButton) {
-		this.playButton = playButton;
-	}
-
-	public void setExitButton(ExitButton exitButton) {
-		this.exitButton = exitButton;
-	}
-
-	public void setAboutButton(AboutButton aboutButton) {
-		this.aboutButton = aboutButton;
-	}
-
-	public void setTitleGame(TitleGame titleGame) {
-		this.titleGame = titleGame;
-	}
-
 	public void setMainLogic(MainLogic mainLogic) {
 		this.mainLogic = mainLogic;
 	}

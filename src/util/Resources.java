@@ -8,10 +8,12 @@ import javafx.scene.text.Font;
 
 public class Resources {
 	public Image mainScreen , aboutScreen , gameScreen ;
-	public Image aboutbutton , aboutbutton2 , exitbutton , exitbutton2 ;
+	
+	public Image aboutbutton , aboutbutton2 ;
+	public Image exitbutton , exitbutton2 ;
 	public Image playbutton , playbutton2;
 	public Image LongStory;
-	public AudioClip soundMainScreen, soundGameScreen,clickButton, clickBox,boom;
+	public AudioClip soundMainScreen, soundGameScreen , clickButton, clickBox , boom ;
 	public Image yellowCell , blueCell , greenCell , purpleCell , redCell ;
 	public Image diamondCell , timeCell , bottleCell ;
 	public Image[] heart;
@@ -44,9 +46,8 @@ public class Resources {
 	}
 	
 	private void loadFonts() {
-		pauseFont = Font.loadFont(getClass().getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 40);
-		scoreFont = Font.loadFont(getClass().getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 30);
-
+		pauseFont = Font.loadFont(getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 40);
+		scoreFont = Font.loadFont(getResourceAsStream("/fonts/ClearSans-Bold.ttf"), 30);
 		return ; 
 
 	}
@@ -54,51 +55,52 @@ public class Resources {
 	private void loadSound() {
 		soundGameScreen = new AudioClip((ClassLoader.getSystemResource("sound/soundGameScreen.mp3")).toString());
 		soundMainScreen = new AudioClip((ClassLoader.getSystemResource("sound/soundMainScreen.mp3")).toString());
-		clickBox = new AudioClip((ClassLoader.getSystemResource("sound/clickBox.mp3")).toString());
-		clickButton = new AudioClip((ClassLoader.getSystemResource("sound/clickButton.mp3")).toString());
-		boom = new AudioClip((ClassLoader.getSystemResource("sound/boom.mp3")).toString());
+		clickBox 		= new AudioClip((ClassLoader.getSystemResource("sound/clickBox.mp3")).toString());
+		clickButton 	= new AudioClip((ClassLoader.getSystemResource("sound/clickButton.mp3")).toString());
+		boom 			= new AudioClip((ClassLoader.getSystemResource("sound/boom.mp3")).toString());
 		return ;
 	}
 	
 	private void loadImage() {
 		
-		yellowCell = new Image(ClassLoader.getSystemResource("cell/cheeseCell.png").toString());
-		redCell = new Image(ClassLoader.getSystemResource("cell/blackCell.png").toString());
-		blueCell = new Image(ClassLoader.getSystemResource("cell/blueCell.png").toString());
-		greenCell = new Image(ClassLoader.getSystemResource("cell/purpleCell2.png").toString());
-		purpleCell = new Image(ClassLoader.getSystemResource("cell/purpleCell.png").toString());
+		yellowCell 	= new Image(ClassLoader.getSystemResource("cell/cheeseCell.png").toString());
+		redCell 	= new Image(ClassLoader.getSystemResource("cell/blackCell.png").toString());
+		blueCell 	= new Image(ClassLoader.getSystemResource("cell/blueCell.png").toString());
+		greenCell 	= new Image(ClassLoader.getSystemResource("cell/purpleCell2.png").toString());
+		purpleCell 	= new Image(ClassLoader.getSystemResource("cell/purpleCell.png").toString());
 		
 		diamondCell = new Image(ClassLoader.getSystemResource("cell/diamondCell.png").toString());
 //		diamondCell = new Image(ClassLoader.getSystemResource("cell/newDiamondCell.png").toString());
 
-		bottleCell = new Image(ClassLoader.getSystemResource("cell/bottleCell.png").toString());
-		timeCell = new Image(ClassLoader.getSystemResource("cell/timeCell.png").toString());
+		bottleCell 	= new Image(ClassLoader.getSystemResource("cell/bottleCell.png").toString());
+		timeCell 	= new Image(ClassLoader.getSystemResource("cell/timeCell.png").toString());
 		
-		heart = new Image[4];
-		heart[0] = new Image(ClassLoader.getSystemResource("cell/heart1.png").toString());
-		heart[1] = new Image(ClassLoader.getSystemResource("cell/heart2.png").toString());
-		heart[2] = new Image(ClassLoader.getSystemResource("cell/heart1.png").toString());
-		heart[3] = new Image(ClassLoader.getSystemResource("cell/heart3.png").toString());
+		heart 		= new Image[4];
+		heart[0] 	= new Image(ClassLoader.getSystemResource("cell/heart1.png").toString());
+		heart[1] 	= new Image(ClassLoader.getSystemResource("cell/heart2.png").toString());
+		heart[2] 	= new Image(ClassLoader.getSystemResource("cell/heart1.png").toString());
+		heart[3] 	= new Image(ClassLoader.getSystemResource("cell/heart3.png").toString());
 
 		
-		littleHomeButton = new Image(ClassLoader.getSystemResource("button/littleHomeButton.png").toString());
-		littleRetryButton = new Image(ClassLoader.getSystemResource("button/littleRetryButton.png").toString());
-		littlePlayButton = new Image(ClassLoader.getSystemResource("button/littlePlayButton.png").toString());
-		littlePauseButton = new Image(ClassLoader.getSystemResource("button/littlePauseButton.png").toString());
+		littleHomeButton 	= new Image(ClassLoader.getSystemResource("button/littleHomeButton.png").toString());
+		littleRetryButton 	= new Image(ClassLoader.getSystemResource("button/littleRetryButton.png").toString());
+		littlePlayButton 	= new Image(ClassLoader.getSystemResource("button/littlePlayButton.png").toString());
+		littlePauseButton 	= new Image(ClassLoader.getSystemResource("button/littlePauseButton.png").toString());
 
 		aboutScreen = new Image(ClassLoader.getSystemResource("background/aboutScreen.png").toString());
-		gameScreen = new Image(ClassLoader.getSystemResource("background/gameScreen.png").toString());
-		mainScreen = new Image(ClassLoader.getSystemResource("background/mainScreen.png").toString());
+		gameScreen 	= new Image(ClassLoader.getSystemResource("background/gameScreen.png").toString());
+		mainScreen 	= new Image(ClassLoader.getSystemResource("background/mainScreen.png").toString());
 		
-		aboutbutton = new Image(ClassLoader.getSystemResource("button/aboutbutton.png").toString());
-		aboutbutton2 = new Image(ClassLoader.getSystemResource("button/aboutbutton2.png").toString());
-		exitbutton = new Image(ClassLoader.getSystemResource("button/exitbutton.png").toString());
-		exitbutton2 = new Image(ClassLoader.getSystemResource("button/exitbutton2.png").toString());
+		aboutbutton 	= new Image(ClassLoader.getSystemResource("button/aboutbutton.png").toString());
+		aboutbutton2 	= new Image(ClassLoader.getSystemResource("button/aboutbutton2.png").toString());
+		exitbutton 		= new Image(ClassLoader.getSystemResource("button/exitbutton.png").toString());
+		exitbutton2 	= new Image(ClassLoader.getSystemResource("button/exitbutton2.png").toString());
 		
-		playbutton = new Image(ClassLoader.getSystemResource("button/playbutton.png").toString());
+		playbutton 	= new Image(ClassLoader.getSystemResource("button/playbutton.png").toString());
 		playbutton2 = new Image(ClassLoader.getSystemResource("button/playbutton2.png").toString());
 		
 		LongStory = new Image(ClassLoader.getSystemResource("pic/LongStory.png").toString());
+		
 		return ; 
 
 	}

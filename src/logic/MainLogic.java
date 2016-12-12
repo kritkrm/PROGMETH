@@ -29,7 +29,7 @@ public class MainLogic {
 		} else if( step > 40 ) {
 			mainScreen.getPlayButton().setVisible(true);
 		} else {
-			mainScreen.getTitleGame().setVisible(true);
+			mainScreen.getGameTitle().setVisible(true);
 		}
 	}
 	

@@ -5,10 +5,10 @@ import javafx.scene.canvas.GraphicsContext;
 import util.Constants;
 import util.Resources;
 
-public class TitleGame extends Button {
+public class GameTitle extends Button {
 	
 	private boolean isVisible;
-	public TitleGame(int x, int y){
+	public GameTitle(int x, int y){
 		super( x , y );
 		this.isVisible = false;
 		//this.count=0;
