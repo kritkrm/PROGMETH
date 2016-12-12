@@ -2,6 +2,7 @@ package mainScreen;
 
 import core.ScreenManager;
 import gameScreen.Button;
+import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import util.Constants;
 import util.InputUtility;
@@ -49,7 +50,7 @@ public class ExitButton extends Button {
 			gc.setGlobalAlpha((double)step / 20.0 );
 			if( step < 20 ) step += 1 ;
 			if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
-				gc.drawImage( Resources.getInstance().aboutbutton2 , 
+				gc.drawImage( Resources.getInstance().exitbutton2 , 
 							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 
 							  y - Constants.DEFAULT_BUTTON_EXPAND.getHeight() ,
 							  Constants.DEFAULT_BUTTON_SIZE.getWidth() + ( Constants.DEFAULT_BUTTON_EXPAND.getWidth()*2 ) , 
@@ -63,8 +64,8 @@ public class ExitButton extends Button {
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stubclickButton
-		Resources.getInstance().clickButton.play();
-		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getAboutScreen() ) ; 
-
+//		Resources.getInstance().clickButton.play();
+//		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getAboutScreen() ) ; 
+		Platform.exit();
 	}
 }

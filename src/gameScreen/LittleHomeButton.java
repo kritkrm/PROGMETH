@@ -46,20 +46,18 @@ public class LittleHomeButton extends Button {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 			
-		if( isVisible ) {
-			gc.setGlobalAlpha((double)step / 20.0 );
-			if( step < 20 ) step += 1 ;
-			if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
-				gc.drawImage( Resources.getInstance().littleHomeButton , 
-							  x - Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getWidth() , 
-							  y - Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getHeight() ,
-							  Constants.DEFAULT_LITTLE_BUTTON_SIZE.getWidth() + ( Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getWidth()*2 ) , 
-							  Constants.DEFAULT_LITTLE_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getHeight()*2) ) ;
-			} else{
-				gc.drawImage(Resources.getInstance().littleHomeButton, x, y, Constants.DEFAULT_LITTLE_BUTTON_SIZE.getWidth() , Constants.DEFAULT_LITTLE_BUTTON_SIZE.getHeight() );
-			}
-			gc.setGlobalAlpha(1);
+		gc.setGlobalAlpha((double)step / 20.0 );
+		if( step < 20 ) step += 1 ;
+		if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
+			gc.drawImage( Resources.getInstance().littleHomeButton , 
+						  x - Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getWidth() , 
+						  y - Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getHeight() ,
+						  Constants.DEFAULT_LITTLE_BUTTON_SIZE.getWidth() + ( Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getWidth()*2 ) , 
+						  Constants.DEFAULT_LITTLE_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getHeight()*2) ) ;
+		} else{
+			gc.drawImage(Resources.getInstance().littleHomeButton, x, y, Constants.DEFAULT_LITTLE_BUTTON_SIZE.getWidth() , Constants.DEFAULT_LITTLE_BUTTON_SIZE.getHeight() );
 		}
+		gc.setGlobalAlpha(1);
 	}
 	
 	@Override

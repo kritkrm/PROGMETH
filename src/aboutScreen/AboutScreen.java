@@ -18,7 +18,7 @@ public class AboutScreen extends Screen {
 		super( new StackPane() ) ;
 		AboutScreenObjectHolder.getInstance().getEntities().clear();
 		aboutLogic = new AboutLogic( this ) ; 
-		homeButton = new LittleHomeButton( 710 , 40 );
+		homeButton = new LittleHomeButton( 705 , 520 );
 		AboutScreenObjectHolder.getInstance().add( homeButton );
 	}
 	
@@ -37,7 +37,7 @@ public class AboutScreen extends Screen {
 		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.restore();
-		gc.drawImage(Resources.getInstance().aboutScreen,0,0);
+		gc.drawImage(Resources.getInstance().aboutScreen,0,0,Constants.DEFAULT_SCREEN_SIZE.getWidth(),Constants.DEFAULT_SCREEN_SIZE.getHeight());
 		for(ScreenObject renderable : AboutScreenObjectHolder.getInstance().getEntities() ) {
 			if( renderable.isVisible() ) 
 				renderable.draw(gc);

@@ -2,14 +2,15 @@ package mainScreen;
 
 import gameScreen.Button;
 import javafx.scene.canvas.GraphicsContext;
+import util.Constants;
 import util.Resources;
 
 public class TitleGame extends Button {
 	
 	private boolean isVisible;
 	public TitleGame(int x, int y){
-		super(x,y);
-		this.isVisible=false;
+		super( x , y );
+		this.isVisible = false;
 		//this.count=0;
 	}
 	public void setVisible(boolean isVisible) {
@@ -34,19 +35,14 @@ public class TitleGame extends Button {
 	}
 
 	@Override
-	public boolean isInside(int xx, int yy) {
+	public boolean isInside(int posX , int posY ) {
 		// TODO Auto-generated method stub
-		if( xx < x) return false ;
-		if( xx > x+184) return false ; 
-	
-		if( yy < y) return false ; 
-		if( yy > y+71) return false ;
-		
-		return true;
+		return false;
 	}
+	
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if(isVisible)	gc.drawImage(Resources.getInstance().LongStory, x, y,500,125);
+		gc.drawImage(Resources.getInstance().LongStory, x, y , 480 , 72);
 	}
 }

@@ -1,11 +1,15 @@
 package gameScreen;
 
+import java.awt.Container;
+
 import core.NegativeValueException;
 import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import util.Constants;
 import util.InputUtility;
+import util.Resources;
 
 public class GameStatus implements ScreenObject {
 
@@ -15,12 +19,14 @@ public class GameStatus implements ScreenObject {
 	private int combo ; 
 	private GameScreen gameScreen ;
 	private boolean isVisible ;
+	private int step ;
 	
 	public GameStatus( GameScreen gameScreen ) {
 		this.setGameScreen(gameScreen) ;
 		this.remainingTime = Constants.MAX_REMAINING_TIME ; 
 		this.isPause = false ;
 		this.isVisible = true ;
+		step = 0 ;
 		clearCombo();  
 		clearScore(); 
 	}
@@ -121,10 +127,22 @@ public class GameStatus implements ScreenObject {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.setFill( Color.BLUEVIOLET);
-		gc.fillText( "Score : " + Integer.toString( this.score ) , 30, 30);
-		gc.fillText( "Combo : " + Integer.toString( this.combo ) , 120, 30);
-		gc.fillText( "Time  : " + Integer.toString( this.remainingTime ) , 200, 30);
+		gc.setFill( Color.BLACK ); 
+		gc.setGlobalAlpha( 0.5 );
+		gc.fillRoundRect(Constants.GRID_CELL_MARGIN.getWidth()-2, 25, Constants.DEFAULT_GRID_SIZE.getWidth()+4, 110 , 10 , 10 );
+		gc.setGlobalAlpha( 1 );
+		gc.setFill( Color.BEIGE );
+		gc.setFont( Resources.getInstance().scoreFont );
+		gc.fillText( "Score : " + Integer.toString( score ) , Constants.GRID_CELL_MARGIN.getWidth()+10 , 60);
+		gc.setFont( gc.getFont().getDefault() );
+		gc.setFill( Color.CRIMSON );	
+		gc.fillRoundRect( Constants.GRID_CELL_MARGIN.getWidth()+10 , 80 , getRemainingTime()*(Constants.DEFAULT_GRID_SIZE.getWidth()-22)/60 , 20, 10, 10);
+		gc.setGlobalAlpha(1);
+		gc.setFill( Color.HONEYDEW );
+		gc.fillRoundRect( Constants.GRID_CELL_MARGIN.getWidth()+10 , 110 , getCombo()*(Constants.DEFAULT_GRID_SIZE.getWidth()-22)/60 , 10, 10, 10);
+//		gc.fillText( "Combo : " + Integer.toString( this.combo ) , 120, 30);
+
+		//		gc.fillText( "Time  : " + Integer.toString( this.remainingTime ) , 200, 30);
 
 	}
 
@@ -140,12 +158,14 @@ public class GameStatus implements ScreenObject {
 
 	public void pause() {
 		InputUtility.postUpdate();
+		gameScreen.getPauseButton().setVisible( false );
 		this.isPause = true;
 	}
 	
 	public void unpause() {
 
 		InputUtility.postUpdate();
+		gameScreen.getPauseButton().setVisible( true );
 		this.isPause = false;
 	}
 

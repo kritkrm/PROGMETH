@@ -3,6 +3,11 @@ package gameScreen;
 import java.awt.Container;
 import java.util.List;
 
+import com.sun.javafx.tk.FontLoader;
+import com.sun.javafx.tk.Toolkit;
+
+import aboutScreen.AboutLogic;
+import aboutScreen.AboutScreenObjectHolder;
 import core.Screen;
 import core.ScreenManager;
 import core.ScreenObject;
@@ -21,10 +26,15 @@ public class GameScreen extends Screen {
 	private int frameCount ;
 	private int pauseStep ; 
 	private int endScore ;
+	private LittlePauseButton littlePauseButton ;
 
 	public GameScreen() {
 		super( new StackPane() ) ; 
 		GameScreenObjectHolder.getInstance().getEntities().clear();
+
+		littlePauseButton = new LittlePauseButton( 730 , 20 );
+		GameScreenObjectHolder.getInstance().add( littlePauseButton );
+		
 		this.gridCell = new GridCell( this ) ;
 		this.gameStatus = new GameStatus( this ) ;
 		this.gameLogic = new GameLogic( this ) ; 
@@ -36,8 +46,12 @@ public class GameScreen extends Screen {
 		pauseStep = 0 ; 
 		endScore = 0 ;
 		gameStatus.unpause();
-//		gameStatus.increaseScore( 1850 );
+//		gameStatus.increaseScore( 180050 );
 		
+	}
+	
+	public LittlePauseButton getPauseButton() {
+		return littlePauseButton ;
 	}
 	
 	public void createPausePopUp() {
@@ -98,7 +112,10 @@ public class GameScreen extends Screen {
 		}
 		gc.setFill(Color.BLACK);
 		gc.setFont( Resources.getInstance().pauseFont );
-		gc.fillText( " GAME IS PAUSE ", 240, 260);
+		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
+		double font_width = fontLoader.computeStringWidth("GAME IS PAUSE", gc.getFont());
+		
+		gc.fillText( "GAME IS PAUSE", (int)(Constants.DEFAULT_SCREEN_SIZE.getWidth()-font_width)/2, 260);
 		gc.setFont( Font.getDefault() );
 	}
 	
@@ -109,13 +126,19 @@ public class GameScreen extends Screen {
 				renderable.draw(gc);
 			}
 		}
+		
 		gc.setFill(Color.BLACK);
 		gc.setFont( Resources.getInstance().pauseFont );
-		gc.fillText( " GAME OVER ", 280, 260);
+		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
+		double font_width = fontLoader.computeStringWidth("GAME OVER", gc.getFont());
+		gc.fillText( "GAME OVER", (int)(Constants.DEFAULT_SCREEN_SIZE.getWidth()-font_width)/2, 260);
+		
+		
 		gc.setFont( Resources.getInstance().scoreFont );
 		gc.setFill( Color.CADETBLUE );
-		gc.fillText( "SCORE : ", 300, 310);
-		gc.fillText( Integer.toString( endScore ), 420, 310);
+		font_width = fontLoader.computeStringWidth("SCORE : " + Integer.toString( gameStatus.getScore() ), gc.getFont());
+		gc.fillText( "SCORE : " + Integer.toString( endScore ), (int)(Constants.DEFAULT_SCREEN_SIZE.getWidth()-font_width)/2, 310);
+//		gc.fillText( Integer.toString( endScore ), 420, 310);
 		gc.setFont( Font.getDefault() );
 	}
 	
@@ -131,7 +154,7 @@ public class GameScreen extends Screen {
 				gameLogic.updateLogic(); 
 				if( gameStatus.getRemainingTime() == 0 ) { 
 					
-					endScore += ((int)(gameStatus.getScore()-endScore)/20)+1 ;
+					endScore += ((int)(gameStatus.getScore()-endScore)/30)+1 ;
 					if( endScore > gameStatus.getScore() ) endScore = gameStatus.getScore() ;
 					drawEndPopUP() ;
 				} else {

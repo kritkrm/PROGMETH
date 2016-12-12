@@ -26,7 +26,7 @@ public class MainScreen extends Screen {
 		this.aboutButton = new AboutButton(50,380);
 		this.playButton = new PlayButton(300,420);
 		this.exitButton = new ExitButton(550,380);
-		this.titleGame = new TitleGame(0,70);
+		this.titleGame = new TitleGame( 400-240 ,50);
 
 		MainScreenObjectHolder.getInstance().add( playButton );
 		MainScreenObjectHolder.getInstance().add( exitButton );
