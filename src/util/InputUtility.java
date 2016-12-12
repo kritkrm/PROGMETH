@@ -7,13 +7,12 @@ public class InputUtility {
 
 	private static int mouseX, mouseY;
 	private static boolean mouseLeftDown, mouseRightDown, mouseOnScreen;
-	private static boolean mouseLeftLastDown, mouseRightLastDown, mouseClickedTriggered;
+	private static boolean mouseLeftLastDown, mouseRightLastDown;
 	private static ArrayList<KeyCode> keyPressed = new ArrayList<>();
 	private static ArrayList<KeyCode> keyTriggered = new ArrayList<>();
-	private static ArrayList<String> mouseTriggered = new ArrayList<>();
 
 	public static int getMouseX() {
-		return InputUtility.mouseX;
+		return mouseX;
 	}
 
 	public static void setMouseX(int mouseX) {
@@ -21,7 +20,7 @@ public class InputUtility {
 	}
 
 	public static int getMouseY() {
-		return InputUtility.mouseY;
+		return mouseY;
 	}
 
 	public static void setMouseY(int mouseY) {
@@ -29,7 +28,7 @@ public class InputUtility {
 	}
 
 	public static boolean isMouseLeftDown() {
-		return InputUtility.mouseLeftDown;
+		return mouseLeftDown;
 	}
 
 	public static void setMouseLeftDown(boolean mouseLeftDown) {
@@ -37,7 +36,7 @@ public class InputUtility {
 	}
 
 	public static boolean isMouseRightDown() {
-		return InputUtility.mouseRightDown;
+		return mouseRightDown;
 	}
 
 	public static void setMouseRightDown(boolean mouseRightDown) {
@@ -45,7 +44,7 @@ public class InputUtility {
 	}
 
 	public static boolean isMouseOnScreen() {
-		return InputUtility.mouseOnScreen;
+		return mouseOnScreen;
 	}
 
 	public static void setMouseOnScreen(boolean mouseOnScreen) {
@@ -53,35 +52,15 @@ public class InputUtility {
 	}
 
 	public static boolean isMouseLeftClicked() {
-		return InputUtility.mouseLeftLastDown;
+		return mouseLeftLastDown;
 	}
 
 	public static void setMouseLeftLastDown(boolean v) {
 		InputUtility.mouseLeftLastDown = v;
 	}
-	
-	public static void setMouseClickedTriggered(boolean v) {
-		InputUtility.mouseClickedTriggered = v;
-	}
-	public static boolean isMouseClickedTriggered() {
-		if (InputUtility.mouseClickedTriggered && !InputUtility.mouseTriggered.contains("Left") && !InputUtility.mouseTriggered.contains("Right")) {
-			if(InputUtility.mouseLeftDown)  InputUtility.mouseTriggered.add("Left");
-			if(InputUtility.mouseRightDown)  InputUtility.mouseTriggered.add("Right");
-			InputUtility.mouseClickedTriggered = true;
-		}
-		else if (InputUtility.mouseTriggered.contains("Left") ||InputUtility.mouseTriggered.contains("Right") ) {
-			InputUtility.mouseClickedTriggered = false;
-		}
-		if (!InputUtility.mouseLeftDown)
-			InputUtility.mouseTriggered.remove("Left");
-		if (!InputUtility.mouseRightDown)
-			InputUtility.mouseTriggered.remove("Right");
-		
-		return InputUtility.mouseClickedTriggered;
-	}
 
 	public static boolean isMouseRightClicked() {
-		return InputUtility.mouseRightLastDown;
+		return mouseRightLastDown;
 	}
 
 	public static void setMouseRightLastDown(boolean v) {
@@ -89,35 +68,36 @@ public class InputUtility {
 	}
 
 	public static boolean getKeyPressed(KeyCode keycode) {
-		return InputUtility.keyPressed.contains(keycode);
+		return keyPressed.contains(keycode);
 	}
 
 	public static void setKeyPressed(KeyCode keycode, boolean pressed) {
-		if (!InputUtility.keyPressed.contains(keycode))
-			InputUtility.keyPressed.add(keycode);
-		else if (!pressed)
-			InputUtility.keyPressed.remove(keycode);
+		if (getKeyPressed(keycode) != pressed) {
+			if (pressed) {
+				keyPressed.add(keycode);
+			} else {
+				keyPressed.remove(keycode);
+			}
+		}
 	}
 
 	public static boolean getKeyTriggered(KeyCode keycode) {
-		return InputUtility.keyTriggered.contains(keycode);
+		return keyTriggered.contains(keycode);
 	}
 
 	public static void setKeyTriggered(KeyCode keycode, boolean pressed) {
-		if (pressed && !InputUtility.keyTriggered.contains(keycode))
-			InputUtility.keyTriggered.add(keycode);
-		else if (!pressed && InputUtility.keyTriggered.contains(keycode))
-			InputUtility.keyTriggered.remove(keycode);
+		if (getKeyTriggered(keycode) != pressed) {
+			if (pressed) {
+				keyTriggered.add(keycode);
+			} else {
+				keyTriggered.remove(keycode);
+			}
+		}
 	}
 
 	public static void postUpdate() {
-		InputUtility.setMouseClickedTriggered(false);
-		InputUtility.setMouseLeftLastDown(false);
-		InputUtility.setMouseRightLastDown(false);
-		InputUtility.setMouseLeftDown(false);
-		InputUtility.setMouseRightDown(false);
-		InputUtility.keyTriggered.clear();
-		InputUtility.mouseTriggered.clear();
-
+		mouseLeftLastDown = false;
+		mouseRightLastDown = false;
+		keyTriggered.clear();
 	}
 }

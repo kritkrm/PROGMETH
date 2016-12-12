@@ -69,7 +69,7 @@ public class ScreenManager {
 	}
 	
 	public void update() {
-		
+		if(InputUtility.isMouseLeftClicked() ) System.out.println("12321");
 		if (this.nextScreen != null) {
 			
 			if( currentScreen != null ) {
@@ -77,9 +77,7 @@ public class ScreenManager {
 			} 
 			this.currentScreen = nextScreen;
 			this.nextScreen = null;
-			currentScreen.active(); 
-			InputUtility.postUpdate();
-			
+			currentScreen.active(); 			
 		}
 
 		if (this.currentScreen != null) {
@@ -89,7 +87,6 @@ public class ScreenManager {
 	}
 	
 	private void addListener() {
-		
 		this.canvas.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -98,24 +95,20 @@ public class ScreenManager {
 					InputUtility.setMouseLeftDown(false);
 				if (event.getButton() == MouseButton.SECONDARY)
 					InputUtility.setMouseRightDown(false);
+
 			}
 		});
-		
 		this.canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				System.out.println("MousePressed : " + event.getButton().toString());
-				System.out.println(InputUtility.isMouseClickedTriggered());
 				if (event.getButton() == MouseButton.PRIMARY) {
-										
 					InputUtility.setMouseLeftDown(true);
 					InputUtility.setMouseLeftLastDown(true);
-					InputUtility.setMouseClickedTriggered(true); 
 				}
 				if (event.getButton() == MouseButton.SECONDARY) {
 					InputUtility.setMouseRightDown(true);
 					InputUtility.setMouseRightLastDown(true);
-					InputUtility.setMouseClickedTriggered(true);
 				}
 
 			}
@@ -158,6 +151,7 @@ public class ScreenManager {
 				}
 			}
 		});
+		
 				
 	}
 	

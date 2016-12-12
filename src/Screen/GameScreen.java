@@ -27,6 +27,7 @@ import objectHolder.EndPopUpObjectHolder;
 import objectHolder.GameScreenObjectHolder;
 import objectHolder.PausePopUpObjectHolder;
 import util.Constants;
+import util.InputUtility;
 import util.Resources;
 
 public class GameScreen extends Screen {
@@ -159,6 +160,7 @@ public class GameScreen extends Screen {
 			drawPopUpBG( pauseStep );
 			if( pauseStep < 50 ) {
 				pauseStep += 1 ;
+				InputUtility.postUpdate();
 			} else {
 				gameLogic.updateLogic(); 
 				if( gameStatus.getRemainingTime() == 0 ) { 
@@ -173,6 +175,7 @@ public class GameScreen extends Screen {
 		} else {
 			if( pauseStep > 0 ) { 
 				pauseStep -= 1 ;
+				InputUtility.postUpdate();
 				drawPopUpBG(pauseStep);
 			} else {
 				frameCount++;

@@ -19,6 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import util.Constants;
+import util.InputUtility;
 import util.Resources;
 
 public class Main extends Application {
@@ -69,8 +70,8 @@ public class Main extends Application {
 			    		if( !gameScreen.getGameLogic().getShuffle() )
 			    			gameScreen.getGameLogic().setShuffle( true );
 			    	}
-			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
-			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
+//			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
+//			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
 			    	if( !gameScreen.getGameStatus().isPause()  ) {
 			    		countCombo += ( 1 << (gameScreen.getGameStatus().getCombo()>>3) ) ;
 			    		if( gameScreen.getGridCell().countItemCell() >= Constants.MAX_ITEM_IN_GRID ) {

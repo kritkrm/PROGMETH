@@ -13,6 +13,7 @@ import logic.MainLogic;
 import objectHolder.MainScreenObjectHolder;
 import objectHolder.PausePopUpObjectHolder;
 import util.Constants;
+import util.InputUtility;
 import util.Resources;
 
 public class MainScreen extends Screen {
@@ -89,6 +90,7 @@ public class MainScreen extends Screen {
 			mainLogic.updateLogic();				
 			exitButton.setVisible(true);
 		} else {
+			InputUtility.postUpdate();
 			step += 1 ;
 			if( step > 50 ) 
 				aboutButton.setVisible(true);

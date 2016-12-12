@@ -14,7 +14,8 @@ public class AboutLogic {
 	}
 	
 	public void updateLogic() {	
-    	if( InputUtility.isMouseClickedTriggered() ) {
+		if( InputUtility.isMouseLeftClicked() ) {
+			InputUtility.postUpdate();
 			Object object = aboutScreen.getObjectAtPos(InputUtility.getMouseX(), InputUtility.getMouseY()) ; 
 			if( object != null ) {
 				if( object instanceof MouseActionable ) {
