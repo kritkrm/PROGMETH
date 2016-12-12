@@ -84,7 +84,7 @@ public class ColorCell extends Cell {
 		} else {
 			Resources.getInstance().clickBox.play();
 			gridCell.getGameScreen().getGameStatus().clearCombo();
-			gridCell.getGameScreen().getGameStatus().decreaseRemainingTime(2);
+			gridCell.getGameScreen().getGameStatus().decreaseRemainingTime(4);
 			
 		} 	
 	}

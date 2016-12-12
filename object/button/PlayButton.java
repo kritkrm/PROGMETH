@@ -58,8 +58,8 @@ public class PlayButton extends Button {
 		// TODO Auto-generated method stub
 			
 		if( isVisible ){ 
-			gc.setGlobalAlpha( (double)step / 20 );
-			if( step < 20 ) step += 1 ;
+			gc.setGlobalAlpha( (double)step / 15 );
+			if( step < 15 ) step += 1 ;
 			if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
 				gc.drawImage( Resources.getInstance().playbutton2 , 
 							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 

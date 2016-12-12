@@ -47,10 +47,9 @@ public class AboutButton extends Button {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-			
 		if( isVisible ) {
-			gc.setGlobalAlpha((double)step / 20.0 );
-			if( step < 20 ) step += 1 ;
+			gc.setGlobalAlpha((double)step / 15.0 );
+			if( step < 15 ) step += 1 ;
 			if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
 				gc.drawImage( Resources.getInstance().aboutbutton2 , 
 							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 

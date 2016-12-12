@@ -28,6 +28,7 @@ public class ScreenManager {
 	private MainScreen mainScreen ;
 	private AboutScreen aboutScreen ;	
 	private Canvas canvas ; 
+	private int changeStep ;
 	
 	public ScreenManager() {
 		canvas = new Canvas( Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() ) ; 
@@ -36,6 +37,7 @@ public class ScreenManager {
 		aboutScreen = new AboutScreen( canvas ) ;
 		setNextScreen( mainScreen );
 		addListener();
+		changeStep = 0 ;
 
 	}
 	
@@ -69,8 +71,10 @@ public class ScreenManager {
 	}
 	
 	public void update() {
-		if(InputUtility.isMouseLeftClicked() ) System.out.println("12321");
+//		if(InputUtility.isMouseLeftClicked() ) System.out.println("12321");
 		if (this.nextScreen != null) {
+			
+			changeStep = 60 ;
 			
 			if( currentScreen != null ) {
 				currentScreen.inactive(); 
@@ -78,12 +82,19 @@ public class ScreenManager {
 			this.currentScreen = nextScreen;
 			this.nextScreen = null;
 			currentScreen.active(); 			
+			
 		}
-
 		if (this.currentScreen != null) {
 			this.currentScreen.update();
 		}
-
+		if( changeStep > 0 ){ 
+			changeStep -= 1 ;
+			GraphicsContext gc = this.canvas.getGraphicsContext2D() ;
+			gc.setFill(Color.BLACK);
+			gc.setGlobalAlpha(((double)changeStep/60));
+			gc.fillRect(0, 0, Constants.DEFAULT_SCREEN_SIZE.getWidth(), Constants.DEFAULT_SCREEN_SIZE.getHeight());
+			gc.setGlobalAlpha(1);
+		} 
 	}
 	
 	private void addListener() {

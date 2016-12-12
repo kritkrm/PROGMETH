@@ -85,14 +85,12 @@ public class MainScreen extends Screen {
 	public void update() {
 		// TODO Auto-generated method stub
 		drawComponenet();		
-		
-		if( step > 100 ) {
-			mainLogic.updateLogic();				
+		mainLogic.updateLogic();	
+		if( step > 60 ) {	
 			exitButton.setVisible(true);
 		} else {
-			InputUtility.postUpdate();
 			step += 1 ;
-			if( step > 50 ) 
+			if( step > 40 ) 
 				aboutButton.setVisible(true);
 			else if( step > 20 )
 				playButton.setVisible(true);

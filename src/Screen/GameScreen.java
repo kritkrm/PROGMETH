@@ -110,7 +110,7 @@ public class GameScreen extends Screen {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		gc.setFill( Color.LIGHTGOLDENRODYELLOW );
 		gc.setGlobalAlpha( 0.9 );
-		gc.fillRoundRect( Constants.DEFAULT_SCREEN_SIZE.getWidth()/2 - 200 , Constants.DEFAULT_SCREEN_SIZE.getHeight()/2 - 2*step , 400 , 4*step , 10 , 10 );
+		gc.fillRoundRect( Constants.DEFAULT_SCREEN_SIZE.getWidth()/2 - 200 , Constants.DEFAULT_SCREEN_SIZE.getHeight()/2 - 4*step , 400 , 8*step , 10 , 10 );
 		gc.setGlobalAlpha( 1 );
 	}
 	
@@ -158,7 +158,7 @@ public class GameScreen extends Screen {
 		drawComponenet();
 		if( gameStatus.isPause() ) { 
 			drawPopUpBG( pauseStep );
-			if( pauseStep < 50 ) {
+			if( pauseStep < 25 ) {
 				pauseStep += 1 ;
 				InputUtility.postUpdate();
 			} else {
