@@ -1,6 +1,9 @@
 
 package core;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Optional;
 import java.util.Random;
 
 import Screen.GameScreen;
@@ -10,15 +13,20 @@ import gridObject.TimeCell;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -40,11 +48,11 @@ public class Main extends Application {
 		Resources.getInstance().initialize() ;
 
 		StackPane mainPane = new StackPane() ;
+
 		mainPane.getChildren().add( ScreenManager.getInstance().getCanvas() ) ;
 		primaryStage.setScene( new Scene( mainPane ) );
-		
+
 		eventMakerThread = new Thread( () -> {
-			
 			Random random = new Random();
 			long countCombo = 0 ;
 			GameScreen gameScreen ;
@@ -95,7 +103,9 @@ public class Main extends Application {
 			@Override
 			public void handle(WindowEvent event) {
 				stop();
-				System.exit(0);
+//				eventMakerThread.interrupt();
+//				Platform.exit();
+//				System.exit(0);
 			}
 		});
 		
@@ -119,9 +129,31 @@ public class Main extends Application {
 				}
 			}
 		}; 
+
+		
 		gameLoop.start();
+		
+//		new Thread( () -> {
+////			Platform.setImplicitExit( false ) ;
+//			try {
+//				eventMakerThread.join();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			Platform.runLater( () -> {
+//				Alert alert = new Alert(AlertType.CONFIRMATION);
+//				alert.setTitle("Message");
+//				alert.setHeaderText(null);
+//				alert.setContentText("All data are downloaded");
+//				alert.showAndWait();
+//			});
+//			Platform.exit();
+//		}).start();
 		primaryStage.show();
+	
 	}
+	
 
 	public void stop(){
 		
@@ -130,7 +162,13 @@ public class Main extends Application {
 			System.out.println("EventMaker is stopped.");
 		}
 		gameLoop.stop();
-		
+//		Platform.runLater( () -> {
+//			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//			alert.setTitle("Exit Program");
+//			alert.setHeaderText(null);
+//			alert.setContentText("Are you sure you wish to exit?");
+//			Optional<ButtonType> result = alert.showAndWait();});
+//		System.exit(0);
 	}
 
 	public static void main(String[] args) {

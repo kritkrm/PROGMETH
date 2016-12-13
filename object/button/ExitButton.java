@@ -1,9 +1,13 @@
 package button;
 
+import java.util.Optional;
+
 import core.Button;
 import core.ScreenManager;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import objectHolder.MainScreenObjectHolder;
 import util.Constants;
 import util.InputUtility;
@@ -66,8 +70,18 @@ public class ExitButton extends Button {
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stubclickButton
-		Platform.exit();
-//		System.exit(0);
-		
+
+		Platform.runLater( () -> {
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION, 
+				    "Are you sure you wish to exit?", 
+				    ButtonType.NO, ButtonType.YES );
+			alert.setTitle("Exit Program");
+			alert.setHeaderText(null);
+//			alert.setContentText("Are you sure you wish to exit?");
+			
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.YES) 
+			    Platform.exit();
+		});
 	}
 }
