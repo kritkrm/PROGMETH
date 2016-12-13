@@ -1,15 +1,14 @@
 package core;
 
-import Screen.AboutScreen;
-import Screen.GameScreen;
-import Screen.MainScreen;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+import screen.AboutScreen;
+import screen.GameScreen;
+import screen.MainScreen;
 import util.Constants;
 import util.InputUtility;
 

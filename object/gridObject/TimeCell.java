@@ -2,7 +2,6 @@ package gridObject;
 
 import core.Cell;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import util.Constants;
 import util.Resources;
 

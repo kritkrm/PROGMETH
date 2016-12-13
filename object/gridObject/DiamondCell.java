@@ -5,7 +5,6 @@ import java.util.Random;
 
 import core.Cell;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import util.Constants;
 import util.Resources;
 

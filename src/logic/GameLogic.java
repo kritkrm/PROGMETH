@@ -1,7 +1,7 @@
 package logic;
 
-import Screen.GameScreen;
 import core.MouseActionable;
+import screen.GameScreen;
 import util.InputUtility;
 
 public class GameLogic {

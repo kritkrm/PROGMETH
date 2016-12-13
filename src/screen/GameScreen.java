@@ -1,6 +1,5 @@
-package Screen;
+package screen;
 
-import java.awt.Container;
 import java.util.List;
 
 import com.sun.javafx.tk.FontLoader;
@@ -11,7 +10,6 @@ import button.LittlePauseButton;
 import button.LittlePlayButton;
 import button.LittleRetryButton;
 import core.Screen;
-import core.ScreenManager;
 import core.ScreenObject;
 import gameScreen.GameStatus;
 import gridObject.GridCell;

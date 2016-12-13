@@ -1,4 +1,4 @@
-package Screen;
+package screen;
 
 import button.AboutButton;
 import button.ExitButton;
@@ -11,9 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import logic.MainLogic;
 import objectHolder.MainScreenObjectHolder;
-import objectHolder.PausePopUpObjectHolder;
 import util.Constants;
-import util.InputUtility;
 import util.Resources;
 
 public class MainScreen extends Screen {

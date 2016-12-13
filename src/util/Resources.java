@@ -30,10 +30,6 @@ public class Resources {
 		return this.getClass().getClassLoader();
 	}
 	
-	private InputStream getResourceAsStream(String resourcePath) {
-		return getClassLoader().getResourceAsStream("res/" + resourcePath);
-	}
-
 	public boolean initialize() {
 		try {
 			loadFonts();

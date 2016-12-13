@@ -1,41 +1,20 @@
 
 package core;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
 import java.util.Random;
 
-import Screen.GameScreen;
 import gridObject.BottleCell;
 import gridObject.DiamondCell;
 import gridObject.TimeCell;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Labeled;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import screen.GameScreen;
 import util.Constants;
-import util.InputUtility;
 import util.Resources;
 
 public class Main extends Application {

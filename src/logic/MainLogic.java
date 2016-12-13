@@ -1,7 +1,7 @@
 package logic;
 
-import Screen.MainScreen;
 import core.MouseActionable;
+import screen.MainScreen;
 import util.InputUtility;
 
 public class MainLogic {

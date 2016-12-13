@@ -5,12 +5,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import Screen.GameScreen;
 import core.Cell;
 import core.MouseActionable;
 import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import screen.GameScreen;
 import util.Constants;
 import util.InputUtility;
 import util.Constants.CellColor;

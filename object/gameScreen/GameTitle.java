@@ -2,7 +2,6 @@ package gameScreen;
 
 import core.Button;
 import javafx.scene.canvas.GraphicsContext;
-import util.Constants;
 import util.Resources;
 
 public class GameTitle extends Button {

@@ -1,15 +1,12 @@
 package gameScreen;
 
-import java.awt.Container;
-
-import Screen.GameScreen;
 import core.NegativeValueException;
 import core.ScreenObject;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import screen.GameScreen;
 import util.Constants;
-import util.InputUtility;
 import util.Resources;
 
 public class GameStatus implements ScreenObject {
@@ -134,7 +131,7 @@ public class GameStatus implements ScreenObject {
 		gc.setFill( Color.BEIGE );
 		gc.setFont( Resources.getInstance().scoreFont );
 		gc.fillText( "Score : " + Integer.toString( score ) , Constants.GRID_CELL_MARGIN.getWidth()+10 , 60 );
-		gc.setFont( gc.getFont().getDefault() );
+		gc.setFont( Font.getDefault() );
 		gc.setFill( Color.CRIMSON );	
 		gc.fillRoundRect( Constants.GRID_CELL_MARGIN.getWidth()+10 , 80 , getRemainingTime()*(Constants.DEFAULT_GRID_SIZE.getWidth()-22)/60 , 20 , 10 , 10);
 		gc.setGlobalAlpha(1);

@@ -1,6 +1,5 @@
 package gridObject;
 
-import java.awt.PageAttributes.ColorType;
 import java.util.ArrayList;
 
 import core.Cell;

@@ -1,8 +1,6 @@
 package objectHolder;
 
 import core.ScreenObjectHolder;
-import javafx.scene.image.Image;
-import util.Resources;
 
 public class MainScreenObjectHolder extends ScreenObjectHolder {
 	

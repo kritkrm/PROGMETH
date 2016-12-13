@@ -1,11 +1,10 @@
-package Screen;
+package screen;
 
 import button.LittleHomeButton;
 import core.Screen;
 import core.ScreenObject;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import logic.AboutLogic;
 import objectHolder.AboutScreenObjectHolder;
