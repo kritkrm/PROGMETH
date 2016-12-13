@@ -14,7 +14,7 @@ import util.Resources;
 public class AboutScreen extends Screen {
 
 	private AboutLogic aboutLogic ; 
-	
+
 	public AboutScreen( Canvas canvas ) {
 		super( canvas ) ;
 		AboutScreenObjectHolder.getInstance().getEntities().clear();
@@ -22,7 +22,11 @@ public class AboutScreen extends Screen {
 		LittleHomeButton homeButton = new LittleHomeButton( 705 , 520 );
 		AboutScreenObjectHolder.getInstance().add( homeButton );
 	}
-
+	
+	public AboutLogic getAboutLogic() {
+		return aboutLogic;
+	}
+	
 	@Override
 	public void drawComponenet(){
 		GraphicsContext gc = canvas.getGraphicsContext2D();

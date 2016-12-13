@@ -25,7 +25,7 @@ public class GameLogic {
 				}
 			}
 		}	
-		
+		// if shuffle signal from eventMakerThread is true shuffle and turn it to false
 		if( shuffle ) {
 			gameScreen.getGridCell().shuffle() ;
 			setShuffle( false );

@@ -35,7 +35,7 @@ public class BottleCell extends Cell {
 		int randomRow = random.nextInt( maxRow-2 ) + 2 ;
 		int randomCol = random.nextInt( maxCol-2 ) + 2 ;
 		CellColor cellColor = CellColor.getRandom() ;
-		
+		// add a same color cell with below picture
 		//           x x x
 		//         x x x x x
 		//         x x x x x

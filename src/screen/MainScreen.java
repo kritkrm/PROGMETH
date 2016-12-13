@@ -47,10 +47,6 @@ public class MainScreen extends Screen {
 		return mainLogic;
 	}
 
-	public void setMainLogic(MainLogic mainLogic) {
-		this.mainLogic = mainLogic;
-	}
-
 	@Override
 	public void drawComponenet() {
 		

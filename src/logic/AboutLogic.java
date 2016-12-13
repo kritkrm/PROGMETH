@@ -8,18 +8,14 @@ public class AboutLogic {
 	
 	private AboutScreen aboutScreen ; 
 	
+	public AboutLogic( AboutScreen aboutScreen ) {
+		this.aboutScreen = aboutScreen ;
+	}
+
 	public AboutScreen getAboutScreen() {
 		return aboutScreen;
 	}
 
-	public void setAboutScreen(AboutScreen aboutScreen) {
-		this.aboutScreen = aboutScreen;
-	}
-
-	public AboutLogic( AboutScreen aboutScreen ) {
-		this.aboutScreen = aboutScreen ;
-	}
-	
 	public void updateLogic() {	
 		if( InputUtility.isMouseLeftClicked() ) {
 			InputUtility.postUpdate();

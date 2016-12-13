@@ -162,6 +162,7 @@ public class GameScreen extends Screen {
 			drawPopUpBG( pauseStep );
 			if( pauseStep < 25 ) {
 				pauseStep += 1 ;
+				// when we doesn't update logic we must clear mouse trigger from method Inputtility.postUpdate() 
 				InputUtility.postUpdate();
 			} else {
 				gameLogic.updateLogic(); 
@@ -176,12 +177,15 @@ public class GameScreen extends Screen {
 			}
 		} else {
 			if( pauseStep > 0 ) { 
-				pauseStep -= 1 ;
+				pauseStep -= 1 ; 
+				// when we doesn't update logic we must clear mouse trigger from method Inputtility.postUpdate() 
 				InputUtility.postUpdate();
 				drawPopUpBG(pauseStep);
 			} else {
-				frameCount++;
+				frameCount++; 
+				// count frame 
 				if( frameCount == Constants.MAX_FRAME_PER_SECOND ) {
+					// if frameCount reach to approximate FPS value use it for 1 sec timing
 					frameCount = 0 ; 
 					gameStatus.decreaseRemainingTime( 1 );
 					gameStatus.decreaseCombo( (gameStatus.getCombo()/6)+1);

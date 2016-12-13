@@ -5,7 +5,7 @@ import core.ScreenObjectHolder;
 public class MainScreenObjectHolder extends ScreenObjectHolder {
 	
 	private static final MainScreenObjectHolder instance = new MainScreenObjectHolder();
-	private int centerDiamond ;
+	private int centerDiamond ; // id of diamond that show on center of main screen
 
 	public MainScreenObjectHolder() {
 		super() ; 
