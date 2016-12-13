@@ -2,6 +2,7 @@ package gameScreen;
 
 import core.Button;
 import javafx.scene.canvas.GraphicsContext;
+import util.Constants;
 import util.Resources;
 
 public class GameTitle extends Button {
@@ -18,7 +19,7 @@ public class GameTitle extends Button {
 
 	@Override
 	public int getZ() {
-		return Integer.MAX_VALUE ;
+		return Constants.DEFAULT_Z_GAME_TITLE ;
 	}
 
 	@Override

@@ -12,7 +12,6 @@ public class DiamondCell extends Cell {
 
 	public DiamondCell(int row, int col, GridCell gridCell) {
 		super(row, col, gridCell);
-		isVisible = true ;
 		// TODO Auto-generated constructor stub
 	}
 	

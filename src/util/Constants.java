@@ -43,6 +43,10 @@ public final class Constants {
 	public static final int DEFAULT_Z_GAME_STATUS = 3 ;
 	public static final int DEFAULT_Z_GRID = 4 ;
 
+	public static final int DEFAULT_Z_GAME_TITLE = 0;
+
+	public static final int DEFAULT_Z_BUTTON = 0;
+
 	public enum CellColor {
 		RED , BLUE , GREEN , YELLOW , PURPLE ; 
 		public static CellColor getRandom() {

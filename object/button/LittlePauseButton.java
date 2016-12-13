@@ -8,29 +8,10 @@ import util.InputUtility;
 import util.Resources;
 
 public class LittlePauseButton extends Button {
-	
-	private boolean isVisible ;
-	private int step ;
-	
+		
 	public LittlePauseButton(int x, int y) {
 		super( x , y );
-		this.isVisible = true ;
-		step = 0 ;
-	}
-	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible ;
-		if( !isVisible ) step = 0 ;
-	}
-
-	@Override
-	public int getZ() {
-		return Integer.MAX_VALUE ;
-	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return isVisible ;
+		setVisible( true );
 	}
 
 	@Override

@@ -13,8 +13,6 @@ public class BottleCell extends Cell {
 	public BottleCell(int row, int col, GridCell gridCell) {
 		super( row , col , gridCell );
 		// TODO Auto-generated constructor stub
-		isVisible = true ;
-
 	}
 
 	public boolean equals( Object object ) {

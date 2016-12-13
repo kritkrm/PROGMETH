@@ -10,30 +10,11 @@ import util.Resources;
 
 public class PlayButton extends Button {
 	
-	private boolean isVisible;
-	private int step ;
-	
 	public PlayButton(int x, int y){
 		super( x , y );
-		this.isVisible = false ;
-		step = 0 ;
+		setVisible( false );
 	}
-	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible ;
-		if( !isVisible ) step = 0 ;
-		return ;
-	}
-	@Override
-	public int getZ() {
-		return Integer.MAX_VALUE;
-	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return isVisible ;
-	}
-
+	
 	@Override
 	public void clickAction( int x , int y ) {
 		// TODO Auto-generated method stub

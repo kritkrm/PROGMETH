@@ -31,7 +31,8 @@ public class GameStatus implements ScreenObject {
 	public void clearScore() {
 		this.score = 0 ;
 	}
-	
+	// to control upper and lower bound of time easy to implement other method about time
+	// thread safe 
 	public synchronized void addRemainingTime( int addRemainingTime ) throws NegativeValueException {
 		this.remainingTime += addRemainingTime ;
 		if( this.remainingTime < 0 ) this.remainingTime = 0 ;
@@ -94,7 +95,8 @@ public class GameStatus implements ScreenObject {
 		}
 		return ;
 	}
-	
+	// to control upper and lower bound of combo  easy to implement other method about combo
+	// thread safe 
 	public synchronized void addCombo( int addCombo ) throws NegativeValueException {
 		this.combo += addCombo ; 
 		if( this.combo > Constants.MAX_COMBO ) this.combo = Constants.MAX_COMBO ; 

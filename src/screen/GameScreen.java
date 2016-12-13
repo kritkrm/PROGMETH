@@ -44,15 +44,15 @@ public class GameScreen extends Screen {
 
 //		littlePauseButton = new LittlePauseButton( 730 , 30 );		
 //		GameScreenObjectHolder.getInstance().add( littlePauseButton );
-
-//		littlePauseButton = new LittlePauseButton( 670 , 30 );		GameScreenObjectHolder.getInstance().add( littlePauseButton );
+//		littlePauseButton = new LittlePauseButton( 670 , 30 );		
+//		GameScreenObjectHolder.getInstance().add( littlePauseButton );
 
 		littlePauseButton = new LittlePauseButton( 610 , 30 );
 		GameScreenObjectHolder.getInstance().add( littlePauseButton );
 		
-		this.gridCell = new GridCell( this ) ;
-		this.gameStatus = new GameStatus( this ) ;
-		this.gameLogic = new GameLogic( this ) ; 
+		this.gridCell = new GridCell( this );
+		this.gameStatus = new GameStatus( this );
+		this.gameLogic = new GameLogic( this ); 
 		createPausePopUp() ;
 		createEndPopUp() ;
 		GameScreenObjectHolder.getInstance().add( gridCell );		

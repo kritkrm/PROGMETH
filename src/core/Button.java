@@ -1,12 +1,16 @@
 package core;
 
+import util.Constants;
+
 public abstract class Button implements ScreenObject , MouseActionable {
 		
-	protected int x , y ; 
-
+	protected int x , y , step ; 
+	protected boolean isVisible ;
+	
 	public Button( int x , int y ) {
 		this.x = x ;
 		this.y = y ;
+		this.step = 0 ;
 	}
 	
 	public int getX() {
@@ -25,6 +29,21 @@ public abstract class Button implements ScreenObject , MouseActionable {
 	public void setY( int y ) {
 		this.y = y ;
 		return ;
+	}
+
+	public int getZ() {
+		// TODO Auto-generated method stub
+		return Constants.DEFAULT_Z_BUTTON;
+	}
+
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return isVisible ;
+	}
+	
+	public void setVisible(boolean isVisible) {
+		this.isVisible = isVisible ;
+		if( !isVisible ) step = 0 ;
 	}
 	
 }

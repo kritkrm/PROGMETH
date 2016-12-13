@@ -9,29 +9,10 @@ import util.InputUtility;
 import util.Resources;
 
 public class AboutButton extends Button {
-	private boolean isVisible;
-	private int step ;
 	
 	public AboutButton(int x, int y) {
 		super( x , y );
-		this.isVisible = false ;
-		step = 0 ;
-	}
-	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible ;
-		if( !isVisible ) step = 0 ;
-		return ;
-	}
-
-	@Override
-	public int getZ() {
-		return Integer.MAX_VALUE ;
-	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return isVisible ;
+		setVisible( false );
 	}
 
 	@Override
@@ -71,4 +52,6 @@ public class AboutButton extends Button {
 		ScreenManager.getInstance().setNextScreen( ScreenManager.getInstance().getAboutScreen() ) ; 
 
 	}
+
+
 }

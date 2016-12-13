@@ -9,15 +9,13 @@ public class TimeCell extends Cell {
 
 	public TimeCell(int row, int col, GridCell gridCell) {
 		super(row, col, gridCell);		
-		isVisible = true ;
 		// TODO Auto-generated constructor stub
 	}
 
 	public boolean equals( Object object ) {
-		
 		if( object instanceof TimeCell ) return true ;
 		return false ;
-		
+
 	}
 	
 	@Override
@@ -46,24 +44,6 @@ public class TimeCell extends Cell {
 		gc.drawImage( Resources.getInstance().timeCell , Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col, Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE ,Constants.CELL_SIZE  );
 		return ;
 		
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return isVisible;
-	}
-
-	@Override
-	public void setVisible(boolean visible) {
-		// TODO Auto-generated method stub
-		isVisible = visible;
 	}
 
 }
