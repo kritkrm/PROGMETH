@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import screen.GameScreen;
 import util.Constants;
@@ -33,6 +34,7 @@ public class Main extends Application {
 		mainPane.getChildren().add( ScreenManager.getInstance().getCanvas() ) ;
 		
 		primaryStage.setScene( new Scene( mainPane ) );
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
 
 		eventMakerThread = new Thread( () -> {
 			Random random = new Random();
