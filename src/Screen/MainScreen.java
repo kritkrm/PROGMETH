@@ -67,17 +67,21 @@ public class MainScreen extends Screen {
 		for(ScreenObject renderable : MainScreenObjectHolder.getInstance().getEntities() ) {
 			if( renderable.isVisible() ) 
 				renderable.draw(gc);
-		}
+		}	
+		
+	}
 	
+	
+	public void drawCenterDiamond() {
+		
+		GraphicsContext gc = canvas.getGraphicsContext2D();
 		if( MainScreenObjectHolder.getInstance().getCenterDiamond() == 0 ) {
-			gc.drawImage( Resources.getInstance().playCell, 280, 160);
+			gc.drawImage( Resources.getInstance().playCell, 280, 170);
 		} else if( MainScreenObjectHolder.getInstance().getCenterDiamond() == 1 ){
-			gc.drawImage( Resources.getInstance().aboutCell, 270, 140);
+			gc.drawImage( Resources.getInstance().aboutCell, 270, 150);
 		} else {
-			gc.drawImage( Resources.getInstance().exitCell, 265, 145);
+			gc.drawImage( Resources.getInstance().exitCell, 265, 155);
 		}
-		
-		
 	}
 	
 	public Object getObjectAtPos( int x , int y ) {
@@ -99,6 +103,7 @@ public class MainScreen extends Screen {
 		drawComponenet();		
 		mainLogic.updateLogic();	
 		if( step > 60 ) {	
+			drawCenterDiamond();
 			exitButton.setVisible(true);
 		} else {
 			step += 1 ;
