@@ -42,24 +42,30 @@ public class Main extends Application {
 	
 	private Thread eventMakerThread ;
 	private AnimationTimer gameLoop ;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		
 		Resources.getInstance().initialize() ;
 
 		StackPane mainPane = new StackPane() ;
-
+		
+		// Every part of drawing method will draw in only on canvas which on ScreenManager Class
 		mainPane.getChildren().add( ScreenManager.getInstance().getCanvas() ) ;
+		
 		primaryStage.setScene( new Scene( mainPane ) );
 
 		eventMakerThread = new Thread( () -> {
 			Random random = new Random();
+			// accumulate combo point every Constants.EVENT_MAKER_SLEEP_TIME milisec
 			long countCombo = 0 ;
 			GameScreen gameScreen ;
 			while ( !Thread.currentThread().isInterrupted() ) {
 			    try {
 			    	gameScreen = ScreenManager.getInstance().getGameScreen();
 			    	int sleepTime = Constants.EVENT_MAKER_SLEEP_TIME ;
+			    	// count number of cell group that can be destroy and shuffle when value is less than or equal Constants.GRID_SHUFFLE_THRESHOLD
+
 			    	int countCell = gameScreen.getGridCell().countClickCell() ; 
 			    	if( countCell <= Constants.GRID_SHUFFLE_THRESHOLD ) {
 			    		if( !gameScreen.getGameLogic().getShuffle() )
@@ -67,12 +73,16 @@ public class Main extends Application {
 			    	}
 //			    	System.out.println("Combo : " + countCombo + "/" + Constants.COMBO_THRESHOLD );
 //			    	System.out.println("Shuffle : " + countCell + "/" + Constants.GRID_SHUFFLE_THRESHOLD );
+			    	
 			    	if( !gameScreen.getGameStatus().isPause()  ) {
+			    		// this is a ratio to increas combo acummulation to be expotential
 			    		countCombo += ( 1 << (gameScreen.getGameStatus().getCombo()>>3) ) ;
 			    		if( gameScreen.getGridCell().countItemCell() >= Constants.MAX_ITEM_IN_GRID ) {
 			    			countCombo = 0l ;
+			    			// to ensure that number of Item Cell in grid will not more than Constants.MAX_ITEM_IN_GRID
 			    		}
 						if( countCombo >= Constants.COMBO_THRESHOLD ) {
+							// if combo accumulation reach to thresholdd value add some Item Cell by random and restart the count
 							countCombo = 0l ;
 							int randomRow = random.nextInt( Constants.CELL_PER_COL ) + 1 ;
 							int randomCol = random.nextInt( Constants.CELL_PER_ROW ) + 1 ;
@@ -84,10 +94,12 @@ public class Main extends Application {
 								gameScreen.getGridCell().addExtraAddCell( new TimeCell( randomRow, randomCol, gameScreen.getGridCell()) );
 							} else {
 								gameScreen.getGridCell().addExtraAddCell( new BottleCell( randomRow, randomCol, gameScreen.getGridCell()) );
-							}							
+							}			
+							
 						}
 			    	}
 			        Thread.sleep(sleepTime);
+			        // to control process cycle of eventMaker thread 
 			    } catch (InterruptedException ex) {
 			        Thread.currentThread().interrupt();
 			    }
@@ -103,9 +115,7 @@ public class Main extends Application {
 			@Override
 			public void handle(WindowEvent event) {
 				stop();
-//				eventMakerThread.interrupt();
-//				Platform.exit();
-//				System.exit(0);
+				System.exit(0);
 			}
 		});
 		
@@ -119,6 +129,7 @@ public class Main extends Application {
 				ScreenManager.getInstance().update() ; 
 				updateTime = currentTime ;
 				if ( updateTime < maximumWaitTime ) {
+					// to contral FPS of the game 
 					try {
 						Thread.sleep( (maximumWaitTime - updateTime) / 1000000l );
 					} catch (InterruptedException e) {
@@ -129,46 +140,21 @@ public class Main extends Application {
 				}
 			}
 		}; 
-
 		
 		gameLoop.start();
-		
-//		new Thread( () -> {
-////			Platform.setImplicitExit( false ) ;
-//			try {
-//				eventMakerThread.join();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			Platform.runLater( () -> {
-//				Alert alert = new Alert(AlertType.CONFIRMATION);
-//				alert.setTitle("Message");
-//				alert.setHeaderText(null);
-//				alert.setContentText("All data are downloaded");
-//				alert.showAndWait();
-//			});
-//			Platform.exit();
-//		}).start();
+
 		primaryStage.show();
 	
 	}
 	
 
 	public void stop(){
-		
 		if( eventMakerThread.isAlive() ) {
 			eventMakerThread.interrupt() ;
 			System.out.println("EventMaker is stopped.");
+			// make sure that eventMaker is stopped when exit the game 
 		}
 		gameLoop.stop();
-//		Platform.runLater( () -> {
-//			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//			alert.setTitle("Exit Program");
-//			alert.setHeaderText(null);
-//			alert.setContentText("Are you sure you wish to exit?");
-//			Optional<ButtonType> result = alert.showAndWait();});
-//		System.exit(0);
 	}
 
 	public static void main(String[] args) {

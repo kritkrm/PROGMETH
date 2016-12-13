@@ -18,17 +18,17 @@ public class ExitButton extends Button {
 	private int step ;
 	
 	public ExitButton(int x, int y) {
-		super( x , y ) ;
-		this.isVisible = false;
+		super( x , y );
+		this.isVisible = false ;
 		step = 0 ;
 	}
 	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible;
+		this.isVisible = isVisible ;
 		if( !isVisible ) step = 0 ;
 	}
 	@Override
 	public int getZ() {
-		return 4;
+		return 4 ;
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class ExitButton extends Button {
 							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 
 							  y - Constants.DEFAULT_BUTTON_EXPAND.getHeight() ,
 							  Constants.DEFAULT_BUTTON_SIZE.getWidth() + ( Constants.DEFAULT_BUTTON_EXPAND.getWidth()*2 ) , 
-							  Constants.DEFAULT_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_BUTTON_EXPAND.getHeight()*2) ) ;
+							  Constants.DEFAULT_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_BUTTON_EXPAND.getHeight()*2) );
 			} else{
 				gc.drawImage(Resources.getInstance().exitbutton, x, y, Constants.DEFAULT_BUTTON_SIZE.getWidth() , Constants.DEFAULT_BUTTON_SIZE.getHeight() );
 			}
@@ -70,17 +70,12 @@ public class ExitButton extends Button {
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stubclickButton
-
 		Platform.runLater( () -> {
-			Alert alert = new Alert(Alert.AlertType.CONFIRMATION, 
-				    "Are you sure you wish to exit?", 
-				    ButtonType.NO, ButtonType.YES );
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you wish to exit?" , ButtonType.NO, ButtonType.YES );
 			alert.setTitle("Exit Program");
 			alert.setHeaderText(null);
-//			alert.setContentText("Are you sure you wish to exit?");
-			
 			Optional<ButtonType> result = alert.showAndWait();
-			if (result.get() == ButtonType.YES) 
+			if ( result.get() == ButtonType.YES ) 
 			    Platform.exit();
 		});
 	}

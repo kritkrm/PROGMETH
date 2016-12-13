@@ -31,6 +31,7 @@ public class ScreenManager {
 	private int changeStep ;
 	
 	public ScreenManager() {
+		
 		canvas = new Canvas( Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() ) ; 
 		mainScreen = new MainScreen( canvas ) ;
 		gameScreen = new GameScreen( canvas ) ;
@@ -38,7 +39,7 @@ public class ScreenManager {
 		setNextScreen( mainScreen );
 		addListener();
 		changeStep = 0 ;
-
+		// set step of changing screen of the game to be zero 
 	}
 	
 	public Canvas getCanvas() {
@@ -71,11 +72,8 @@ public class ScreenManager {
 	}
 	
 	public void update() {
-//		if(InputUtility.isMouseLeftClicked() ) System.out.println("12321");
 		if (this.nextScreen != null) {
-			
 			changeStep = 60 ;
-			
 			if( currentScreen != null ) {
 				currentScreen.inactive(); 
 			} 
@@ -88,6 +86,7 @@ public class ScreenManager {
 			this.currentScreen.update();
 		}
 		if( changeStep > 0 ){ 
+			// make a smooth fade in effect 
 			changeStep -= 1 ;
 			GraphicsContext gc = this.canvas.getGraphicsContext2D() ;
 			gc.setFill(Color.BLACK);

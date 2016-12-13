@@ -31,16 +31,16 @@ public class MainScreen extends Screen {
 		MainScreenObjectHolder.getInstance().getEntities().clear();
 		mainLogic = new MainLogic(this);
 
-		aboutButton = new AboutButton(60,420);
-		playButton = new PlayButton(310,440);
-		exitButton = new ExitButton(560,420);
-		gameTitle = new GameTitle( 410-240 ,50);
+		aboutButton = new AboutButton( 60 , 420 );
+		playButton  = new PlayButton( 310 , 440 );
+		exitButton  = new ExitButton( 560 , 420 );
+		gameTitle   = new GameTitle( 170 , 50 );
 
+		MainScreenObjectHolder.getInstance().add( gameTitle );
 		MainScreenObjectHolder.getInstance().add( playButton );
 		MainScreenObjectHolder.getInstance().add( exitButton );
 		MainScreenObjectHolder.getInstance().add( aboutButton );
-		MainScreenObjectHolder.getInstance().add( gameTitle );
-		
+		// set default center diamond picture
 		MainScreenObjectHolder.getInstance().setCenterDiamond( 0 );
 		
 	}
@@ -59,8 +59,8 @@ public class MainScreen extends Screen {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		
 		gc.setFill(Color.WHITE);
-		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
-		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
+		gc.clearRect( 0 , 0 , canvas.getWidth() , canvas.getHeight() );
+		gc.fillRect ( 0 , 0 , canvas.getWidth() , canvas.getHeight() );
 		
 		gc.drawImage(Resources.getInstance().mainScreen, 0 , 0 , Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() );
 		
@@ -75,6 +75,7 @@ public class MainScreen extends Screen {
 	public void drawCenterDiamond() {
 		
 		GraphicsContext gc = canvas.getGraphicsContext2D();
+		
 		if( MainScreenObjectHolder.getInstance().getCenterDiamond() == 0 ) {
 			gc.drawImage( Resources.getInstance().playCell, 280, 170);
 		} else if( MainScreenObjectHolder.getInstance().getCenterDiamond() == 1 ){
@@ -82,6 +83,7 @@ public class MainScreen extends Screen {
 		} else {
 			gc.drawImage( Resources.getInstance().exitCell, 265, 155);
 		}
+		
 	}
 	
 	public Object getObjectAtPos( int x , int y ) {

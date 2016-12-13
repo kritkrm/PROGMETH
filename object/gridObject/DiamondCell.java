@@ -18,10 +18,8 @@ public class DiamondCell extends Cell {
 	}
 	
 	public boolean equals( Object object ) {
-		
 		if( object instanceof DiamondCell ) return true ;
 		return false ;
-		
 	}
 	
 	@Override
@@ -30,9 +28,9 @@ public class DiamondCell extends Cell {
 		Random random = new Random(); 
 		ArrayList<Cell> cellInLine ;
 		if( random.nextInt( 10000 )%2 == 0 ) {
-			 cellInLine = gridCell.getCellInRow( this.getRow() ) ;
+			 cellInLine = gridCell.getCellInRow( this.getRow() );
 		} else {
-			 cellInLine = gridCell.getCellInCol( this.getCol() ) ;
+			 cellInLine = gridCell.getCellInCol( this.getCol() );
 		}
 
 		for( Cell i : cellInLine ) {

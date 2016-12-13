@@ -31,13 +31,13 @@ public class ColorCell extends Cell {
 				return true ;
 			return false ;
 		}
-		return false;
+		return false ;
 	}
 	
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		Image image = getCellImage( cellColor ) ;
+		Image image = getCellImage( cellColor );
 		gc.drawImage( image , Constants.GRID_CELL_MARGIN.getWidth() + (col-1) * Constants.CELL_SIZE + col, Constants.GRID_CELL_MARGIN.getHeight() + (row-1) * Constants.CELL_SIZE + row , Constants.CELL_SIZE ,Constants.CELL_SIZE  );
 		return ;
 	}

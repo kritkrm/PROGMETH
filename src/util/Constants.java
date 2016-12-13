@@ -32,10 +32,6 @@ public final class Constants {
 
 	public static final Dimension2D DEFAULT_BUTTON_SIZE = new Dimension2D( 180 , 72 ) ; 
 	public static final Dimension2D DEFAULT_BUTTON_EXPAND = new Dimension2D( 2 , 1 ) ;
-
-	
-//	public static final Dimension2D DEFAULT_BUTTON_SIZE = new Dimension2D( 200 , 80 ) ; 
-//	public static final Dimension2D DEFAULT_BUTTON_EXPAND = new Dimension2D( 10 , 5 ) ;
 	
 	public static final Dimension2D DEFAULT_LITTLE_BUTTON_EXPAND = new Dimension2D( 2 , 2 ) ; 
 	public static final Dimension2D DEFAULT_LITTLE_BUTTON_SIZE = new Dimension2D( 40 , 45 ) ; 	

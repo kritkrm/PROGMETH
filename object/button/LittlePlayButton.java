@@ -13,24 +13,24 @@ public class LittlePlayButton extends Button {
 	private int step ;
 	
 	public LittlePlayButton(int x, int y) {
-		super( x , y ) ;
+		super( x , y );
 		this.isVisible = true ;
 		step = 0 ;
 	}
 	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible;
+		this.isVisible = isVisible ;
 		if( !isVisible ) step = 0 ;
 	}
 
 	@Override
 	public int getZ() {
-		return Integer.MAX_VALUE;
+		return Integer.MAX_VALUE ;
 	}
 
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return isVisible;
+		return isVisible ;
 	}
 
 	@Override
@@ -67,6 +67,6 @@ public class LittlePlayButton extends Button {
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stub
 		Resources.getInstance().clickButton.play();
-		ScreenManager.getInstance().getGameScreen().getGameStatus().unpause() ; 
+		ScreenManager.getInstance().getGameScreen().getGameStatus().unpause(); 
 	}
 }

@@ -24,7 +24,7 @@ public class TimeCell extends Cell {
 	@Override
 	public void clickAction( int x , int y ) {
 		// TODO Auto-generated method stub
-		gridCell.getGameScreen().getGameStatus().increaseRemainingTime( 2 ) ; 
+		gridCell.getGameScreen().getGameStatus().increaseRemainingTime( 2 ); 
 		this.destroy(); 
 		gridCell.update();
 	}

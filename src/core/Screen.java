@@ -17,12 +17,11 @@ public abstract class Screen {
 	protected boolean isActive ;
 	protected int step ;
 	
-	
 	public Screen( Canvas canvas ) {
 		this.canvas = canvas ;
 		this.isActive = false ;
 		step = 0 ;
-		
+		// set a step for make animation to be zero 
 	}
 	
 	public abstract void update() ;

@@ -63,7 +63,6 @@ public class GridCell implements ScreenObject , MouseActionable {
 	}
 	
 	public ArrayList<Cell> getCellInRow( int row ) {
-		
 		ArrayList<Cell> CellInRow = new ArrayList<Cell>() ;
 		if( row >= 1 && row <= maxRow ){
 			for( int i=1; i<=maxCol; i++ ) {
@@ -112,7 +111,7 @@ public class GridCell implements ScreenObject , MouseActionable {
 			for( int c=1 ; c<=maxCol ; c++ ) {
 				if( grid[r][c] instanceof ColorCell ) {
 					if( getNeighborOf( (ColorCell)grid[r][c] ).size() >= 3 )
-						clickCell += 1;
+						clickCell += 1 ;
 				} else {
 					clickCell += (1<<2) ; 
 				}
@@ -122,7 +121,7 @@ public class GridCell implements ScreenObject , MouseActionable {
 	}
 
 	public ArrayList<ColorCell> getNeighborOf( ColorCell cell ) {
-		
+		// use bfs to find a cell which are same type of input cell
 		ArrayList<ColorCell> neighbor = new ArrayList<ColorCell>() ;
 		ArrayList<Cell> queue = new ArrayList<Cell>();
 		 		 
@@ -217,6 +216,7 @@ public class GridCell implements ScreenObject , MouseActionable {
 	}
 	
 	public void update() {
+		// shift cell on the column that has empty cell or destroyed cell down 
 		for( int c=1 ; c<=maxCol ; c++ ) {
 			for( int r=maxRow; r>=1 ; r-- ) {
 				if( grid[r][c].isDestroyed() ) {
@@ -227,6 +227,7 @@ public class GridCell implements ScreenObject , MouseActionable {
 				}
 			}
 		}
+		
 		updateIndex();
 		generateGrid(); 
 		

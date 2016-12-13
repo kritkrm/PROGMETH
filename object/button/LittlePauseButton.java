@@ -13,24 +13,24 @@ public class LittlePauseButton extends Button {
 	private int step ;
 	
 	public LittlePauseButton(int x, int y) {
-		super( x , y ) ;
+		super( x , y );
 		this.isVisible = true ;
 		step = 0 ;
 	}
 	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible;
+		this.isVisible = isVisible ;
 		if( !isVisible ) step = 0 ;
 	}
 
 	@Override
 	public int getZ() {
-		return Integer.MAX_VALUE;
+		return Integer.MAX_VALUE ;
 	}
 
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return isVisible;
+		return isVisible ;
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class LittlePauseButton extends Button {
 						  x - Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getWidth() , 
 						  y - Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getHeight() ,
 						  Constants.DEFAULT_LITTLE_BUTTON_SIZE.getWidth() + ( Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getWidth()*2 ) , 
-						  Constants.DEFAULT_LITTLE_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getHeight()*2) ) ;
+						  Constants.DEFAULT_LITTLE_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_LITTLE_BUTTON_EXPAND.getHeight()*2) );
 		} else{
 			gc.drawImage(Resources.getInstance().littlePauseButton, x, y, Constants.DEFAULT_LITTLE_BUTTON_SIZE.getWidth() , Constants.DEFAULT_LITTLE_BUTTON_SIZE.getHeight() );
 		}
@@ -66,6 +66,6 @@ public class LittlePauseButton extends Button {
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stub
 		Resources.getInstance().clickButton.play();
-		ScreenManager.getInstance().getGameScreen().getGameStatus().pause() ; 
+		ScreenManager.getInstance().getGameScreen().getGameStatus().pause(); 
 	}
 }

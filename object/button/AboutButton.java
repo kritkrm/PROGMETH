@@ -13,25 +13,25 @@ public class AboutButton extends Button {
 	private int step ;
 	
 	public AboutButton(int x, int y) {
-		super( x , y ) ;
+		super( x , y );
 		this.isVisible = false ;
 		step = 0 ;
 	}
 	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible;
+		this.isVisible = isVisible ;
 		if( !isVisible ) step = 0 ;
 		return ;
 	}
 
 	@Override
 	public int getZ() {
-		return Integer.MAX_VALUE;
+		return Integer.MAX_VALUE ;
 	}
 
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return isVisible;
+		return isVisible ;
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class AboutButton extends Button {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		if( isVisible ) {
-			gc.setGlobalAlpha((double)step / 15.0 );
+			gc.setGlobalAlpha( (double)step / 15.0 );
 			if( step < 15 ) step += 1 ;
 			if( isInside( InputUtility.getMouseX(),InputUtility.getMouseY() ) ) {
 				MainScreenObjectHolder.getInstance().setCenterDiamond(1);
@@ -57,7 +57,7 @@ public class AboutButton extends Button {
 							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 
 							  y - Constants.DEFAULT_BUTTON_EXPAND.getHeight() ,
 							  Constants.DEFAULT_BUTTON_SIZE.getWidth() + ( Constants.DEFAULT_BUTTON_EXPAND.getWidth()*2 ) , 
-							  Constants.DEFAULT_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_BUTTON_EXPAND.getHeight()*2) ) ;
+							  Constants.DEFAULT_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_BUTTON_EXPAND.getHeight()*2) );
 			} else{
 				gc.drawImage(Resources.getInstance().aboutbutton, x, y, Constants.DEFAULT_BUTTON_SIZE.getWidth() , Constants.DEFAULT_BUTTON_SIZE.getHeight() );
 			}

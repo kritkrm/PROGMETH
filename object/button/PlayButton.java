@@ -15,11 +15,11 @@ public class PlayButton extends Button {
 	
 	public PlayButton(int x, int y){
 		super( x , y );
-		this.isVisible = false;
+		this.isVisible = false ;
 		step = 0 ;
 	}
 	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible;
+		this.isVisible = isVisible ;
 		if( !isVisible ) step = 0 ;
 		return ;
 	}
@@ -31,7 +31,7 @@ public class PlayButton extends Button {
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return isVisible;
+		return isVisible ;
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class PlayButton extends Button {
 							  x - Constants.DEFAULT_BUTTON_EXPAND.getWidth() , 
 							  y - Constants.DEFAULT_BUTTON_EXPAND.getHeight() ,
 							  Constants.DEFAULT_BUTTON_SIZE.getWidth() + ( Constants.DEFAULT_BUTTON_EXPAND.getWidth()*2 ) , 
-							  Constants.DEFAULT_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_BUTTON_EXPAND.getHeight()*2) ) ;
+							  Constants.DEFAULT_BUTTON_SIZE.getHeight() + (Constants.DEFAULT_BUTTON_EXPAND.getHeight()*2) );
 			} else {
 				gc.drawImage(Resources.getInstance().playbutton, x, y, Constants.DEFAULT_BUTTON_SIZE.getWidth() , Constants.DEFAULT_BUTTON_SIZE.getHeight() );
 			}

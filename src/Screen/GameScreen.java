@@ -63,7 +63,6 @@ public class GameScreen extends Screen {
 		pauseStep = 0 ; 
 		endScore = 0 ;
 		gameStatus.pause();
-//		gameStatus.increaseScore( 180050 );
 		
 	}
 	
@@ -99,10 +98,10 @@ public class GameScreen extends Screen {
 		gc.clearRect( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.fillRect ( 0, 0, canvas.getWidth(), canvas.getHeight());
 		gc.restore(); 
-		gc.drawImage(Resources.getInstance().gameScreen,0,0 , Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() );
+		gc.drawImage(Resources.getInstance().gameScreen , 0 , 0 , Constants.DEFAULT_SCREEN_SIZE.getWidth() , Constants.DEFAULT_SCREEN_SIZE.getHeight() );
 		gc.setGlobalAlpha( 0.5 );
 		gc.setFill(Color.WHITE);
-		gc.fillRoundRect ( Constants.GRID_CELL_MARGIN.getWidth()-2, Constants.GRID_CELL_MARGIN.getHeight()-2 , Constants.DEFAULT_GRID_SIZE.getWidth()+4 ,  Constants.DEFAULT_GRID_SIZE.getHeight()+4 , 10 , 10);
+		gc.fillRoundRect ( Constants.GRID_CELL_MARGIN.getWidth()-2 , Constants.GRID_CELL_MARGIN.getHeight()-2 , Constants.DEFAULT_GRID_SIZE.getWidth()+4 ,  Constants.DEFAULT_GRID_SIZE.getHeight()+4 , 10 , 10 );
 		gc.setGlobalAlpha( 1 );
 		for(ScreenObject renderable : GameScreenObjectHolder.getInstance().getEntities() ) {
 			if( renderable.isVisible() ) 

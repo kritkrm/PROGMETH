@@ -12,17 +12,15 @@ import util.Constants.CellColor;
 public class BottleCell extends Cell {
 
 	public BottleCell(int row, int col, GridCell gridCell) {
-		super( row , col , gridCell ) ;
+		super( row , col , gridCell );
 		// TODO Auto-generated constructor stub
 		isVisible = true ;
 
 	}
 
 	public boolean equals( Object object ) {
-		
 		if( object instanceof BottleCell ) return true ;
 		return false ;
-		
 	}
 	
 	@Override
@@ -40,6 +38,12 @@ public class BottleCell extends Cell {
 		int randomRow = random.nextInt( maxRow-2 ) + 2 ;
 		int randomCol = random.nextInt( maxCol-2 ) + 2 ;
 		CellColor cellColor = CellColor.getRandom() ;
+		
+		//           x x x
+		//         x x x x x
+		//         x x x x x
+		//         x x x x x
+		//           x x x 
 		
 		for( int r=randomRow-2; r<=randomRow+2; r++ ) {
 			for( int c=randomCol-2; c<=randomCol+2; c++ ) {

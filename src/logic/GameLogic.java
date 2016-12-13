@@ -25,10 +25,12 @@ public class GameLogic {
 				}
 			}
 		}	
+		
 		if( shuffle ) {
 			gameScreen.getGridCell().shuffle() ;
 			setShuffle( false );
 		}
+		
 		gameScreen.getGridCell().update();
 	}
 	
