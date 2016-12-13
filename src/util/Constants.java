@@ -24,7 +24,6 @@ public final class Constants {
 	public static final Dimension2D DEFAULT_SCREEN_SIZE = new Dimension2D( 800 , 600  ) ;
 	
 	public static final Dimension2D GRID_CELL_MARGIN = new Dimension2D( 40 , 140  ) ;
-	public static final Dimension2D RESUME_BUTTON_MARGIN = new Dimension2D( 100 , 140  ) ;
 
 	public static final Dimension2D DEFAULT_GRID_SIZE = new Dimension2D( CELL_PER_ROW * ( CELL_SIZE + 1 ) + 1 , CELL_PER_COL * ( CELL_SIZE + 1 ) + 1 ) ; 
 	public static final Dimension2D DEFAULT_POPUP_SIZE = new Dimension2D( 500 , 400 ) ; 

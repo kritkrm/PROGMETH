@@ -8,6 +8,7 @@ import gridObject.DiamondCell;
 import gridObject.TimeCell;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -26,7 +27,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		Resources.getInstance().initialize() ;
+		try {
+			Resources.getInstance().initialize() ;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		StackPane mainPane = new StackPane() ;
 		

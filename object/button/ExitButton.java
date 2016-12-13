@@ -54,6 +54,7 @@ public class ExitButton extends Button {
 	@Override
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stubclickButton
+		Resources.getInstance().clickButton.play();
 		Platform.runLater( () -> {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you wish to exit?" , ButtonType.NO, ButtonType.YES );
 			alert.setTitle("Exit Program");

@@ -7,37 +7,9 @@ import util.Resources;
 
 public class GameTitle extends Button {
 	
-	private boolean isVisible;
 	public GameTitle(int x, int y){
 		super( x , y );
-		this.isVisible = false ;
-		//this.count=0;
-	}
-	public void setVisible(boolean isVisible) {
-		this.isVisible = isVisible ;
-	}
-
-	@Override
-	public int getZ() {
-		return Constants.DEFAULT_Z_GAME_TITLE ;
-	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return isVisible ;
-	}
-
-	@Override
-	public void clickAction(int x , int y) {
-		// TODO Auto-generated method stub
-		return ;
-	}
-
-	@Override
-	public boolean isInside(int posX , int posY ) {
-		// TODO Auto-generated method stub
-		return false;
+		setVisible(false);
 	}
 	
 	@Override
@@ -45,4 +17,17 @@ public class GameTitle extends Button {
 		// TODO Auto-generated method stub
 		gc.drawImage(Resources.getInstance().LongStory, x, y , 480 , 72);
 	}
+
+	@Override
+	public boolean isInside(int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void clickAction(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

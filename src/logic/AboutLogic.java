@@ -12,10 +12,6 @@ public class AboutLogic {
 		this.aboutScreen = aboutScreen ;
 	}
 
-	public AboutScreen getAboutScreen() {
-		return aboutScreen;
-	}
-
 	public void updateLogic() {	
 		if( InputUtility.isMouseLeftClicked() ) {
 			InputUtility.postUpdate();
