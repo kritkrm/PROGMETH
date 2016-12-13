@@ -8,8 +8,6 @@ public class InputUtility {
 	private static int mouseX, mouseY;
 	private static boolean mouseLeftDown, mouseRightDown, mouseOnScreen;
 	private static boolean mouseLeftLastDown, mouseRightLastDown;
-	private static ArrayList<KeyCode> keyPressed = new ArrayList<>();
-	private static ArrayList<KeyCode> keyTriggered = new ArrayList<>();
 
 	public static int getMouseX() {
 		return mouseX;
@@ -67,37 +65,8 @@ public class InputUtility {
 		InputUtility.mouseRightLastDown = v;
 	}
 
-	public static boolean getKeyPressed(KeyCode keycode) {
-		return keyPressed.contains(keycode);
-	}
-
-	public static void setKeyPressed(KeyCode keycode, boolean pressed) {
-		if (getKeyPressed(keycode) != pressed) {
-			if (pressed) {
-				keyPressed.add(keycode);
-			} else {
-				keyPressed.remove(keycode);
-			}
-		}
-	}
-
-	public static boolean getKeyTriggered(KeyCode keycode) {
-		return keyTriggered.contains(keycode);
-	}
-
-	public static void setKeyTriggered(KeyCode keycode, boolean pressed) {
-		if (getKeyTriggered(keycode) != pressed) {
-			if (pressed) {
-				keyTriggered.add(keycode);
-			} else {
-				keyTriggered.remove(keycode);
-			}
-		}
-	}
-
 	public static void postUpdate() {
 		mouseLeftLastDown = false;
 		mouseRightLastDown = false;
-		keyTriggered.clear();
 	}
 }
