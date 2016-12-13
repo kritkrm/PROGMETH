@@ -4,7 +4,7 @@ import javafx.geometry.Dimension2D;
 
 public final class Constants {
 
-	public static final String GAME_NAME = "JETHO" ; 
+	public static final String GAME_NAME = "Long Story" ; 
 		
 	public static int MAX_FRAME_PER_SECOND = 60 ;
 	

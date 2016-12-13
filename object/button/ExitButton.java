@@ -67,5 +67,7 @@ public class ExitButton extends Button {
 	public void clickAction(int x, int y) {
 		// TODO Auto-generated method stubclickButton
 		Platform.exit();
+//		System.exit(0);
+		
 	}
 }

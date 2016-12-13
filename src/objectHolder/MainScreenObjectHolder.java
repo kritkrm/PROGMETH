@@ -1,6 +1,8 @@
 package objectHolder;
 
 import core.ScreenObjectHolder;
+import javafx.scene.image.Image;
+import util.Resources;
 
 public class MainScreenObjectHolder extends ScreenObjectHolder {
 	
@@ -9,7 +11,7 @@ public class MainScreenObjectHolder extends ScreenObjectHolder {
 
 	public MainScreenObjectHolder() {
 		super() ;
-		setCenterDiamond(0) ;
+		setCenterDiamond( 0 ) ;
 	}
 	public static MainScreenObjectHolder getInstance() {
 		return instance;

@@ -11,11 +11,19 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import util.Constants;
@@ -24,37 +32,17 @@ import util.Resources;
 
 public class Main extends Application {
 	
-	private Thread eventMakerThread ; 
-	
+	private Thread eventMakerThread ;
+	private AnimationTimer gameLoop ;
 	@Override
 	public void start(Stage primaryStage) {
-
+		
 		Resources.getInstance().initialize() ;
 
 		StackPane mainPane = new StackPane() ;
 		mainPane.getChildren().add( ScreenManager.getInstance().getCanvas() ) ;
 		primaryStage.setScene( new Scene( mainPane ) );
 		
-//		try {
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			Platform.runLater( () -> {
-//				Alert alert = new Alert(AlertType.INFORMATION);
-//		        alert.setTitle("Alert");
-//		        alert.setHeaderText(null);
-//		        alert.setContentText(null);
-//		        alert.showAndWait();
-//			});
-//	        Platform.exit();
-//		}
-//		Platform.runLater( () -> {
-//			Alert alert = new Alert(AlertType.INFORMATION);
-//	        alert.setTitle("Alert");
-//	        alert.setHeaderText(null);
-//	        alert.setContentText(null);
-//	        alert.showAndWait();
-//		});
-//        Platform.exit();
 		eventMakerThread = new Thread( () -> {
 			
 			Random random = new Random();
@@ -65,7 +53,6 @@ public class Main extends Application {
 			    	gameScreen = ScreenManager.getInstance().getGameScreen();
 			    	int sleepTime = Constants.EVENT_MAKER_SLEEP_TIME ;
 			    	int countCell = gameScreen.getGridCell().countClickCell() ; 
-			    
 			    	if( countCell <= Constants.GRID_SHUFFLE_THRESHOLD ) {
 			    		if( !gameScreen.getGameLogic().getShuffle() )
 			    			gameScreen.getGameLogic().setShuffle( true );
@@ -93,7 +80,6 @@ public class Main extends Application {
 						}
 			    	}
 			        Thread.sleep(sleepTime);
-			    
 			    } catch (InterruptedException ex) {
 			        Thread.currentThread().interrupt();
 			    }
@@ -110,11 +96,10 @@ public class Main extends Application {
 			public void handle(WindowEvent event) {
 				stop();
 				System.exit(0);
-			
 			}
 		});
 		
-		new AnimationTimer() {
+		gameLoop = new AnimationTimer() {
 			long updateTime ;
 			final long maximumWaitTime = 1000000000l / Constants.MAX_FRAME_PER_SECOND;
 			@Override
@@ -133,8 +118,8 @@ public class Main extends Application {
 					}
 				}
 			}
-		}.start();
-		
+		}; 
+		gameLoop.start();
 		primaryStage.show();
 	}
 
@@ -144,6 +129,7 @@ public class Main extends Application {
 			eventMakerThread.interrupt() ;
 			System.out.println("EventMaker is stopped.");
 		}
+		gameLoop.stop();
 		
 	}
 
