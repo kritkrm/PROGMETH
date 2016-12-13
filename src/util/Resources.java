@@ -16,7 +16,6 @@ public class Resources {
 	public AudioClip soundMainScreen, soundGameScreen , clickButton, clickBox , boom ;
 	public Image yellowCell , blueCell , greenCell , purpleCell , redCell ;
 	public Image diamondCell , timeCell , bottleCell ;
-	public Image[] heart;
 	public Image littleHomeButton , littleRetryButton , littlePlayButton , littlePauseButton;
 	public Font pauseFont , scoreFont ;
 	public Image playCell , aboutCell , exitCell ;
@@ -76,14 +75,7 @@ public class Resources {
 
 		bottleCell 	= new Image(ClassLoader.getSystemResource("cell/bottleCell.png").toString());
 		timeCell 	= new Image(ClassLoader.getSystemResource("cell/timeCell.png").toString());
-		
-		heart 		= new Image[4];
-		heart[0] 	= new Image(ClassLoader.getSystemResource("cell/heart1.png").toString());
-		heart[1] 	= new Image(ClassLoader.getSystemResource("cell/heart2.png").toString());
-		heart[2] 	= new Image(ClassLoader.getSystemResource("cell/heart1.png").toString());
-		heart[3] 	= new Image(ClassLoader.getSystemResource("cell/heart3.png").toString());
-
-		
+			
 		littleHomeButton 	= new Image(ClassLoader.getSystemResource("button/littleHomeButton.png").toString());
 		littleRetryButton 	= new Image(ClassLoader.getSystemResource("button/littleRetryButton.png").toString());
 		littlePlayButton 	= new Image(ClassLoader.getSystemResource("button/littlePlayButton.png").toString());

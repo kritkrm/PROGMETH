@@ -13,14 +13,13 @@ public final class Constants {
 	public static int CELL_PER_ROW = 13 ;
 	public static int CELL_PER_COL = 10 ;
 	
-	public static int COMBO_THRESHOLD = 1000 ;
-	
-	public static int MAX_REMAINING_TIME = 60 ;
 	public static int MAX_COMBO = 60 ;
 	public static int MAX_ITEM_IN_GRID = 7 ;
+	public static int MAX_REMAINING_TIME = 60 ;
 	
 	public static int EVENT_MAKER_SLEEP_TIME = 150 ;
 	public static int GRID_SHUFFLE_THRESHOLD = 20 ;
+	public static int COMBO_THRESHOLD = 1000 ;
 	
 	public static final Dimension2D DEFAULT_SCREEN_SIZE = new Dimension2D( 800 , 600  ) ;
 	
@@ -39,13 +38,11 @@ public final class Constants {
 	public static final Dimension2D DEFAULT_MEDIUM_BUTTON_EXPAND = new Dimension2D( 3 , 3 ) ; 
 	public static final Dimension2D DEFAULT_MEDIUM_BUTTON_SIZE = new Dimension2D( 66 , 70 ) ; 	
 	
-	public static final int DEFAULT_Z_CELL = 4 ;
-	public static final int DEFAULT_Z_GAME_STATUS = 3 ;
+	public static final int DEFAULT_Z_CELL = 5 ;
 	public static final int DEFAULT_Z_GRID = 4 ;
-
-	public static final int DEFAULT_Z_GAME_TITLE = 0;
-
-	public static final int DEFAULT_Z_BUTTON = 0;
+	public static final int DEFAULT_Z_BUTTON = 6;
+	public static final int DEFAULT_Z_GAME_TITLE = 6;
+	public static final int DEFAULT_Z_GAME_STATUS = 6 ;
 
 	public enum CellColor {
 		RED , BLUE , GREEN , YELLOW , PURPLE ; 
