@@ -27,12 +27,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		try {
-			Resources.getInstance().initialize() ;
-
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		Resources.getInstance().initialize() ;
 
 		StackPane mainPane = new StackPane() ;
 		
